@@ -23,6 +23,7 @@ class Robot extends Model
         'website',
         'description',
         'user_id',
+        'technology_id',
     ];
 
     public function user()

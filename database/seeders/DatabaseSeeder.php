@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Competition;
 use App\Models\CompetitionCategory;
 use App\Models\Participation;
+use App\Models\Technology;
 
 class DatabaseSeeder extends Seeder
 {
@@ -54,6 +55,17 @@ class DatabaseSeeder extends Seeder
             'user_id' => $testUser->id,
         ]);
 
+        $technologies = [
+            'Lego',
+            'Arduino',
+            'Raspberry Pi',
+            'ESP32',
+        ];
+
+        foreach ($technologies as $technology) {
+            Technology::create(['name' => $technology]);
+        }
+
         // Create robot
         $superBot = Robot::create([
             'name' => 'SuperBot',
@@ -69,11 +81,13 @@ class DatabaseSeeder extends Seeder
             'website' => 'https://www.superbot.com',
             'description' => 'Description',
             'user_id' => $testUser->id,
+            'technology_id' => Technology::where('name', 'Arduino')->first()->id,
         ]);
 
         // Create 10 random robots
         Robot::factory()->count(10)->create()->each(function ($robot) use ($countries) {
             $robot->user_id = User::inRandomOrder()->first()->id;
+            $robot->technology_id = rand(1,4);
             $robot->save();
         });
 

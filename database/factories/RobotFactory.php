@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Robot;
 use App\Models\User;
+use App\Models\Technology;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RobotFactory extends Factory
@@ -26,6 +27,7 @@ class RobotFactory extends Factory
             'website' => $this->faker->url,
             'description' => $this->faker->paragraph,
             'user_id' => User::factory(),
+            'technology_id' => Technology::factory(),
         ];
     }
 }
