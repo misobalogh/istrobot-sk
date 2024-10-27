@@ -45,6 +45,27 @@ Change database name in `.env` file:
 DB_DATABASE=istrobot
 ```
 
+```bash
+CREATE DATABASE istrobot;
+EXIT;
+```
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+View database:
+```bash
+mysql istrobot -u root
+```
+
+```bash
+SHOW TABLES;
+DESCRIBE <table_name>;
+```
+
+
 ## Install dependencies:
 ```bash
 composer install
