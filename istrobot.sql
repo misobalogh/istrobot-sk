@@ -31,6 +31,7 @@ CREATE TABLE "User" (
     city VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL, -- hashed password
     password_salt VARCHAR(255) NOT NULL, -- salt for password hashing
+    is_activated BOOLEAN DEFAULT FALSE,
     email VARCHAR(255) NOT NULL
         CHECK(REGEXP_LIKE(
                 email,  '^[[:alnum:]_\.\-]+@[[:alnum:]_\.\-]+\.[[:alpha:]]{2,4}$', 'i')),
