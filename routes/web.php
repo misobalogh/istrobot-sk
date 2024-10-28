@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/contest/{year}', [CategoryController::class, 'showCategoriesByYear'])->name('categories.byYear');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
