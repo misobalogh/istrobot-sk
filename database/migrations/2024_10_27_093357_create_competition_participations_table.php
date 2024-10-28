@@ -11,9 +11,9 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('participations', function (Blueprint $table) {
-            $table->foreignId('robot_id')->constrained('robots');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('competition_id')->constrained('competitions');
+            $table->foreignId('robot_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('competition_id')->constrained()->onDelete('cascade');
             $table->integer('start_number')->nullable();
             $table->string('result', 10)
                 ->check('result IN ("MP", "DNS") OR CAST(result AS INTEGER) >= 0');

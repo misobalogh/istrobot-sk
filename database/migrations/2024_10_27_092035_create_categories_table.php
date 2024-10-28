@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name_EN', 30)->nullable();
             $table->string('type_of_evaluation', 10)
                 ->check('type_of_evaluation IN ("score", "time")');
-            $table->foreignId('admin_id')->constrained('admins');
+            $table->foreignId('admin_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

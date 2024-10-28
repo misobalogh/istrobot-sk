@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('robots', function (Blueprint $table) {
-            $table->foreignId('technology_id')->constrained('technologies');
+            $table->foreignId('technology_id')->constrained()->onDelete('cascade');
         });
     }
 

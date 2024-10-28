@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name', 30);
             $table->integer('year')->check('year BETWEEN 1000 AND 9999');
-            $table->foreignId('admin_id')->constrained('admins');
+            $table->foreignId('admin_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

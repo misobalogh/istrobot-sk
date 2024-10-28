@@ -16,6 +16,10 @@ class UserController extends Controller
             'last_name' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'birth_date' => 'required|date',
+            'school' => 'string|max:255',
+            'city' => 'required|city',
+            'country_code' => 'required|string|size:2',
         ]);
 
         if ($validator->fails()) {
@@ -27,6 +31,11 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'birth_date' => '2004-01-01',
+            'school' => 'FEI',
+            'city' => 'Bratislava',
+            'country_code' => 'SK',
+            'is_active' => false,
         ]);
 
         return response()->json($user, 201);
@@ -96,7 +105,7 @@ class UserController extends Controller
 
     public function getByCountry($country_code)
     {
-        $users = User::where('country_code', $country_code)->get();   
+        $users = User::where('country_code', $country_code)->get();
 
         return response()->json($users);
     }

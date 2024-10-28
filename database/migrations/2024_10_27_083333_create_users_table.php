@@ -14,13 +14,15 @@ return new class extends Migration {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->date('birth_date');
             $table->string('school')->nullable();
             $table->string('city');
-            $table->string('password');
-            $table->string('email')->unique();
             $table->string('country_code', 2);
             $table->boolean('is_active')->default(false);
+            $table->rememberToken();
             $table->timestamps();
             $table->foreign('country_code')->references('country_code')->on('countries');
         });

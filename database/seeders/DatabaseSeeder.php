@@ -33,16 +33,15 @@ class DatabaseSeeder extends Seeder
 
         // Create main user
         $testUser = User::create([
-            'first_name' => 'Michal',
-            'last_name' => 'Balogh',
-            'email' => 'baloghmichal03@gmail.com',
-            'password' => bcrypt('strong_password'),
-            'birth_date' => '2003-04-12',
+            'first_name' => 'Admin',
+            'last_name' => 'Adminovic',
+            'email' => 'admin@gmail.com',
+            'password' => 'admin123',
+            'birth_date' => '2000-01-01',
             'school' => 'VUT FIT',
             'city' => 'Bratislava',
             'country_code' => 'SK',
         ]);
-
 
         // Create 20 random users with random country
         User::factory()->count(20)->create()->each(function ($user) use ($countries) {
@@ -87,7 +86,7 @@ class DatabaseSeeder extends Seeder
         // Create 10 random robots
         Robot::factory()->count(10)->create()->each(function ($robot) use ($countries) {
             $robot->user_id = User::inRandomOrder()->first()->id;
-            $robot->technology_id = rand(1,4);
+            $robot->technology_id = rand(1, 4);
             $robot->save();
         });
 
