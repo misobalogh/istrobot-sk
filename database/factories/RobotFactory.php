@@ -27,7 +27,7 @@ class RobotFactory extends Factory
             'website' => $this->faker->url,
             'description' => $this->faker->paragraph,
             'user_id' => User::factory(),
-            'technology_id' => Technology::factory(),
+            'technology_id' => rand(1,4),
         ];
     }
 }

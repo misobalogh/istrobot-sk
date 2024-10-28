@@ -16,7 +16,13 @@ class CategoryFactory extends Factory
             'name_SK' => $this->faker->word,
             'name_EN' => $this->faker->word,
             'type_of_evaluation' => $this->faker->randomElement(['score', 'time']),
-            'admin_id' => 1,
         ];
+    }
+
+    public function withAdmin(Admin $admin)
+    {
+        return $this->state([
+            'admin_id' => $admin->id,
+        ]);
     }
 }

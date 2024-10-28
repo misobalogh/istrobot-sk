@@ -16,8 +16,8 @@ class ParticipationFactory extends Factory
     {
         return [
             'robot_id' => Robot::factory(),
-            'category_id' => Category::factory(),
-            'competition_id' => Competition::factory(),
+            'category_id' => null,
+            'competition_id' => null,
             'start_number' => $this->faker->numberBetween(1, 100),
             'result' => $this->faker->randomFloat(2, 0, 100),
         ];

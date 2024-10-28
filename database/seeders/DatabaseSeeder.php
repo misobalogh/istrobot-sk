@@ -21,49 +21,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create Slovakia
-        Country::create([
-            'country_code' => 'SK',
-            'name_SK' => 'Slovensko',
-            'name_EN' => 'Slovakia',
-        ]);
+        $this->call(CountrySeeder::class);
+        $this->call(TechnologySeeder::class);
 
-        // Create 10 random countries
-        $countries = Country::factory()->count(10)->create();
+        $countries = Country::all();
+        $slovakia = $countries->where('country_code', 'SK')->first();
 
-        // Create main user
-        $testUser = User::create([
-            'first_name' => 'Admin',
-            'last_name' => 'Adminovic',
-            'email' => 'admin@gmail.com',
-            'password' => 'admin123',
-            'birth_date' => '2000-01-01',
-            'school' => 'VUT FIT',
-            'city' => 'Bratislava',
-            'country_code' => 'SK',
-        ]);
+        $this->callWith(AdminSeeder::class, ['countryCode' => $slovakia->country_code]);
+        $adminUser = User::find(1);
+        $admin = Admin::find(1);
 
-        // Create 20 random users with random country
+        $this->callWith(CompetitionSeeder::class, ['adminID' => $admin->id]);
+
         User::factory()->count(20)->create()->each(function ($user) use ($countries) {
             $user->country_code = $countries->random()->country_code;
             $user->save();
         });
-
-        // Create Admin
-        Admin::create([
-            'user_id' => $testUser->id,
-        ]);
-
-        $technologies = [
-            'Lego',
-            'Arduino',
-            'Raspberry Pi',
-            'ESP32',
-        ];
-
-        foreach ($technologies as $technology) {
-            Technology::create(['name' => $technology]);
-        }
 
         // Create robot
         $superBot = Robot::create([
@@ -79,8 +52,8 @@ class DatabaseSeeder extends Seeder
             'interesting_facts' => 'Interesting',
             'website' => 'https://www.superbot.com',
             'description' => 'Description',
-            'user_id' => $testUser->id,
-            'technology_id' => Technology::where('name', 'Arduino')->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'technology_id' => Technology::where('name', 'Lego')->first()->id,
         ]);
 
         // Create 10 random robots
@@ -91,22 +64,15 @@ class DatabaseSeeder extends Seeder
         });
 
         // Create Category
-        $lineFollower = Category::create([
+        $lineFollower = Category::factory()->withAdmin($admin)->create([
             'name_SK' => 'Stopar',
             'name_EN' => 'Linefollower',
             'type_of_evaluation' => 'time',
-            'admin_id' => 1,
         ]);
 
-        $istrobot2024 = Competition::create([
+        $istrobot2024 = Competition::factory()->withAdmin($admin)->create([
             'name' => 'Istrobot 2024',
-            'year' => '2024',
-            'admin_id' => 1,
-        ]);
-
-        $compCateg = CompetitionCategory::create([
-            'competition_id' => $istrobot2024->id,
-            'category_id' => $lineFollower->id,
+            'year' => 2024,
         ]);
 
         Participation::create([
@@ -117,6 +83,23 @@ class DatabaseSeeder extends Seeder
             'result' => 123.45,
         ]);
 
-        Participation::factory()->count(10)->create();
+        Participation::factory()->count(10)->create([
+            'category_id' => Category::factory()->withAdmin($admin)->create()->id,
+            'competition_id' => Competition::factory()->withAdmin($admin)->create()->id,
+        ]);
+
+        $competitions = Competition::all();
+        $categories = Category::all();
+
+        foreach ($competitions as $competition) {
+            $randomCategories = $categories->random(rand(1, $categories->count()))->unique();
+
+            foreach ($randomCategories as $category) {
+                CompetitionCategory::create([
+                    'competition_id' => $competition->id,
+                    'category_id' => $category->id,
+                ]);
+            }
+        }
     }
 }

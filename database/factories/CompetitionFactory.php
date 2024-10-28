@@ -12,11 +12,17 @@ class CompetitionFactory extends Factory
 
     public function definition()
     {
-        $year = $this->faker->year;
+        $year = $this->faker->randomElement([2020, 2021, 2022, 2023, 2024]);
         return [
             'name' => "Istrobot {$year}",
             'year' => $year,
-            'admin_id' => Admin::factory(),
         ];
+    }
+
+    public function withAdmin(Admin $admin)
+    {
+        return $this->state([
+            'admin_id' => $admin->id,
+        ]);
     }
 }
