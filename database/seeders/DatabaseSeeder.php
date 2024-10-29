@@ -31,6 +31,17 @@ class DatabaseSeeder extends Seeder
         $adminUser = User::find(1);
         $admin = Admin::find(1);
 
+        $user = User::create([
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'johndoe@example.com',
+            'password' => 'password',
+            'birth_date' => '2000-01-01',
+            'school' => 'FEI STU',
+            'city' => 'Bratislava',
+            'country_code' => $slovakia->country_code,
+        ]);
+
         $this->callWith(CompetitionSeeder::class, ['adminID' => $admin->id]);
 
         User::factory()->count(20)->create()->each(function ($user) use ($countries) {

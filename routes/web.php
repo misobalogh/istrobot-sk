@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\ContestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +21,22 @@ use Illuminate\Support\Facades\Route;
 | GUEST Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/contest/{year}', [MainController::class, 'contest']);
+Route::get('/', function () {
+    $currentYear = now()->year;
+    return redirect()->route('contest.show', ['year' => $currentYear]);
+});
+
+Route::get('/contest/{year}', [ContestController::class, 'show'])->name('contest.show');
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::post('/admin/generate-starting-list/{year}', [AdminController::class, 'generateStartingList'])->name('admin.generateStartingList');
+});
 /*
 |--------------------------------------------------------------------------
 | AUTH Routes

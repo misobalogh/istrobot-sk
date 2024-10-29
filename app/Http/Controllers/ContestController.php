@@ -6,9 +6,9 @@ use App\Models\Participation;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
-class MainController extends Controller
+class ContestController extends Controller
 {
-    public function contest($year)
+    public function show($year)
     {
         $registeredRobots = $this->registeredRobotsByYear($year);
         $categories = $this->categoriesByYear($year);
@@ -28,7 +28,7 @@ class MainController extends Controller
         return $categories;
     }
 
-    public function registeredRobotsByYear($year)
+    public static function registeredRobotsByYear($year)
     {
         $participations = Participation::with(['robot.user', 'category'])
             ->whereHas('competition', function ($query) use ($year) {
@@ -42,10 +42,13 @@ class MainController extends Controller
             $categoryName = $participation->category->name_SK;
 
             if (!isset($registeredRobots[$categoryName])) {
-                $registeredRobots[$categoryName] = [];
+                $registeredRobots[$categoryName] = [
+                    'category_name' => $categoryName,
+                    'robots' => [],
+                ];
             }
 
-            $registeredRobots[$categoryName][] = [
+            $registeredRobots[$categoryName]['robots'][] = [
                 'robot_name' => $participation->robot->name,
                 'robot_owner' => $participation->robot->user->first_name . ' ' . $participation->robot->user->last_name,
             ];
@@ -53,5 +56,4 @@ class MainController extends Controller
 
         return $registeredRobots;
     }
-
 }
