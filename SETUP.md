@@ -34,7 +34,14 @@ Open MariaDB:
 ```bash
 sudo mysql -u root
 ```
+
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED BY '';
+FLUSH PRIVILEGES;
+```
+
 (`EXIT;` to exit)
+
 
 
 #### Laravel
@@ -43,6 +50,13 @@ sudo mysql -u root
 Change database name in `.env` file:
 ```bash
 DB_DATABASE=istrobot
+```
+
+## Install dependencies:
+```bash
+composer install
+npm install
+npm run build
 ```
 
 ```bash
@@ -63,17 +77,18 @@ mysql istrobot -u root
 ```bash
 SHOW TABLES;
 DESCRIBE <table_name>;
-```
+``` 
 
-
-## Install dependencies:
-```bash
-composer install
-```
 
 ## Run the app:
 ```bash
 php artisan serve
+```
+
+## Fresh database:
+```bash
+php artisan migrate:fresh
+php artisan db:seed
 ```
 
 
