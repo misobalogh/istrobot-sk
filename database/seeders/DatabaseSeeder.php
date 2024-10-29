@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             'interesting_facts' => 'Interesting',
             'website' => 'https://www.superbot.com',
             'description' => 'Description',
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => $adminUser->id,
             'technology_id' => Technology::where('name', 'Lego')->first()->id,
         ]);
 
@@ -70,10 +70,9 @@ class DatabaseSeeder extends Seeder
             'type_of_evaluation' => 'time',
         ]);
 
-        $istrobot2024 = Competition::factory()->withAdmin($admin)->create([
-            'name' => 'Istrobot 2024',
-            'year' => 2024,
-        ]);
+        Category::factory()->count(10)->withAdmin($admin)->create();
+
+        $istrobot2024 = Competition::where('year', '2024')->first();
 
         Participation::create([
             'robot_id' => $superBot->id,
@@ -83,13 +82,16 @@ class DatabaseSeeder extends Seeder
             'result' => 123.45,
         ]);
 
-        Participation::factory()->count(10)->create([
-            'category_id' => Category::factory()->withAdmin($admin)->create()->id,
-            'competition_id' => Competition::factory()->withAdmin($admin)->create()->id,
-        ]);
 
         $competitions = Competition::all();
         $categories = Category::all();
+        $robots = Robot::all();
+
+        $this->callWith(ParticipationSeeder::class, [
+            'comp' => $competitions->toArray(),
+            'cat' => $categories->toArray(),
+            'robots' => $robots->toArray(),
+        ]);
 
         foreach ($competitions as $competition) {
             $randomCategories = $categories->random(rand(1, $categories->count()))->unique();

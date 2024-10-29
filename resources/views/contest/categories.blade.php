@@ -1,9 +1,9 @@
 <section>
     <div class="container">
         @if($categories->isEmpty())
-            <p class="mt-4">No categories found for this year.</p>
+            <p>No categories found for this year.</p>
         @else
-            <ul class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+            <ul class="list-disc pl-5 text-gray-900 dark:text-white"">
                 @foreach ($categories as $category)
                     <li>{{ $category->category_name }}</li>
                 @endforeach
