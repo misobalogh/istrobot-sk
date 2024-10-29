@@ -2,17 +2,17 @@
     <h3 class="font-semibold">Starting List:</h3>
 
     <!-- Input for year -->
-    <div class="flex items-center mt-4">
-        <x-input-label for="year" :value="__('Year')" />
-        <x-text-input id="year" name="year" type="number" class="mt-1 block w-full" value="{{ old('year') }}" required
+    <div>
+        <x-input-label for="year" :value="__('Year') . '*'" />
+        <x-text-input id="year-starting-list" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', date('Y')) }}" required
             min="2000" max="2100" />
         <x-input-error class="mt-2" :messages="$errors->get('year')" />
     </div>
 
     <!-- Button to generate starting list and the starting list -->
-    <button id="generate-starting-list" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+    <x-secondary-button id="generate-starting-list" class="mt-4">
         Generate Starting List
-    </button>
+    </x-secondary-button>
     <div class="starting-list">
     </div>
 </section>
@@ -20,7 +20,7 @@
 <script>
     document.getElementById('generate-starting-list').addEventListener('click', function () {
 
-        const yearInput = document.getElementById('year');
+        const yearInput = document.getElementById('year-starting-list');
         const year = yearInput.value;
 
         fetch(`/admin/generate-starting-list/${year}`, {

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participation;
-use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\User;
 use App\Http\Controllers\ContestController;
 
 class AdminController extends Controller
@@ -31,5 +29,20 @@ class AdminController extends Controller
         }
 
         return response()->json($startingList);
+    }
+
+    public function allEmails()
+    {
+        $emails = User::pluck('email')->toArray();
+        return response()->json($emails);
+    }
+
+    public function emailsByYear($year)
+    {
+        $emails = User::whereHas('robots.participations.competition', function ($query) use ($year) {
+            $query->where('year', $year);
+        })->pluck('email')->toArray();
+
+        return response()->json($emails);
     }
 }

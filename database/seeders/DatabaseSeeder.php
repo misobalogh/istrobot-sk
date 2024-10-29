@@ -67,6 +67,12 @@ class DatabaseSeeder extends Seeder
             'technology_id' => Technology::where('name', 'Lego')->first()->id,
         ]);
 
+        Robot::factory()->count(count: 2)->create()->each(function ($robot) use ($adminUser) {
+            $robot->user_id = $adminUser->id;
+            $robot->technology_id = rand(1, 4);
+            $robot->save();
+        });
+
         // Create 10 random robots
         Robot::factory()->count(10)->create()->each(function ($robot) use ($countries) {
             $robot->user_id = User::inRandomOrder()->first()->id;
