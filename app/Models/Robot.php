@@ -11,6 +11,8 @@ class Robot extends Model
 
     protected $fillable = [
         'name',
+        'author_first_name',
+        'author_last_name',
         'coauthors',
         'processor',
         'memory_size',

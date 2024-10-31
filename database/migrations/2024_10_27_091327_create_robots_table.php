@@ -13,6 +13,8 @@ return new class extends Migration {
         Schema::create('robots', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
+            $table->string('author_first_name');
+            $table->string('author_last_name');
             $table->string('coauthors', 255)->nullable();
             $table->string('processor', 50);
             $table->integer('memory_size')->nullable();
