@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Country;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +20,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        if (Gate::allows('admin')) {
-            Log::info('User is admin');
-        }
+        $user = $request->user();
+        $countries = Country::all();
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            'countries' => $countries,
         ]);
     }
 

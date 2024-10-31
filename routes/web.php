@@ -47,9 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/robot', [RobotController::class, 'edit'])->name('robot.edit');
-    Route::patch('/robot', [RobotController::class, 'update'])->name('robot.update');
-    Route::delete('/robot', [ProfileController::class, 'destroy'])->name('robot.destroy');
+
+    Route::get('/robots', [RobotController::class, 'edit'])->name('robots.edit');
+    Route::patch('/robots/{robot}', [RobotController::class, 'update'])->name('robots.update');
+    Route::delete('/robots/{robot}', [RobotController::class, 'destroy'])->name('robots.destroy');
 });
 
 Route::get('/dashboard', function () {

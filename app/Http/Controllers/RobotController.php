@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\RobotUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Gate;
-
+use App\Models\Robot;
+use App\Models\Technology;
 
 class RobotController extends Controller
 {
@@ -19,25 +19,26 @@ class RobotController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('robot.edit', [
-            'robots' => $request->user()->robots,
+        $robots = $request->user()->robots;
+        $technologies = Technology::all();
+
+        return view('robots.edit', [
+            'robots' => $robots,
+            'technologies'=> $technologies
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Update the user's robot information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(RobotUpdateRequest $request, $id): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $robot = Robot::findOrFail($id);
+        Log::info("Robot {$robot}");
+        $robot->fill($request->validated());
+        $robot->save();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('robots.edit')->with('status', 'robot-updated');
     }
 
     /**

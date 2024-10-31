@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('Profile') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('robot.edit')" :active="request()->routeIs('robot.edit')">
+                    <x-nav-link :href="route('robots.edit')" :active="request()->routeIs('robots.edit')">
                         {{ __('My Robots') }}
                     </x-nav-link>
                 </div>

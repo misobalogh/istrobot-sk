@@ -76,9 +76,14 @@
 
         <!-- Country Code -->
         <div>
-            <x-input-label for="country_code" :value="__('Country Code')" />
-            <x-text-input id="country_code" name="country_code" type="text" class="mt-1 block w-full"
-                :value="old('country_code', $user->country_code)" required maxlength="2" />
+            <x-input-label for="country_code" :value="__('Country')" />
+            <select id="country_code" name="country_code" class="mt-1 block w-full">
+                @foreach($countries as $country)
+                    <option value="{{ $country->country_code }}" {{ $user->country_code == $country->country_code ? 'selected' : '' }}>
+                        {{ $country->name_EN }}
+                    </option>
+                @endforeach
+            </select>
             <x-input-error class="mt-2" :messages="$errors->get('country_code')" />
         </div>
 

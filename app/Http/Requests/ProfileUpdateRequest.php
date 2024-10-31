@@ -22,7 +22,7 @@ class ProfileUpdateRequest extends FormRequest
             'birth_date' => 'required|date',
             'school' => 'nullable|string|max:255',
             'city' => 'required|string|max:255',
-            'country_code' => 'required|string|size:2',
+            'country_code' => ['required', 'string', 'exists:countries,country_code'],
         ];
     }
 }

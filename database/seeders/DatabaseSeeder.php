@@ -52,6 +52,8 @@ class DatabaseSeeder extends Seeder
         // Create robot
         $superBot = Robot::create([
             'name' => 'SuperBot',
+            'author_first_name' => 'AdminSon',
+            'author_last_name' => 'Adminovic',    
             'coauthors' => 'Marek Vasko',
             'processor' => 'ARM Cortex-A',
             'memory_size' => 1024,
