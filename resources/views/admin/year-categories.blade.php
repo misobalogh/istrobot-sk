@@ -11,7 +11,7 @@
         </div>
 
          <!-- Category Checkboxes -->
-         <div>
+        <div>
             <x-input-label for="category" :value="__('Category')" required="true" />
             <div class="flex flex-col mt-1">
                 <!-- Static categories TODO: remake into categories from database -->
@@ -24,7 +24,13 @@
             </div>
             <x-input-error class="mt-2" :messages="$errors->get('category')" />
         </div>
-    </div>
+
+        <!-- New Category Input -->
+        <div>
+                    <x-input-label for="new-category" :value="__('Add New Category')" />
+                    <x-text-input id="new-category" name="new_category" type="text" class="mt-1 block w-full" placeholder="Enter new category" />
+                    <x-input-error class="mt-2" :messages="$errors->get('new_category')" />
+        </div>
     </div>
 
     <!-- Button to generate yearly categories -->
@@ -43,7 +49,17 @@
 
         // Collect checked categories // TODO: případně změnit hodnoty co je potřeba vracet
         const checkedCategories = Array.from(document.querySelectorAll('input[name="categories[]"]:checked'))
-            .map(checkbox => checkbox.value);
+            // .map(checkbox => checkbox.value);
+            .map(checkbox => checkbox.nextElementSibling.innerText);
+
+        // Get the new category input value
+        const newCategoryInput = document.getElementById('new-category');
+        const newCategory = newCategoryInput.value.trim();
+
+        // Optionally add the new category to the categories array
+        if (newCategory) {
+            checkedCategories.push(newCategory);
+        }
 
         console.log(checkedCategories);
 
