@@ -3,7 +3,7 @@
 
     <!-- Input for year -->
     <div>
-        <x-input-label for="year" :value="__('Year')" />
+        <x-input-label for="year" :value="__('Year')" required="true" />
         <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', date('Y')) }}"
             min="2000" max="2100" />
         <x-input-error class="mt-2" :messages="$errors->get('year')" />

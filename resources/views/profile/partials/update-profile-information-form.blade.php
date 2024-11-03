@@ -19,7 +19,7 @@
 
         <!-- First Name -->
         <div>
-            <x-input-label for="first_name" :value="__('First Name')" />
+            <x-input-label for="first_name" :value="__('First Name')" required="true" />
             <x-text-input id="first_name" name="first_name" type="text" class="mt-1 block w-full"
                 :value="old('first_name', $user->first_name)" required autocomplete="given-name" />
             <x-input-error class="mt-2" :messages="$errors->get('first_name')" />
@@ -27,14 +27,14 @@
 
         <!-- Last Name -->
         <div>
-            <x-input-label for="last_name" :value="__('Last Name')" />
+            <x-input-label for="last_name" :value="__('Last Name')" required="true" />
             <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" :value="old('last_name', $user->last_name)" required autocomplete="family-name" />
             <x-input-error class="mt-2" :messages="$errors->get('last_name')" />
         </div>
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email')" required="true" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
@@ -60,7 +60,7 @@
 
         <!-- Birth Date -->
         <div>
-            <x-input-label for="birth_date" :value="__('Birth Date')" />
+            <x-input-label for="birth_date" :value="__('Birth Date')" required="true" />
             <x-text-input id="birth_date" name="birth_date" type="date" class="mt-1 block w-full"
                 :value="old('birth_date', $user->birth_date)" required />
             <x-input-error class="mt-2" :messages="$errors->get('birth_date')" />
@@ -68,7 +68,7 @@
 
         <!-- City -->
         <div>
-            <x-input-label for="city" :value="__('City')" />
+            <x-input-label for="city" :value="__('City')" required="true" />
             <x-text-input id="city" name="city" type="text" class="mt-1 block w-full" :value="old('city', $user->city)"
                 required />
             <x-input-error class="mt-2" :messages="$errors->get('city')" />
@@ -76,8 +76,8 @@
 
         <!-- Country Code -->
         <div>
-            <x-input-label for="country_code" :value="__('Country')" />
-            <select id="country_code" name="country_code" class="mt-1 block w-full">
+            <x-input-label for="country_code" :value="__('Country')" required="true" />
+            <select id="country_code" name="country_code" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                 @foreach($countries as $country)
                     <option value="{{ $country->country_code }}" {{ $user->country_code == $country->country_code ? 'selected' : '' }}>
                         {{ $country->name_EN }}
@@ -89,7 +89,7 @@
 
         <!-- Optional School -->
         <div>
-            <x-input-label for="school" :value="__('School (Optional)')" />
+            <x-input-label for="school" :value="__('School')" />
             <x-text-input id="school" name="school" type="text" class="mt-1 block w-full" :value="old('school', $user->school)" />
             <x-input-error class="mt-2" :messages="$errors->get('school')" />
         </div>
