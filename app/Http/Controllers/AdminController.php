@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Category;
 use App\Http\Controllers\ContestController;
 
 class AdminController extends Controller
