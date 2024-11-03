@@ -28,20 +28,20 @@
                                     </div>
 
                                     <!-- Name Fields Row TODO: -->
-                                    <!-- <div class="grid grid-cols-2 gap-4"> -->
-                                        <div>
+                                    <div class="flex flex-row gap-4 wrap">
+                                        <div class="flex-initial w-full">
                                             <x-input-label for="author_first_name" :value="__('Author First Name')" required="true" />
                                             <x-text-input id="author_first_name" name="author_first_name" type="text" class="mt-1 block w-full"
                                                 :value="old('author_first_name', $robot->author_first_name)" required autocomplete="given-author_first_name" />
                                             <x-input-error class="mt-2" :messages="$errors->get('author_first_name')" />
                                         </div>
-                                        <div>
+                                        <div class="flex-initial w-full">
                                             <x-input-label for="author_last_name" :value="__('Author Last Name')" required="true" />
                                             <x-text-input id="author_last_name" name="author_last_name" type="text" class="mt-1 block w-full"
                                                 :value="old('author_last_name', $robot->author_last_name)" required autocomplete="given-author_last_name" />
                                             <x-input-error class="mt-2" :messages="$errors->get('author_last_name')" />
                                         </div>
-                                    <!-- </div> -->
+                                    </div>
 
                                     <div>
                                         <x-input-label for="coauthors" :value="__('coauthors')" />
@@ -51,28 +51,30 @@
                                         <x-input-error class="mt-2" :messages="$errors->get('coauthors')" />
                                     </div>
 
-                                    <div>
-                                        <x-input-label for="processor" :value="__('processor')" required="true" />
-                                        <x-text-input id="processor" name="processor" type="text" class="mt-1 block w-full"
-                                            :value="old('processor', $robot->processor)" required
-                                            autocomplete="given-processor" />
-                                        <x-input-error class="mt-2" :messages="$errors->get('processor')" />
-                                    </div>
+                                    <div class="flex flex-row gap-4 wrap">
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="processor" :value="__('processor')" required="true" />
+                                            <x-text-input id="processor" name="processor" type="text" class="mt-1 block w-full"
+                                                :value="old('processor', $robot->processor)" required
+                                                autocomplete="given-processor" />
+                                            <x-input-error class="mt-2" :messages="$errors->get('processor')" />
+                                        </div>
 
-                                    <div>
-                                        <x-input-label for="memory_size" :value="__('memory_size')" required="true" />
-                                        <x-text-input id="memory_size" name="memory_size" type="text" class="mt-1 block w-full"
-                                            :value="old('memory_size', $robot->memory_size)" required
-                                            autocomplete="given-memory_size" />
-                                        <x-input-error class="mt-2" :messages="$errors->get('memory_size')" />
-                                    </div>
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="memory_size" :value="__('memory_size')" required="true" />
+                                            <x-text-input id="memory_size" name="memory_size" type="text" class="mt-1 block w-full"
+                                                :value="old('memory_size', $robot->memory_size)" required
+                                                autocomplete="given-memory_size" />
+                                            <x-input-error class="mt-2" :messages="$errors->get('memory_size')" />
+                                        </div>
 
-                                    <div>
-                                        <x-input-label for="frequency" :value="__('frequency')" required="true" />
-                                        <x-text-input id="frequency" name="frequency" type="text" class="mt-1 block w-full"
-                                            :value="old('frequency', $robot->frequency)" required
-                                            autocomplete="given-frequency" />
-                                        <x-input-error class="mt-2" :messages="$errors->get('frequency')" />
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="frequency" :value="__('frequency')" required="true" />
+                                            <x-text-input id="frequency" name="frequency" type="text" class="mt-1 block w-full"
+                                                :value="old('frequency', $robot->frequency)" required
+                                                autocomplete="given-frequency" />
+                                            <x-input-error class="mt-2" :messages="$errors->get('frequency')" />
+                                        </div>
                                     </div>
 
                                     <div>
@@ -82,26 +84,42 @@
                                         <x-input-error class="mt-2" :messages="$errors->get('sensors')" />
                                     </div>
 
-                                    <div>
-                                        <x-input-label for="drive" :value="__('drive')" required="true" />
-                                        <x-text-input id="drive" name="drive" type="text" class="mt-1 block w-full"
-                                            :value="old('drive', $robot->drive)" required autocomplete="given-drive" />
-                                        <x-input-error class="mt-2" :messages="$errors->get('drive')" />
+                                    <div class="flex flex-row gap-4 wrap">
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="drive" :value="__('drive')" required="true" />
+                                            <x-text-input id="drive" name="drive" type="text" class="mt-1 block w-full"
+                                                :value="old('drive', $robot->drive)" required autocomplete="given-drive" />
+                                            <x-input-error class="mt-2" :messages="$errors->get('drive')" />
+                                        </div>
+
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="power_supply" :value="__('power_supply')" required="true" />
+                                            <x-text-input id="power_supply" name="power_supply" type="text"
+                                                class="mt-1 block w-full" :value="old('power_supply', $robot->power_supply)"
+                                                required autocomplete="given-power_supply" />
+                                            <x-input-error class="mt-2" :messages="$errors->get('power_supply')" />
+                                        </div>
                                     </div>
 
-                                    <div>
-                                        <x-input-label for="power_supply" :value="__('power_supply')" required="true" />
-                                        <x-text-input id="power_supply" name="power_supply" type="text"
-                                            class="mt-1 block w-full" :value="old('power_supply', $robot->power_supply)"
-                                            required autocomplete="given-power_supply" />
-                                        <x-input-error class="mt-2" :messages="$errors->get('power_supply')" />
-                                    </div>
+                                    <div class="flex flex-row gap-4 wrap">
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="programming_language" :value="__('programming_language')" required="true" />
+                                            <x-text-input id="programming_language" name="programming_language" type="text"
+                                                class="mt-1 block w-full" :value="old('programming_language', $robot->programming_language)" required autocomplete="given-programming_language" />
+                                            <x-input-error class="mt-2" :messages="$errors->get('programming_language')" />
+                                        </div>
 
-                                    <div>
-                                        <x-input-label for="programming_language" :value="__('programming_language')" required="true" />
-                                        <x-text-input id="programming_language" name="programming_language" type="text"
-                                            class="mt-1 block w-full" :value="old('programming_language', $robot->programming_language)" required autocomplete="given-programming_language" />
-                                        <x-input-error class="mt-2" :messages="$errors->get('programming_language')" />
+                                        <div class="flex-initial w-full">
+                                            <x-input-label for="technology_id" :value="__('Technology')" required="true" />
+                                            <select id="technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                                @foreach($technologies as $technology)
+                                                <option value="{{ $technology->id }}" {{ $robot->technology_id == $technology->id ? 'selected' : '' }}>
+                                                    {{ $technology->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            <x-input-error class="mt-2" :messages="$errors->get('technology_id')" />
+                                        </div>
                                     </div>
 
                                     <div>
@@ -123,18 +141,6 @@
                                         <textarea id="description" name="description" rows="4" 
                                             class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autocomplete="given-description">{{ old('description', $robot->description) }}</textarea>
                                         <x-input-error class="mt-2" :messages="$errors->get('description')" />
-                                    </div>
-
-                                    <div>
-                                        <x-input-label for="technology_id" :value="__('Technology')" required="true" />
-                                        <select id="technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                            @foreach($technologies as $technology)
-                                            <option value="{{ $technology->id }}" {{ $robot->technology_id == $technology->id ? 'selected' : '' }}>
-                                                {{ $technology->name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        <x-input-error class="mt-2" :messages="$errors->get('technology_id')" />
                                     </div>
 
                                     <div class="flex items-center gap-4">
@@ -175,18 +181,18 @@
                             </div>
 
                             <!-- Name Fields Row TODO: -->
-                            <!-- <div class="grid grid-cols-2 gap-4"> -->
-                            <div>
+                            <div class="flex flex-row gap-4 wrap">
+                                <div class="flex-initial w-full">
                                     <x-input-label for="author_first_name" :value="__('Author First Name')" required="true" />
                                     <x-text-input id="author_first_name" name="author_first_name" type="text" class="mt-1 block w-full" required autocomplete="given-author_first_name" />
                                     <x-input-error class="mt-2" :messages="$errors->get('author_first_name')" />
                                 </div>
-                                <div>
+                                <div class="flex-initial w-full">
                                     <x-input-label for="author_last_name" :value="__('Author Last Name')" required="true" />
                                     <x-text-input id="author_last_name" name="author_last_name" type="text" class="mt-1 block w-full" required autocomplete="given-author_last_name" />
                                     <x-input-error class="mt-2" :messages="$errors->get('author_last_name')" />
                                 </div>
-                            <!-- </div> -->
+                            </div>
 
                             <div>
                                 <x-input-label for="coauthors" :value="__('coauthors')" />
@@ -194,22 +200,24 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('coauthors')" />
                             </div>
 
-                            <div>
-                                <x-input-label for="processor" :value="__('processor')" required="true" />
-                                <x-text-input id="processor" name="processor" type="text" class="mt-1 block w-full" required autocomplete="given-processor" />
-                                <x-input-error class="mt-2" :messages="$errors->get('processor')" />
-                            </div>
+                            <div class="flex flex-row gap-4 wrap">
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="processor" :value="__('processor')" required="true" />
+                                    <x-text-input id="processor" name="processor" type="text" class="mt-1 block w-full" required autocomplete="given-processor" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('processor')" />
+                                </div>
 
-                            <div>
-                                <x-input-label for="memory_size" :value="__('memory_size')" required="true" />
-                                <x-text-input id="memory_size" name="memory_size" type="text" class="mt-1 block w-full" required autocomplete="given-memory_size" />
-                                <x-input-error class="mt-2" :messages="$errors->get('memory_size')" />
-                            </div>
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="memory_size" :value="__('memory_size')" required="true" />
+                                    <x-text-input id="memory_size" name="memory_size" type="text" class="mt-1 block w-full" required autocomplete="given-memory_size" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('memory_size')" />
+                                </div>
 
-                            <div>
-                                <x-input-label for="frequency" :value="__('frequency')" required="true" />
-                                <x-text-input id="frequency" name="frequency" type="text" class="mt-1 block w-full" required autocomplete="given-frequency" />
-                                <x-input-error class="mt-2" :messages="$errors->get('frequency')" />
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="frequency" :value="__('frequency')" required="true" />
+                                    <x-text-input id="frequency" name="frequency" type="text" class="mt-1 block w-full" required autocomplete="given-frequency" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('frequency')" />
+                                </div>
                             </div>
 
                             <div>
@@ -218,24 +226,41 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('sensors')" />
                             </div>
 
-                            <div>
-                                <x-input-label for="drive" :value="__('drive')" required="true" />
-                                <x-text-input id="drive" name="drive" type="text" class="mt-1 block w-full" required autocomplete="given-drive" />
-                                <x-input-error class="mt-2" :messages="$errors->get('drive')" />
+                            <div class="flex flex-row gap-4 wrap">
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="drive" :value="__('drive')" required="true" />
+                                    <x-text-input id="drive" name="drive" type="text" class="mt-1 block w-full" required autocomplete="given-drive" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('drive')" />
+                                </div>
+
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="power_supply" :value="__('power_supply')" required="true" />
+                                    <x-text-input id="power_supply" name="power_supply" type="text"
+                                        class="mt-1 block w-full" required autocomplete="given-power_supply" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('power_supply')" />
+                                </div>
                             </div>
 
-                            <div>
-                                <x-input-label for="power_supply" :value="__('power_supply')" required="true" />
-                                <x-text-input id="power_supply" name="power_supply" type="text"
-                                    class="mt-1 block w-full" required autocomplete="given-power_supply" />
-                                <x-input-error class="mt-2" :messages="$errors->get('power_supply')" />
-                            </div>
+                            <div class="flex flex-row gap-4 wrap">
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="programming_language" :value="__('programming_language')" required="true" />
+                                    <x-text-input id="programming_language" name="programming_language" type="text"
+                                        class="mt-1 block w-full" required autocomplete="given-programming_language" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('programming_language')" />
+                                </div>
 
-                            <div>
-                                <x-input-label for="programming_language" :value="__('programming_language')" required="true" />
-                                <x-text-input id="programming_language" name="programming_language" type="text"
-                                    class="mt-1 block w-full" required autocomplete="given-programming_language" />
-                                <x-input-error class="mt-2" :messages="$errors->get('programming_language')" />
+                                <div class="flex-initial w-full">
+                                    <x-input-label for="technology_id" :value="__('Technology')" required="true" />
+                                    <select id="technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                        <option value="" disabled selected>Select a technology</option>
+                                        @foreach($technologies as $technology)
+                                        <option value="{{ $technology->id }}" {{ old('$robot->technology_id') == $technology->id ? 'selected' : '' }}>
+                                            {{ $technology->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <x-input-error class="mt-2" :messages="$errors->get('technology_id')" />
+                                </div>
                             </div>
 
                             <div>
@@ -256,19 +281,6 @@
                                 <textarea id="description" name="description" rows="4" 
                                     class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autocomplete="given-description"></textarea>
                                 <x-input-error class="mt-2" :messages="$errors->get('description')" />
-                            </div>
-
-                            <div>
-                                <x-input-label for="technology_id" :value="__('Technology')" required="true" />
-                                <select id="technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                    <option value="" disabled selected>Select a category</option>
-                                    @foreach($technologies as $technology)
-                                    <option value="{{ $technology->id }}" {{ old('$robot->technology_id') == $technology->id ? 'selected' : '' }}>
-                                        {{ $technology->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                <x-input-error class="mt-2" :messages="$errors->get('technology_id')" />
                             </div>
                             
                             <div class="flex items-center gap-4">
