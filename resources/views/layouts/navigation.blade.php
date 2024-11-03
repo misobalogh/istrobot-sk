@@ -21,6 +21,14 @@
                     <x-nav-link :href="route('robots.edit')" :active="request()->routeIs('robots.edit')">
                         {{ __('My Robots') }}
                     </x-nav-link>
+                    @if (Gate::allows('admin'))
+                    <x-nav-link :href="route('all-users.list')" :active="request()->routeIs('all-users.list')">
+                        {{ __('All Users') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('all-robots.list')" :active="request()->routeIs('all-robots.list')">
+                        {{ __('All Robots') }}
+                    </x-nav-link>
+                    @endif
                 </div>
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth

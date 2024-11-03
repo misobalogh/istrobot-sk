@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AllRobotsController;
+use App\Http\Controllers\AllUsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContestController;
 use App\Http\Controllers\RobotController;
@@ -51,6 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/robots', [RobotController::class, 'edit'])->name('robots.edit');
     Route::patch('/robots/{robot}', [RobotController::class, 'update'])->name('robots.update');
     Route::delete('/robots/{robot}', [RobotController::class, 'destroy'])->name('robots.destroy');
+
+    Route::get('/all-users', [AllUsersController::class, 'list'])->name('all-users.list');
+    Route::get('/all-robots', [AllRobotsController::class, 'list'])->name('all-robots.list');
+    
 });
 
 Route::get('/dashboard', function () {
