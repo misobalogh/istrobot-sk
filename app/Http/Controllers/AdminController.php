@@ -10,6 +10,12 @@ class AdminController extends Controller
 {
     public function generateStartingList($year)
     {
+        // @foreach($categories as $category)
+        //     <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
+        //         {{ $category->name }}
+        //     </option>
+        // @endforeach
+
         $registeredRobots = ContestController::registeredRobotsByYear($year);
         $startingList = [];
         $startingNumber = 1;
