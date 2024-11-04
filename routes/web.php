@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/robots', [RobotController::class, 'edit'])->name('robots.edit');
+    Route::post('/robots', [RobotController::class, 'store'])->name('robots.store');
     Route::patch('/robots/{robot}', [RobotController::class, 'update'])->name('robots.update');
     Route::delete('/robots/{robot}', [RobotController::class, 'destroy'])->name('robots.destroy');
 

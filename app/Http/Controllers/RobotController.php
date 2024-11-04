@@ -24,7 +24,7 @@ class RobotController extends Controller
 
         return view('robots.edit', [
             'robots' => $robots,
-            'technologies'=> $technologies
+            'technologies' => Technology::all(),
         ]);
     }
 
@@ -42,23 +42,22 @@ class RobotController extends Controller
     }
 
     /**
+     * Store a newly created robot.
+     */
+    public function store(RobotUpdateRequest $request): RedirectResponse
+    {
+        $robot = new Robot($request->validated());
+        $robot->user_id = $request->user()->id;
+        $robot->save();
+
+        return Redirect::route('robots.edit')->with('status', 'robot-created');
+    }
+
+    /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request , $id): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
         return Redirect::to('/');
     }
 }
