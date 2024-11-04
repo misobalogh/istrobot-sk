@@ -12,10 +12,10 @@
                     @if (Gate::allows('admin'))
                         {{ __("You're logged in as admin!") }}
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            @include("admin.starting-list")
+                            @include("admin.starting-list", ['categories' => $categories])
                         </div>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            @include("admin.year-categories")
+                            @include("admin.year-categories", ['categories' => $categories]) 
                         </div>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             @include("admin.emails")

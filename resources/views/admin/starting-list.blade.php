@@ -15,7 +15,9 @@
             <x-input-label for="category" :value="__('Category')" required="true" />
             <select id="category-select" name="category" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
                 <option value="" disabled selected>Select a category</option>
-                <!-- přidat konkrétní kategorie TODO... -->
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name_EN }}</option>
+                @endforeach 
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('category')" />
         </div>
@@ -33,16 +35,17 @@
     document.getElementById('generate-starting-list').addEventListener('click', function () {
 
         const yearInput = document.getElementById('year-starting-list');
-        // const categorySelect = document.getElementById('category-select');
+        const categorySelect = document.getElementById('category-select');
         const year = yearInput.value;
-        // const category = categorySelect.value;
+        const category = categorySelect.value;
 
         fetch(`/admin/generate-starting-list/${year}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            }
+            },
+            body: JSON.stringify({ category: category })
         })
             .then(response => response.json())
             .then(data => {

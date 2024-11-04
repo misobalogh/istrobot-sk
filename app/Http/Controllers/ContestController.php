@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Participation;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Competition;
 
 class ContestController extends Controller
 {
@@ -28,32 +29,32 @@ class ContestController extends Controller
         return $categories;
     }
 
-    public static function registeredRobotsByYear($year)
+    public static function registeredRobotsByYear($year, $categoryId = null)
     {
-        $participations = Participation::with(['robot.user', 'category'])
-            ->whereHas('competition', function ($query) use ($year) {
-                $query->where('year', $year);
-            })
-            ->get();
+        $query = Competition::where('year', $year)
+            ->with(['participations.robot.user', 'categories']);
 
-        $registeredRobots = [];
-
-        foreach ($participations as $participation) {
-            $categoryName = $participation->category->name_SK;
-
-            if (!isset($registeredRobots[$categoryName])) {
-                $registeredRobots[$categoryName] = [
-                    'category_name' => $categoryName,
-                    'robots' => [],
-                ];
-            }
-
-            $registeredRobots[$categoryName]['robots'][] = [
-                'robot_name' => $participation->robot->name,
-                'robot_owner' => $participation->robot->user->first_name . ' ' . $participation->robot->user->last_name,
-            ];
+        if ($categoryId) {
+            $query->whereHas('categories', function ($q) use ($categoryId) {
+                $q->where('id', $categoryId);
+            });
         }
 
-        return $registeredRobots;
+        $competitions = $query->get();
+
+        $result = [];
+        foreach ($competitions as $competition) {
+            foreach ($competition->participations as $participation) {
+                if ($categoryId && $participation->category_id != $categoryId) {
+                    continue;
+                }
+                $result[] = [
+                    'category_name' => $participation->category->name_SK,
+                    'robots' => [$participation->robot->toArray()],
+                ];
+            }
+        }
+
+        return $result;
     }
 }

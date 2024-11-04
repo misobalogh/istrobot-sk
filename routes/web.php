@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContestController;
 use App\Http\Controllers\RobotController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 | Redirects to the current year contest page
 */
+
 Route::get('/', function () {
     $currentYear = now()->year;
     return redirect()->route('contest.show', ['year' => $currentYear]);
@@ -36,9 +38,6 @@ Route::get('/', function () {
 | Main page with information about the contest
 */
 Route::get('/contest/{year}', [ContestController::class, 'show'])->name('contest.show');
-
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -57,11 +56,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/all-users', [AllUsersController::class, 'list'])->name('all-users.list');
     Route::get('/all-robots', [AllRobotsController::class, 'list'])->name('all-robots.list');
-    
 });
 
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD Route
+|--------------------------------------------------------------------------
+|
+| Pass categories to the dashboard view.
+*/
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $categories = Category::all(); // Fetch all categories
+    return view('dashboard', compact('categories'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
@@ -73,6 +79,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/generate-starting-list/{year}', [AdminController::class, 'generateStartingList'])->name('admin.generateStartingList');
     Route::get('/admin/get-emails', [AdminController::class, 'allEmails'])->name('admin.allEmails');
     Route::get('/admin/get-emails/{year}', [AdminController::class, 'emailsByYear'])->name('admin.emailsByYear');
+    Route::get('/admin/starting-list', [AdminController::class, 'showStartingList'])->name('admin.startingList');
 });
 
 require __DIR__ . '/auth.php';
