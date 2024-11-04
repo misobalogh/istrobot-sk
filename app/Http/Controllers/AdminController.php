@@ -103,4 +103,18 @@ class AdminController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function getCategories(Request $request, $year)
+    {
+        $competition = Competition::where('year', $year)->first();
+
+        if (!$competition) {
+            return response()->json(['categories' => []]);
+        }
+
+        $categoryIds = $competition->categories()->pluck('id')->toArray();
+
+        return response()->json(['categories' => $categoryIds]);
+    }
+    
 }

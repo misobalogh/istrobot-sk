@@ -37,6 +37,33 @@
 </section>
 
 <script>
+    function fetchAndSetCategories(year) {
+        fetch(`/admin/get-categories/${year}`, {
+            headers: {
+                'Accept': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Reset all checkboxes
+            document.querySelectorAll('input[name="categories[]"]').forEach(cb => cb.checked = false);
+            // Check the categories returned for the year
+            data.categories.forEach(categoryId => {
+                const checkbox = document.querySelector(`input[name="categories[]"][value="${categoryId}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching categories:', error);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearInput = document.getElementById('categories-year');
+        const defaultYear = yearInput.value;
+        fetchAndSetCategories(defaultYear);
+    });
+
     document.getElementById('set-categories').addEventListener('click', function() {
 
         const yearInput = document.getElementById('categories-year');
@@ -90,5 +117,10 @@
                 });
             }
         });
+    });
+
+    document.getElementById('categories-year').addEventListener('change', function() {
+        const year = this.value;
+        fetchAndSetCategories(year);
     });
 </script>
