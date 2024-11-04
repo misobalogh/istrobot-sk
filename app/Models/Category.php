@@ -23,7 +23,7 @@ class Category extends Model
 
     public function competitions()
     {
-        return $this->belongsToMany(Competition::class, 'competition_category');
+        return $this->belongsToMany(Competition::class, 'competition_category', 'category_id', 'competition_id');
     }
 
     public function participations()

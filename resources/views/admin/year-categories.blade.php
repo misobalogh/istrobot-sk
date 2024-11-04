@@ -1,101 +1,94 @@
 <section>
-    <h3 class="font-semibold">Yearly Categories:</h3>
+    <h3 class="font-semibold">Set Categories:</h3>
 
     <div class="flex gap-4">
         <!-- Input for year -->
         <div>
             <x-input-label for="year" :value="__('Year')" required="true" />
-            <x-text-input id="year-starting-list" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', date('Y')) }}" required
+            <x-text-input id="categories-year" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', date('Y')) }}" required
                 min="2000" max="2100" />
             <x-input-error class="mt-2" :messages="$errors->get('year')" />
         </div>
 
-         <!-- Category Checkboxes -->
+        <!-- Category Checkboxes -->
         <div>
             <x-input-label for="category" :value="__('Category')" required="true" />
             <div class="flex flex-col mt-1">
-                <!-- Static categories TODO: remake into categories from database -->
-                @foreach(range(1, 7) as $category)
-                    <label class="inline-flex items-center mt-2">
-                        <input type="checkbox" name="categories[]" value="{{ $category }}" class="form-checkbox h-5 w-5 text-indigo-600">
-                        <span class="ml-2">{{ 'Category ' . $category }}</span>
+                @foreach($categories as $category)
+                <div class="flex items-center">
+                    <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-checkbox h-5 w-5 rounded text-indigo-600" id="{{ $category->id }}">
+                    <label for="{{ $category->id }}" class="ms-2">
+                        {{ $category->name_EN }} ({{ $categories_count->find($category->id)->participations_count }})
+                        @if($categories_count->find($category->id)->participations_count == 0)
+                            <span class="text-red-500 ml-2 cursor-pointer" data-category-id="{{ $category->id }}">❌</span>
+                        @endif
                     </label>
+                </div>
                 @endforeach
             </div>
             <x-input-error class="mt-2" :messages="$errors->get('category')" />
         </div>
-
-        <!-- New Category Input -->
-        <div>
-                    <x-input-label for="new-category" :value="__('Add New Category')" />
-                    <x-text-input id="new-category" name="new_category" type="text" class="mt-1 block w-full" placeholder="Enter new category" />
-                    <x-input-error class="mt-2" :messages="$errors->get('new_category')" />
-        </div>
     </div>
 
-    <!-- Button to generate yearly categories -->
-    <x-secondary-button id="generate-yearly-categories" class="mt-4">
-        Generate Yearly Categories
+    <!-- Button to set categories -->
+    <x-secondary-button id="set-categories" class="mt-4">
+        Set categories for selected year
     </x-secondary-button>
-    <div class="yearly-categories">
-    </div>
 </section>
 
 <script>
-    document.getElementById('generate-yearly-categories').addEventListener('click', function () {
+    document.getElementById('set-categories').addEventListener('click', function() {
 
-        const yearInput = document.getElementById('year-starting-list');
+        const yearInput = document.getElementById('categories-year');
         const year = yearInput.value;
 
-        // Collect checked categories // TODO: případně změnit hodnoty co je potřeba vracet
+        // Collect checked categories
         const checkedCategories = Array.from(document.querySelectorAll('input[name="categories[]"]:checked'))
-            // .map(checkbox => checkbox.value);
-            .map(checkbox => checkbox.nextElementSibling.innerText);
+            .map(checkbox => checkbox.value); // Changed to get category IDs
 
-        // Get the new category input value
-        const newCategoryInput = document.getElementById('new-category');
-        const newCategory = newCategoryInput.value.trim();
-
-        // Optionally add the new category to the categories array
-        if (newCategory) {
-            checkedCategories.push(newCategory);
-        }
-
-        console.log(checkedCategories);
-
-        // TODO: add checked categories to the fetch as needed + create function for it
-        fetch(`/admin/generate-yearly-categories/${year}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            }
-            // body: JSON.stringify({ categories: checkedCategories }) // TODO: mohlo by být takhle?
-        })
+        fetch(`/admin/set-categories/${year}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({ categories: checkedCategories }) // Sends an array of IDs
+            })
             .then(response => response.json())
             .then(data => {
-                const yearlyCategories = document.querySelector('.yearly-categories');
-                yearlyCategories.innerHTML = '';
-
-                if (data.length > 0) {
-                    // TODO: change robotEntry for whatever is needed, same for else
-                    data.forEach(item => {
-                        const robotEntry = `
-                        <div class="bg-gray-800 text-white p-4 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-black">${item.robot_name}</h4>
-                            <p class="mt-1"><span class="font-semibold">Owner: </span>${item.robot_owner}</p>
-                            <p><span class="font-semibold">Starting Number: </span>${item.starting_number}</p>
-                            <p><span class="font-semibold">Category: </span>${item.category_name}</p>
-                        </div>
-                        `;
-                        yearlyCategories.innerHTML += robotEntry;
-                    });
-                } else {
-                    yearlyCategories.innerHTML = '<p>No robots found.</p>';
+                if(data.success){
+                    alert('Categories successfully set for the competition.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+    });
+
+    document.querySelectorAll('.text-red-500').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            const categoryId = this.getAttribute('data-category-id');
+            if(confirm('Are you sure you want to delete this category?')) {
+                fetch(`/admin/delete-category/${categoryId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        // Remove the category from the DOM
+                        this.parentElement.parentElement.remove();
+                    } else {
+                        alert('Failed to delete the category.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
     });
 </script>

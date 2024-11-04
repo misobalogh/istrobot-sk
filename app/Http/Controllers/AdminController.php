@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Category;
 use App\Http\Controllers\ContestController;
+use App\Http\Requests\CategoryUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Competition;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
@@ -26,7 +30,7 @@ class AdminController extends Controller
             foreach ($robots as $index => $robot) {
                 $startingList[] = [
                     'robot_name' => $robot['name'],
-                    'robot_owner' => $robot['author_first_name']. ' ' . $robot['author_last_name'],
+                    'robot_owner' => $robot['author_first_name'] . ' ' . $robot['author_last_name'],
                     'category_name' => $category['category_name'],
                     'starting_number' => $startingNumber++,
                 ];
@@ -55,5 +59,48 @@ class AdminController extends Controller
     {
         $categories = Category::all();
         return view('admin.starting-list', compact('categories'));
+    }
+
+    public function createCategory(CategoryUpdateRequest $request)
+    {
+        $category = new Category();
+        $category->fill($request->validated());
+
+        $admin = auth()->user()->admin;
+        $category->admin_id = $admin->id;
+
+        $category->save();
+
+        return response()->json([
+            'success' => true,
+            'category' => [
+                'id' => $category->id,
+                'name_EN' => $category->name_EN,
+                'name_SK' => $category->name_SK,
+            ]
+        ]);
+    }
+
+    public function deleteCategory($id) {
+        $category = Category::find($id);
+        if($category) {
+            $category->delete();
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false], 404);
+    }
+
+    public function setCategories(Request $request, $year)
+    {
+        $categories = $request->input('categories', []);
+        
+        $competition = Competition::firstOrCreate(['year' => $year], [
+            'name' => "Istrobot $year",
+            'admin_id' => auth()->id(),
+        ]);
+        
+        $competition->categories()->sync($categories);
+
+        return response()->json(['success' => true]);
     }
 }

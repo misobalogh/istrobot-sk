@@ -5,6 +5,7 @@ use App\Http\Controllers\AllRobotsController;
 use App\Http\Controllers\AllUsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContestController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RobotController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
@@ -65,10 +66,7 @@ Route::middleware('auth')->group(function () {
 |
 | Pass categories to the dashboard view.
 */
-Route::get('/dashboard', function () {
-    $categories = Category::all(); // Fetch all categories
-    return view('dashboard', compact('categories'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'categoriesWithCount'])->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +78,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/get-emails', [AdminController::class, 'allEmails'])->name('admin.allEmails');
     Route::get('/admin/get-emails/{year}', [AdminController::class, 'emailsByYear'])->name('admin.emailsByYear');
     Route::get('/admin/starting-list', [AdminController::class, 'showStartingList'])->name('admin.startingList');
+    Route::post('/admin/create-category', [AdminController::class, 'createCategory'])->name('admin.create-category');
+    Route::delete('/admin/delete-category/{id}', [AdminController::class, 'deleteCategory'])->name('admin.delete-category');
+    Route::post('/admin/set-categories/{year}', [AdminController::class, 'setCategories'])->name('admin.setCategories');
 });
 
 require __DIR__ . '/auth.php';

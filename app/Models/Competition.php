@@ -22,7 +22,7 @@ class Competition extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'competition_category');
+        return $this->belongsToMany(Category::class, 'competition_category', 'competition_id', 'category_id');
     }
 
     public function participations()

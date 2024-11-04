@@ -34,7 +34,6 @@ class RobotController extends Controller
     public function update(RobotUpdateRequest $request, $id): RedirectResponse
     {
         $robot = Robot::findOrFail($id);
-        Log::info("Robot {$robot}");
         $robot->fill($request->validated());
         $robot->save();
 
