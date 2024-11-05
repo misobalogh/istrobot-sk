@@ -23,8 +23,15 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         @include("admin.emails")
                     </div>
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        @include("admin.profile-info")
+                    </div>
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        @include("admin.robot-register")
+                    </div>
                     @else
                     {{ __("You're logged in!") }}
+
                     @endif
                 </div>
             </div>
