@@ -1,3 +1,43 @@
-<div class="pl-5 text-gray-900 dark:text-white">
-    {{ $user->first_name }} {{ $user->last_name }}
+<div class="max-w-7xl flex flex-row items-center mx-auto gap-4 py-2 px-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-md">
+    <!-- User Name -->
+    <div class="w-full font-semibold truncate">
+        {{ $user->first_name }} {{ $user->last_name }}
+    </div>
+
+    <!-- Email Input -->
+    <div class="w-full">
+        <x-text-input type="email" name="email_{{ $user->id }}" id="email_{{ $user->id }}" 
+            class="block w-full p-2 rounded-md border border-gray-300 dark:border-gray-600"
+            placeholder="Enter New E-mail" value="{{ $user->email }}" />
+    </div>
+
+    <!-- Password Input -->
+    <div class="w-full">
+        <x-text-input type="password" name="password_{{ $user->id }}" id="password_{{ $user->id }}" 
+            class="block w-full p-2 rounded-md border border-gray-300 dark:border-gray-600"
+            placeholder="Enter New Password" value="{{ $user->password }}" />
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex gap-2 w-full justify-start">
+        <!-- Change Email Button -->
+        <x-primary-button type="button" onclick="handleChangeEmail({{ $user->id }})">
+            Change E-mail
+        </x-primary-button>
+
+        <!-- Change Password Button -->
+        <x-primary-button type="button" onclick="handleChangePassword({{ $user->id }})">
+            Change Password
+        </x-primary-button>
+
+        <!-- Save Changes Button -->
+        <x-secondary-button type="button" onclick="handleSaveChanges({{ $user->id }})">
+            Save Changes
+        </x-secondary-button>
+
+        <!-- Delete User Button -->
+        <x-danger-button type="button" onclick="handleDeleteUser({{ $user->id }})">
+            Delete User
+        </x-danger-button>
+    </div>
 </div>
