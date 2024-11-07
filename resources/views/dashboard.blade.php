@@ -12,27 +12,27 @@
                     @if (Gate::allows('admin'))
                     {{ __("You're logged in as admin!") }}
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @include("admin.starting-list", ['categories' => $categories])
+                        @include("dashboard.admin.starting-list", ['categories' => $categories])
                     </div>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @include("admin.add-category")
+                        @include("dashboard.admin.add-category")
                     </div>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @include("admin.year-categories", ['categories' => $categories])
+                        @include("dashboard.admin.year-categories", ['categories' => $categories])
                     </div>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @include("admin.emails")
-                    </div>
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @include("admin.profile-info")
-                    </div>
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @include("admin.robot-register")
+                        @include("dashboard.admin.emails")
                     </div>
                     @else
-                    {{ __("You're logged in!") }}
-
+                    <!-- TODO: Remove later -->
+                    {{ __("You're logged in!") }} 
                     @endif
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        @include("dashboard.profile-info")
+                    </div>
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        @include("dashboard.robot-register")
+                    </div>
                 </div>
             </div>
         </div>
