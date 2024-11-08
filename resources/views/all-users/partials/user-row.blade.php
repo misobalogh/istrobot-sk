@@ -19,7 +19,7 @@
     </div>
 
     <!-- Action Buttons -->
-    <div class="flex gap-2 flex-1 justify-start">
+    <div class="flex flex-1 justify-start">
         <!-- Change Email Button -->
         <!-- <x-primary-button type="button" onclick="handleChangeEmail({{ $user->id }})">
             Change E-mail
@@ -31,12 +31,12 @@
         </x-primary-button> -->
 
         <!-- Save Changes Button -->
-        <x-secondary-button type="button" onclick="handleSaveChanges({{ $user->id }})">
+        <x-secondary-button type="button" class="mr-1" onclick="handleSaveChanges({{ $user->id }})">
             Save Changes
         </x-secondary-button>
 
         <!-- Delete User Button -->
-        <x-danger-button type="button" onclick="handleDeleteUser({{ $user->id }})">
+        <x-danger-button type="button" class="ml-1" onclick="handleDeleteUser({{ $user->id }})">
             Delete User
         </x-danger-button>
     </div>
