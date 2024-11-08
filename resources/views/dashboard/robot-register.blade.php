@@ -1,9 +1,3 @@
-@php
-    // TODO: testing data, not needed after connecting to database
-    $robots = ['Bot 1', 'Bot 2', 'Bot 3'];
-    $categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
-@endphp
-
 <section>
     <h3 class="font-semibold mb-4">Register your robots to categories:</h3>
     
@@ -14,8 +8,8 @@
                 <tr>
                     <th class="px-4 py-2 border border-gray-200">Name</th>
                     <!-- To generate a header of categories from database -->
-                    @foreach ($categories as $category)
-                        <th class="px-4 py-2 border border-gray-200">{{ $category }}</th>
+                    @foreach ($categoriesForSetYear as $category)
+                        <th class="px-4 py-2 border border-gray-200">{{ $category->name_EN }}</th>
                     @endforeach
                 </tr>
             </thead>
@@ -24,15 +18,16 @@
             <tbody>
                 @foreach ($robots as $robot)
                     <tr>
-                        <td class="px-4 py-2 border border-gray-200">{{ $robot }}</td>
-                        @foreach ($categories as $category)
+                        <td class="px-4 py-2 border border-gray-200">{{ $robot->name }}</td>
+                        @foreach ($categoriesForSetYear as $category)
                             <td class="px-4 py-2 border border-gray-200 text-center">
                                 <!-- Checkbox for each robot-category pair, each has a unique name based on robot and category name -->
                                 <input type="checkbox" 
-                                       name="categories[{{ $robot }}][{{ $category }}]" 
+                                       name="categories[{{ $robot->id }}][{{ $category->id }}]" 
                                        class="category-checkbox h-5 w-5 rounded text-indigo-600" 
-                                       data-robot="{{ $robot }}" 
-                                       data-category="{{ $category }}" />
+                                       data-robot="{{ $robot->id }}" 
+                                       data-category="{{ $category->id }}"
+                                       {{ isset($robotsParticipation[$robot->id]) && in_array($category->id, $robotsParticipation[$robot->id]) ? 'checked' : '' }} />
                             </td>
                         @endforeach
                     </tr>
