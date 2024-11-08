@@ -13,6 +13,7 @@ use App\Models\Competition;
 use App\Models\CompetitionCategory;
 use App\Models\Participation;
 use App\Models\Technology;
+use App\Models\Setting;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        
+
         $this->call(CountrySeeder::class);
         $this->call(TechnologySeeder::class);
 
@@ -122,5 +125,10 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        Setting::create([
+            'key' => 'competition_year',
+            'value' => '2024',
+        ]);
     }
 }

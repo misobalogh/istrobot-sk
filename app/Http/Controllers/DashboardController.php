@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\DashboardService;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 
 class DashboardController extends Controller
 {
@@ -16,7 +17,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $yearSet = 2024;
+        $yearSet = Setting::where('key', 'competition_year')->first()->value;
         
         $categories = $this->dashboardService->getAllCategories();
         $categoriesCount = $this->dashboardService->getCategoriesCount();
