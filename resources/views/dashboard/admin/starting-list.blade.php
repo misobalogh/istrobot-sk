@@ -30,14 +30,14 @@
     
     <div class="starting-list mt-4">
         <x-input-label for="starting-list" :value="__('Starting List')" />
-        
+
         <!-- Text area to display the starting list in CSV format -->
         <textarea id="starting-list-textarea" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" rows="5" readonly></textarea>
         
         <!-- Copy to Clipboard Button -->
-        <x-secondary-button id="copy-to-clipboard" class="mt-4">
-            <span id="copy-icon">Copy to Clipboard</span>
-            <span id="checkmark-icon" class="hidden">✔ Copied!</span>
+        <x-secondary-button id="copy-to-clipboard-starting-list" class="mt-4">
+            <span id="copy-icon-starting-list">Copy to Clipboard</span>
+            <span id="checkmark-icon-starting-list" class="hidden">✔ Copied!</span>
         </x-secondary-button>
     </div>
 </section>
@@ -78,23 +78,23 @@
     });
 
     // Copy to clipboard functionality
-    document.getElementById('copy-to-clipboard').addEventListener('click', function () {
-        const textarea = document.getElementById('starting-list-textarea');
-        // textarea.select();
+    document.getElementById('copy-to-clipboard-starting-list').addEventListener('click', function () {
+        const textListArea = document.getElementById('starting-list-textarea');
+        // textListArea.select();
         // document.execCommand('copy');
-        navigator.clipboard.writeText(textarea.value)
+        navigator.clipboard.writeText(textListArea.value)
             .then(() => {
             // Change button to show checkmark
-            const copyIcon = document.getElementById('copy-icon');
-            const checkmarkIcon = document.getElementById('checkmark-icon');
+            const copyIconStartingList = document.getElementById('copy-icon-starting-list');
+            const checkmarkIconStartingList = document.getElementById('checkmark-icon-starting-list');
             
-            copyIcon.classList.add('hidden');
-            checkmarkIcon.classList.remove('hidden');
+            copyIconStartingList.classList.add('hidden');
+            checkmarkIconStartingList.classList.remove('hidden');
 
             // After 2 seconds, show original message (Copy to Clipboard)
             setTimeout(() => {
-                copyIcon.classList.remove('hidden');
-                checkmarkIcon.classList.add('hidden');
+                copyIconStartingList.classList.remove('hidden');
+                checkmarkIconStartingList.classList.add('hidden');
             }, 2000); // 2 seconds
         })
     });
