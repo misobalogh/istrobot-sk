@@ -27,7 +27,18 @@
     <x-secondary-button id="generate-starting-list" class="mt-4">
         Generate Starting List
     </x-secondary-button>
-    <div class="starting-list">
+    
+    <div class="starting-list mt-4">
+        <x-input-label for="starting-list" :value="__('Starting List')" />
+        
+        <!-- Text area to display the starting list in CSV format -->
+        <textarea id="starting-list-textarea" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" rows="5" readonly></textarea>
+        
+        <!-- Copy to Clipboard Button -->
+        <x-secondary-button id="copy-to-clipboard" class="mt-4">
+            <span id="copy-icon">Copy to Clipboard</span>
+            <span id="checkmark-icon" class="hidden">✔ Copied!</span>
+        </x-secondary-button>
     </div>
 </section>
 
@@ -49,24 +60,42 @@
         })
             .then(response => response.json())
             .then(data => {
-                const startingList = document.querySelector('.starting-list');
-                startingList.innerHTML = '';
+                const startingList = document.getElementById('starting-list-textarea');
+                startingList.value = ''; // Clear the text area
 
                 if (data.length > 0) {
-                    data.forEach(item => {
-                        const robotEntry = `
-                        <div class="bg-gray-800 text-white p-4 rounded-lg shadow-lg">
-                            <p class="mt-1">${item.robot_name};${item.robot_owner};${item.starting_number};${item.category_name}</p>
-                        </div>
-                        `;
-                        startingList.innerHTML += robotEntry;
-                    });
+                    const robotEntries = data.map(item =>
+                        `${item.robot_name};${item.robot_owner};${item.starting_number};${item.category_name}`
+                    );
+                    startingList.value = robotEntries.join('\n');
                 } else {
-                    startingList.innerHTML = '<p>No robots found.</p>';
+                    startingList.value = 'No robots found.';
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+    });
+
+    // Copy to clipboard functionality
+    document.getElementById('copy-to-clipboard').addEventListener('click', function () {
+        const textarea = document.getElementById('starting-list-textarea');
+        // textarea.select();
+        // document.execCommand('copy');
+        navigator.clipboard.writeText(textarea.value)
+            .then(() => {
+            // Change button to show checkmark
+            const copyIcon = document.getElementById('copy-icon');
+            const checkmarkIcon = document.getElementById('checkmark-icon');
+            
+            copyIcon.classList.add('hidden');
+            checkmarkIcon.classList.remove('hidden');
+
+            // After 2 seconds, show original message (Copy to Clipboard)
+            setTimeout(() => {
+                copyIcon.classList.remove('hidden');
+                checkmarkIcon.classList.add('hidden');
+            }, 2000); // 2 seconds
+        })
     });
 </script>
