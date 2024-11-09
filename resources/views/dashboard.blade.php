@@ -11,28 +11,37 @@
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">
                     @if (Gate::allows('admin'))
                     {{ __("You're logged in as admin!") }}
+                    
                 </div>
             </div>
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">
                     @include("dashboard.admin.starting-list", ['categories' => $categories])
                 </div>
+
             </div>
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">
                     @include("dashboard.admin.add-category")
                 </div>
+                    
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        @include("dashboard.admin.set-year")
+                    </div>
+                    
             </div>
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">
                     @include("dashboard.admin.year-categories", ['categories' => $categories])
                 </div>
+                    
             </div>
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">
                     @include("dashboard.admin.emails")
                 </div>
             </div>
+                    
                     @else
                     <!-- TODO: Remove later -->
                     {{ __("You're logged in!") }} 
@@ -41,6 +50,7 @@
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">
                         @include("dashboard.profile-info")
                     </div>
+                    
             </div>
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl text-gray-900 dark:text-gray-100">

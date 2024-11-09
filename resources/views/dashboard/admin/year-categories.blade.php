@@ -5,7 +5,7 @@
         <!-- Input for year -->
         <div>
             <x-input-label for="year" :value="__('Year')" required="true" />
-            <x-text-input id="categories-year" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', date('Y')) }}" required
+            <x-text-input id="categories-year" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}" required
                 min="2000" max="2100" />
             <x-input-error class="mt-2" :messages="$errors->get('year')" />
         </div>

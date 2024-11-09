@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RobotController;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 
@@ -30,8 +31,8 @@ use App\Models\Category;
 */
 
 Route::get('/', function () {
-    $currentYear = now()->year;
-    return redirect()->route('contest.show', ['year' => $currentYear]);
+    $setYear = Setting::where('key', 'competition_year')->first()->value;
+    return redirect()->route('contest.show', ['year' => $setYear]);
 });
 
 /*
@@ -82,6 +83,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::delete('/admin/delete-category/{id}', [AdminController::class, 'deleteCategory'])->name('admin.delete-category');
     Route::post('/admin/set-categories/{year}', [AdminController::class, 'setCategories'])->name('admin.setCategories');
     Route::get('/admin/get-categories/{year}', [AdminController::class, 'getCategories'])->name('admin.getCategories');
+
+    Route::post('/admin/set-year', [AdminController::class, 'setYear'])->name('admin.setYear'); 
 });
 
 require __DIR__ . '/auth.php';

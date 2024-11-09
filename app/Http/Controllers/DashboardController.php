@@ -17,15 +17,16 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $yearSet = Setting::where('key', 'competition_year')->first()->value;
+        $setYear = Setting::where('key', 'competition_year')->first()->value;
         
         $categories = $this->dashboardService->getAllCategories();
         $categoriesCount = $this->dashboardService->getCategoriesCount();
-        $categoriesForSetYear = $this->dashboardService->getCategoriesByYear($yearSet);
+        $categoriesForSetYear = $this->dashboardService->getCategoriesByYear($setYear);
         $robots = $this->dashboardService->getUserRobots();
-        $robotsParticipation = $this->dashboardService->getRobotsParticipation($yearSet);
+        $robotsParticipation = $this->dashboardService->getRobotsParticipation($setYear);
 
         return view('dashboard', [
+            'setYear' => $setYear,
             'categories' => $categories,
             'categories_count' => $categoriesCount,
             'categoriesForSetYear' => $categoriesForSetYear,

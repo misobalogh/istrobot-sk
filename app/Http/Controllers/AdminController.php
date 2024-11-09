@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Category;
 use App\Http\Controllers\ContestController;
@@ -10,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Competition;
+use App\Services\ContestService;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
@@ -18,7 +20,9 @@ class AdminController extends Controller
     {
         $categoryId = $request->input('category');
 
-        $registeredRobots = ContestController::registeredRobotsByYear($year, $categoryId);
+        $contestService = new ContestService();
+
+        $registeredRobots = $contestService->registeredRobotsByYear($year, $categoryId);
         $startingList = [];
         $startingNumber = 1;
 
@@ -117,4 +121,18 @@ class AdminController extends Controller
         return response()->json(['categories' => $categoryIds]);
     }
     
+    public function setYear(Request $request)
+    {
+        $year = $request->input('year');
+
+        $setting = Setting::where('key', 'competition_year')->first();
+        $setting->value = $year;
+        $setting->save();
+
+
+        Log::info("Year set to $year");
+
+        return redirect()->route('dashboard')->with('status', 'year-set-successfuly');
+    }
+
 }
