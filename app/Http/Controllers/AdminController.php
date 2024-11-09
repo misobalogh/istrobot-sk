@@ -129,9 +129,6 @@ class AdminController extends Controller
         $setting->value = $year;
         $setting->save();
 
-
-        Log::info("Year set to $year");
-
         return redirect()->route('dashboard')->with('status', 'year-set-successfuly');
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('competition_id')->constrained()->onDelete('cascade');
             $table->integer('start_number')->nullable();
-            $table->string('result', 10)
+            $table->string('result', 10)->nullable()
                 ->check('result IN ("MP", "DNS") OR CAST(result AS INTEGER) >= 0');
             $table->primary(['competition_id', 'robot_id', 'category_id']);
             $table->timestamps();

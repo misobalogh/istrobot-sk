@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 | Pass categories to the dashboard view.
 */
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/dashboard/update-registration', [DashboardController::class, 'updateRegistration'])->middleware(['auth', 'verified'])->name('dashboard.updateRegistration');
 
 /*
 |--------------------------------------------------------------------------
