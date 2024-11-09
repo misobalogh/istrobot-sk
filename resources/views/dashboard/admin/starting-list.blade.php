@@ -56,10 +56,7 @@
                     data.forEach(item => {
                         const robotEntry = `
                         <div class="bg-gray-800 text-white p-4 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-black">${item.robot_name}</h4>
-                            <p class="mt-1"><span class="font-semibold">Owner: </span>${item.robot_owner}</p>
-                            <p><span class="font-semibold">Starting Number: </span>${item.starting_number}</p>
-                            <p><span class="font-semibold">Category: </span>${item.category_name}</p>
+                            <p class="mt-1">${item.robot_name};${item.robot_owner};${item.starting_number};${item.category_name}</p>
                         </div>
                         `;
                         startingList.innerHTML += robotEntry;
