@@ -15,7 +15,7 @@
     <div class="flex-1">
         <x-text-input type="password" name="password_{{ $user->id }}" id="password_{{ $user->id }}" 
             class="block w-full p-2 rounded-md border border-gray-300 dark:border-gray-600"
-            placeholder="Enter New Password" value="{{ $user->password }}" />
+            placeholder="Enter New Password" value="****" />
     </div>
 
     <!-- Action Buttons -->

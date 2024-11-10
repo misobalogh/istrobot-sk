@@ -48,4 +48,48 @@
             arrowDown.classList.remove('hidden');
         }
     });
+
+    function handleSaveChanges(userId) {
+        const email = document.getElementById(`email_${userId}`).value;
+        let password = document.getElementById(`password_${userId}`).value;
+        if (password === '****') {
+            password = '';
+        }
+
+        fetch(`/all-users/update/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                alert('User updated successfully.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function handleDeleteUser(userId) {
+        if(confirm('Are you sure you want to delete this user?')){
+            fetch(`/all-users/delete/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success){
+                    window.location.reload();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
 </script>

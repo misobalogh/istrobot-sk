@@ -86,6 +86,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/get-categories/{year}', [AdminController::class, 'getCategories'])->name('admin.getCategories');
 
     Route::post('/admin/set-year', [AdminController::class, 'setYear'])->name('admin.setYear'); 
+
+    Route::post('/all-users/update/{user}', [AllUsersController::class, 'update'])->name('all-users.update');
+    Route::delete('/all-users/delete/{user}', [AllUsersController::class, 'destroy'])->name('all-users.destroy');
 });
 
 require __DIR__ . '/auth.php';
