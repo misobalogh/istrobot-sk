@@ -1,18 +1,21 @@
 <section>
     <h3 class="font-semibold">Emails:</h3>
 
-    <!-- Input for year -->
-    <div>
-        <x-input-label for="year" :value="__('Year')" required="true" />
-        <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}"
-            min="2000" max="2100" />
-        <x-input-error class="mt-2" :messages="$errors->get('year')" />
+    <div class="flex">
+        <div class="flex gap-4">
+            <!-- Input for year -->
+            <div>
+                <x-input-label for="year" :value="__('Year')" required="true" />
+                <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}"
+                    min="2000" max="2100" />
+                <x-input-error class="mt-2" :messages="$errors->get('year')" />
+            </div>
+            <!-- Button for fetching emails -->
+            <x-secondary-button id="fetch-emails" class="mt-6">
+                Get Emails
+            </x-secondary-button>
+        </div>
     </div>
-
-    <!-- Button for fetching emails -->
-    <x-secondary-button id="fetch-emails" class="mt-4">
-        Get Emails
-    </x-secondary-button>
 
     <div class="email-list mt-4">
         <x-input-label for="email-list" :value="__('Email List')" />

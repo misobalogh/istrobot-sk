@@ -21,12 +21,12 @@
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('category')" />
         </div>
-    </div>
 
-    <!-- Button to generate starting list and the starting list -->
-    <x-secondary-button id="generate-starting-list" class="mt-4">
-        Generate Starting List
-    </x-secondary-button>
+        <!-- Button to generate starting list and the starting list -->
+        <x-secondary-button id="generate-starting-list" class="mt-6">
+            Generate Starting List
+        </x-secondary-button>
+    </div>
     
     <div class="starting-list mt-4">
         <x-input-label for="starting-list" :value="__('Starting List')" />
