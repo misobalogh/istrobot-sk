@@ -8,7 +8,7 @@
     <div class="max-w-7xl min-h-screen mx-auto dark:bg-gray-800 text-gray-900 dark:text-white shadow-md border border-gray-100 dark:border-gray-700">
         <!-- Header Row -->
         <div class="py-2 flex flex-row items-center sm:px-6 lg:px-8 px-10 gap-4 font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700">
-            <div class="flex-1 w-full text-lg">
+            <div class="flex-1 text-lg flex items-center">
                 User Name
                 <!-- Sort Button for User Name -->
                 <button id="sort-button" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
@@ -16,13 +16,13 @@
                     <span id="arrow-down">▼</span>
                 </button>
             </div>
-            <div class="flex-1 w-full text-lg">
+            <div class="flex-1 text-lg">
                 Email
             </div>
-            <div class="flex-1 w-full text-lg">
+            <div class="flex-1 text-lg">
                 Password
             </div>
-            <div class="flex-1 w-full text-lg">
+            <div class="flex-1 text-lg">
                 Actions
             </div>
         </div>     
