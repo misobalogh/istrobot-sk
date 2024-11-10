@@ -1,5 +1,5 @@
 <h3 class="font-semibold mb-4">Profile information:</h3>
-<div class="flex items-center gap-4 p-4 shadow rounded-lg">
+<div class="flex items-center gap-4 p-4 rounded-lg">
     <div class="flex flex-col gap-2">
         <span class="font-semibold">Name:</span>
         <span class="font-semibold">Email:</span>

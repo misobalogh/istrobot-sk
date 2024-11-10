@@ -3,23 +3,23 @@
     <form id="create-category-form" method="POST" action="{{ route('admin.create-category') }}">
         @csrf
         @method('POST')
-        <div class="flex gap-4 mt-2">
+        <div class="flex flex-row gap-4 mt-2">
             <!-- Category Name (EN) -->
             <div>
                 <x-input-label for="name_EN" :value="__('Category Name (EN)')" required="true" />
-                <x-text-input id="name_EN" name="name_EN" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="name_EN" name="name_EN" type="text" class="mt-1 block flex-1" required />
                 <x-input-error class="mt-2" :messages="$errors->get('name_EN')" />
             </div>
             <!-- Category Name (SK) -->
             <div>
                 <x-input-label for="name_SK" :value="__('Category Name (SK)')" required="true" />
-                <x-text-input id="name_SK" name="name_SK" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="name_SK" name="name_SK" type="text" class="mt-1 block flex-1" required />
                 <x-input-error class="mt-2" :messages="$errors->get('name_SK')" />
             </div>
             <!-- Type of Evaluation -->
             <div>
                 <x-input-label for="type_of_evaluation" :value="__('Type of Evaluation')" required="true" />
-                <select id="type_of_evaluation" name="type_of_evaluation" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
+                <select id="type_of_evaluation" name="type_of_evaluation" class="block mt-1 flex-1 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
                     <option value="" disabled selected hidden>Select Evaluation Type</option>
                     <option value="score">Score</option>
                     <option value="time">Time</option>
@@ -27,11 +27,11 @@
                 <x-input-error class="mt-2" :messages="$errors->get('type_of_evaluation')" />
             </div>
             <!-- Submit Button -->
-            <div class="flex items-end">
-                <x-primary-button type="submit" class="mt-6">
+            <!-- <div class="flex-1 items-end"> -->
+                <x-primary-button type="submit" class="mt-6 flex-auto w-min block">
                     Create Category
                 </x-primary-button>
-            </div>
+            <!-- </div> -->
         </div>
     </form>
 </section>

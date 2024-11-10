@@ -12,7 +12,9 @@
                 <x-input-error class="mt-2" :messages="$errors->get('year')" />
             </div>
             <!-- Button to set year -->
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button class="mt-6">
+                {{ __('Save') }}
+            </x-primary-button>
 
             @if (session('status') === 'year-set-successfuly')
             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
