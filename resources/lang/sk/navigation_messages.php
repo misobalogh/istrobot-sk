@@ -1,6 +1,6 @@
 <?php
 return [
-    "dashboard" => "Prístrojový panel",
+    "dashboard" => "Prehľad",
     "profile" => "Profil",
     "my_robots" => "Moji roboti",
     "all_users" => "Všetci používatelia",
