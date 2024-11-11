@@ -29,7 +29,7 @@ class AllUsersController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'email' => 'nullable|email|unique:users,email,' . $user->id,
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
@@ -40,38 +40,7 @@ class AllUsersController extends Controller
             'school' => 'nullable|string|max:255',
         ]);
 
-        if ($request->filled('email')) {
-            $user->email = $request->input('email');
-        }
-
-        if ($request->filled('first_name')) {
-            $user->first_name = $request->input('first_name');
-        }
-
-        if ($request->filled('last_name')) {
-            $user->last_name = $request->input('last_name');
-        }
-
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->input('password'));
-        }
-
-        if ($request->filled('birth_date')) {
-            $user->birth_date = $request->input('birth_date');
-        }
-
-        if ($request->filled('city')) {
-            $user->city = $request->input('city');
-        }
-
-        if ($request->filled('country_code')) {
-            $user->country_code = $request->input('country_code');
-        }
-
-        if ($request->filled('school')) {
-            $user->school = $request->input('school');
-        }
-
+        $user->fill($validatedData);
         $user->save();
 
         return response()->json(['success' => true]);
