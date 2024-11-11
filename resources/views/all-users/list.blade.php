@@ -32,10 +32,10 @@
             @endforeach
         </div>
     </div>
-    @include('all-users.partials.edit-user-modal')
 
-    <!-- Notification Component -->
-    <x-notification />
+    @include('all-users.partials.edit-user-modal')
+    <x-bladewind::notification />
+
 </x-app-layout>
 
 <script>
@@ -50,18 +50,6 @@
         } else {
             arrowUp.classList.add('hidden');
             arrowDown.classList.remove('hidden');
-        }
-    });
-
-    function showNotification(message) {
-        // Trigger the notification component
-        window.dispatchEvent(new CustomEvent('open-notification', { detail: message }));
-    }
-
-    // Close notification when ESC is pressed
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-            document.getElementById('notification').classList.add('hidden');
         }
     });
 
@@ -87,7 +75,14 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showNotification('User updated successfully.');
+                    showNotification(
+                        'Success',
+                        'Updated user successfully',
+                        'success',
+                        2,
+                        'regular',
+                        'same_one'
+                    );
                 }
             })
             .catch(error => console.error('Error:', error));
