@@ -14,7 +14,7 @@
     <div class="flex gap-2 flex-1 justify-end">
         <!-- Hide Button -->
         <x-primary-button type="button" onclick="handleHideRobot({{ $robot->id }})">
-            Hide
+        {{ __('all_robots_messages.hide') }}
         </x-primary-button>
     </div>
 </div>

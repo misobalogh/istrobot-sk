@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('All Robots') }}
+            {{ __('all_robots_messages.all_robots_title') }}
         </h2>
     </x-slot>
 
@@ -10,14 +10,14 @@
         <div class="py-2 flex flex-row items-center sm:px-6 lg:px-8 px-10 gap-4 font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700">
             <!-- <div class="flex-1 flex flex-row"> if the robot name and author name should be closer -->
                 <div class="flex-1 text-lg flex items-center">
-                    Robot Name
+                    {{ __('all_robots_messages.robot_name') }}
                     <button id="sort-robot-name" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
                         <span id="robot-arrow-up" class="hidden">▲</span>
                         <span id="robot-arrow-down">▼</span>
                     </button>
                 </div>
                 <div class="flex-1 text-lg flex items-center">
-                    Author Name
+                    {{ __('all_robots_messages.author_name') }}
                     <button id="sort-author-name" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
                     <span id="author-arrow-up" class="hidden">▲</span>
                     <span id="author-arrow-down">▼</span>
@@ -25,7 +25,7 @@
                 </div>
             <!-- </div> -->
             <div class="flex-1 text-right text-lg">
-                Actions
+                {{ __('all_robots_messages.actions') }}
             </div>
         </div>    
         <div class="sm:px-6 lg:px-8 px-10">
