@@ -1,7 +1,7 @@
 <div class="flex">
     <!-- Sidebar -->
     <aside class="w-1/4 h-screen bg-gray-100 dark:bg-gray-800 p-4">
-        <h2 class="text-lg font-semibold mb-4 text-white">Robots:</h2>
+        <h2 class="text-lg font-semibold mb-4 text-white">{{ __('my_robots_messages.robots') }}:</h2>
         <ul>
             @foreach ($robots as $index => $robot)
             <li class="mb-2">
@@ -17,7 +17,7 @@
                 <button id="add-robot-button" 
                     class="w-full text-left px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-b hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                     style="border-bottom: 1px solid transparent; border-image: linear-gradient(to right, rgba(55, 65, 81, 0) 0%, rgba(55, 65, 81, 1) 50%, rgba(55, 65, 81, 0) 100%) 1;">
-                    + Add New Robot
+                    {{ __('my_robots_messages.add_robot') }}
                 </button>
             </li>
         </ul>
@@ -31,7 +31,7 @@
                     :technologies="$technologies"
                     :actionUrl="route('robots.update', $robot->id)"
                     method="patch"
-                    buttonText="{{ __('Save') }}"
+                    buttonText="{{ __('my_robots_messages.save') }}"
                 />
             </div>
         @endforeach
@@ -39,7 +39,7 @@
             <x-robot-form
                 :technologies="$technologies"
                 :actionUrl="route('robots.store')"
-                buttonText="{{ __('Create') }}"
+                buttonText="{{ __('my_robots_messages.create') }}"
             />
         </div>
     </section>
