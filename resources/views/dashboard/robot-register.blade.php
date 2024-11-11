@@ -1,5 +1,5 @@
 <section>
-    <h3 class="font-semibold mb-4">Register your robots to categories:</h3>
+    <h3 class="font-semibold mb-4">{{ __('dashboard_messages.register_robots_title') }}:</h3>
     <form method="post" action="{{ route('dashboard.updateRegistration') }}" class="mt-6 space-y-6">
         @csrf
         <div class="overflow-x-auto">
@@ -7,7 +7,7 @@
                 <!-- Table Header -->
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 border border-gray-200">Name</th>
+                        <th class="px-4 py-2 border border-gray-200">{{ __('dashboard_messages.name') }}</th>
                         <!-- To generate a header of categories from database -->
                         @foreach ($categoriesForSetYear as $category)
                         <th class="px-4 py-2 border border-gray-200">{{ $category->name_EN }}</th>
@@ -38,11 +38,11 @@
         </div>
 
         <!-- Button to save changes -->
-        <x-primary-button id="register-robots">{{ __('Update Registration') }}</x-primary-button>
+        <x-primary-button id="register-robots">{{ __('dashboard_messages.update_registration') }}</x-primary-button>
 
         @if (session('status') === 'Registration updated successfully')
         <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400">{{ __('Registration updated.') }}</p>
+            class="text-sm text-gray-600 dark:text-gray-400">{{ __('dashboard_messages.registration_updated') }}</p>
         @endif
 
         <!-- Hidden input to store selected categories -->

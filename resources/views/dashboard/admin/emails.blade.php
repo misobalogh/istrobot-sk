@@ -1,32 +1,32 @@
 <section>
-    <h3 class="font-semibold">Emails:</h3>
+    <h3 class="font-semibold">{{ __('dashboard_messages.emails_title') }}:</h3>
 
     <div class="flex">
         <div class="flex gap-4">
             <!-- Input for year -->
             <div>
-                <x-input-label for="year" :value="__('Year')" required="true" />
+                <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
                 <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}"
                     min="2000" max="2100" />
                 <x-input-error class="mt-2" :messages="$errors->get('year')" />
             </div>
             <!-- Button for fetching emails -->
             <x-secondary-button id="fetch-emails" class="mt-6">
-                Get Emails
+                {{ __('dashboard_messages.get_emails') }}
             </x-secondary-button>
         </div>
     </div>
 
     <div class="email-list mt-4">
-        <x-input-label for="email-list" :value="__('Email List')" />
+        <x-input-label for="email-list" :value="__('dashboard_messages.email_list')" />
         
         <!-- Text area to display the email list in CSV format -->
         <textarea id="email-list-textarea" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" rows="5" readonly></textarea>
         
         <!-- Copy to Clipboard Button -->
         <x-secondary-button id="copy-to-clipboard-email-list" class="mt-4">
-            <span id="copy-icon-email-list">Copy to Clipboard</span>
-            <span id="checkmark-icon-email-list" class="hidden">✔ Copied!</span>
+            <span id="copy-icon-email-list">{{ __('dashboard_messages.copy_to_clipboard') }}</span>
+            <span id="checkmark-icon-email-list" class="hidden">{{ __('dashboard_messages.copied') }}</span>
         </x-secondary-button>
     </div>
 </section>

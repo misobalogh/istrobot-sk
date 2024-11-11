@@ -1,10 +1,10 @@
 <section>
-    <h3 class="font-semibold">Set Categories:</h3>
+    <h3 class="font-semibold">{{ __('dashboard_messages.set_category_title') }}:</h3>
 
     <div class="flex gap-4">
         <!-- Input for year -->
         <div>
-            <x-input-label for="year" :value="__('Year')" required="true" />
+            <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
             <x-text-input id="categories-year" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}" required
                 min="2000" max="2100" />
             <x-input-error class="mt-2" :messages="$errors->get('year')" />
@@ -12,7 +12,7 @@
 
         <!-- Category Checkboxes -->
         <div>
-            <x-input-label for="category" :value="__('Category')" required="true" />
+            <x-input-label for="category" :value="__('dashboard_messages.add_category_title')" required="true" />
             <div class="flex flex-col mt-1">
                 @foreach($categories as $category)
                 <div class="flex items-center">
@@ -32,7 +32,7 @@
 
     <!-- Button to set categories -->
     <x-secondary-button id="set-categories" class="mt-4">
-        Set categories for selected year
+        {{ __('dashboard_messages.set_categories') }}
     </x-secondary-button>
 </section>
 
