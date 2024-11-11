@@ -33,6 +33,9 @@
         </div>
     </div>
     @include('all-users.partials.edit-user-modal')
+
+    <!-- Notification Component -->
+    <x-notification />
 </x-app-layout>
 
 <script>
@@ -47,6 +50,18 @@
         } else {
             arrowUp.classList.add('hidden');
             arrowDown.classList.remove('hidden');
+        }
+    });
+
+    function showNotification(message) {
+        // Trigger the notification component
+        window.dispatchEvent(new CustomEvent('open-notification', { detail: message }));
+    }
+
+    // Close notification when ESC is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            document.getElementById('notification').classList.add('hidden');
         }
     });
 
@@ -72,7 +87,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('User updated successfully.');
+                    showNotification('User updated successfully.');
                 }
             })
             .catch(error => console.error('Error:', error));
