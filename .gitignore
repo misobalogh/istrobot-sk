@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+/public/vendor/bladewind
 /storage/*.key
 /vendor
 .env

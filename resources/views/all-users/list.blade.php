@@ -32,7 +32,10 @@
             @endforeach
         </div>
     </div>
+
     @include('all-users.partials.edit-user-modal')
+    <x-bladewind::notification />
+
 </x-app-layout>
 
 <script>
@@ -72,7 +75,14 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('User updated successfully.');
+                    showNotification(
+                        'Success',
+                        'Updated user successfully',
+                        'success',
+                        2,
+                        'regular',
+                        'same_one'
+                    );
                 }
             })
             .catch(error => console.error('Error:', error));
