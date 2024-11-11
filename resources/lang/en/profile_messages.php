@@ -1,0 +1,35 @@
+<?php
+return [
+    "profile_title" => "Profile",
+
+    "profile_info_title" => "Profile information",
+    "profile_info_subtitle" => "Update your account's profile information and email address.",
+    "first_name" => "First name",
+    "last_name" => "Last name",
+    "email" => "Email",
+    "unverified_email" => "Your email address is not verified.",
+    "verification_resend" => "Click here to re-send the verification email.",
+    "verification_sent" => "A new verification email has been sent to your email address.",
+    "birth_date" => "Birth date",
+    "city" => "City",
+    "country" => "Country",
+    "school" => "School",
+    "save" => "Save",
+    "saved" => "Profile information has been saved.",
+
+    "update_password_title" => "Update password",
+    "update_password_subtitle" => "Make sure your account uses a long, random password to avoid unauthorized access.",
+    "current_password" => "Current password",
+    "new_password" => "New password",
+    "confirm_password" => "Confirm password",
+    "password_saved" => "Password has been successfully changed.",
+
+    "delete_account_title" => "Delete account",
+    "delete_account_subtitle" => "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.",
+    "delete_account" => "Delete account",
+    "confirm_delete" => "Are you sure you want to delete your account?",
+    "delete_account_warning" => "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you'd like to permanently delete your account.",
+    "password" => "Password",
+    "cancel" => "Cancel",
+    "delete" => "Delete Account",
+];
