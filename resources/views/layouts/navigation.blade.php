@@ -43,6 +43,8 @@
                         </a>
                     </form>
                     @endauth
+                    <a href="{{ route('lang.switch', 'en') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">EN</a>
+                    <a href="{{ route('lang.switch', 'sk') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">SK</a>
                 </div>
             </div>
 

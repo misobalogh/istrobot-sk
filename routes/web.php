@@ -91,4 +91,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::delete('/all-users/delete/{user}', [AllUsersController::class, 'destroy'])->name('all-users.destroy');
 });
 
+Route::get('lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'sk'])) {
+        abort(400);
+    }
+    session(['locale' => $locale]);
+    return redirect()->back();
+})->name('lang.switch');
+
 require __DIR__ . '/auth.php';
