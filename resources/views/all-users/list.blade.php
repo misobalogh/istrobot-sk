@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('All Users') }}
+            {{ __('all_users_messages.all_users_title') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <!-- Header Row -->
         <div class="py-2 flex flex-row items-center sm:px-6 lg:px-8 px-10 gap-4 font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700">
             <div class="flex-1 text-lg flex items-center">
-                User Name
+            {{ __('all_users_messages.user_name') }}
                 <!-- Sort Button for User Name -->
                 <button id="sort-button" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
                     <span id="arrow-up" class="hidden">▲</span>
@@ -17,18 +17,18 @@
                 </button>
             </div>
             <div class="flex-1 text-lg">
-                Email
+                {{ __('all_users_messages.email') }}
             </div>
             <div class="flex-1 text-lg">
-                Password
+                {{ __('all_users_messages.password') }}
             </div>
             <div class="flex-1 text-lg">
-                Actions
+                {{ __('all_users_messages.actions') }}
             </div>
         </div>
         <div class="sm:px-6 lg:px-8 px-10">
             @foreach($users as $user)
-            @include('all-users.partials.user-row', ['user' => $user])
+                @include('all-users.partials.user-row', ['user' => $user])
             @endforeach
         </div>
     </div>

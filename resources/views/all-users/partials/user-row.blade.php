@@ -24,12 +24,12 @@
     <div class="flex flex-1 justify-start">
         <!-- Save Changes Button -->
         <x-secondary-button type="button" class="mr-1" onclick="handleSaveChanges({{ $user->id }})">
-            Save Changes
+            {{ __('all_users_messages.save_changes') }}
         </x-secondary-button>
 
         <!-- Delete User Button -->
         <x-danger-button type="button" class="ml-1" onclick="handleDeleteUser({{ $user->id }})">
-            Delete User
+            {{ __('all_users_messages.delete_user') }}
         </x-danger-button>
     </div>
 </div>
