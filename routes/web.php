@@ -91,6 +91,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::delete('/all-users/delete/{user}', [AllUsersController::class, 'destroy'])->name('all-users.destroy');
     Route::get('/all-users/{user}/edit', [AllUsersController::class, 'edit']);
     Route::post('/all-users/update/{user}', [AllUsersController::class, 'update']);
+
+    Route::get('/all-robots/{robot}/edit', [AllRobotsController::class, 'edit'])->name('all-robots.edit');
+    Route::post('/all-robots/update/{robot}', [AllRobotsController::class, 'update'])->name('all-robots.update');
+    Route::delete('/all-robots/delete/{robot}', [AllRobotsController::class, 'destroy'])->name('all-robots.destroy');
 });
 
 Route::get('lang/{locale}', function ($locale) {
