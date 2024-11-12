@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    @include('all-robots.partials.edit-robot-modal')
+    @include('all-robots.partials.edit-robot-modal', ['robot' => $robot, 'technologies' => $technologies])
     <x-bladewind::notification />
 
 </x-app-layout>
@@ -78,8 +78,20 @@
                 document.getElementById('edit_robot_name').value = data.name;
                 document.getElementById('edit_author_first_name').value = data.author_first_name;
                 document.getElementById('edit_author_last_name').value = data.author_last_name;
+                document.getElementById('edit_coauthors').value = data.coauthors;
+                document.getElementById('edit_processor').value = data.processor;
+                document.getElementById('edit_memory_size').value = data.memory_size;
+                document.getElementById('edit_frequency').value = data.frequency;
+                document.getElementById('edit_sensors').value = data.sensors;
+                document.getElementById('edit_drive').value = data.drive;
+                document.getElementById('edit_power_supply').value = data.power_supply;
+                document.getElementById('edit_programming_language').value = data.programming_language;
+                document.getElementById('edit_technology_id').value = data.technology_id;
+                document.getElementById('edit_website').value = data.website;
+                document.getElementById('edit_interesting_facts').value = data.interesting_facts;
+                document.getElementById('edit_description').value = data.description;
 
-                window.dispatchEvent(new CustomEvent('open-modal', {
+                    window.dispatchEvent(new CustomEvent('open-modal', {
                     detail: 'edit-robot-modal'
                 }));
             })
@@ -114,8 +126,19 @@
         const name = document.getElementById('edit_robot_name').value;
         const authorFirstName = document.getElementById('edit_author_first_name').value;
         const authorLastName = document.getElementById('edit_author_last_name').value;
+        const coauthors = document.getElementById('edit_coauthors').value;
+        const processor = document.getElementById('edit_processor').value;
+        const memorySize = document.getElementById('edit_memory_size').value;
+        const frequency = document.getElementById('edit_frequency').value;
+        const sensors = document.getElementById('edit_sensors').value;
+        const drive = document.getElementById('edit_drive').value;
+        const powerSupply = document.getElementById('edit_power_supply').value;
+        const programmingLanguage = document.getElementById('edit_programming_language').value;
+        const technologyId = document.getElementById('edit_technology_id').value;
+        const website = document.getElementById('edit_website').value;
+        const interestingFacts = document.getElementById('edit_interesting_facts').value;
+        const description = document.getElementById('edit_description').value;
 
-        console.log(robotId, name, authorFirstName, authorLastName);
         fetch(`/all-robots/update/${robotId}`, {
                 method: 'POST',
                 headers: {
@@ -127,6 +150,18 @@
                     name,
                     author_first_name: authorFirstName,
                     author_last_name: authorLastName,
+                    coauthors,
+                    processor,
+                    memory_size: memorySize,
+                    frequency,
+                    sensors,
+                    drive,
+                    power_supply: powerSupply,
+                    programming_language: programmingLanguage,
+                    technology_id: technologyId,
+                    website,
+                    interesting_facts: interestingFacts,
+                    description,
                 }),
             })
             .then(response => response.json())
