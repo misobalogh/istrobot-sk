@@ -77,7 +77,7 @@
         <!-- Technology -->
         <div class="mt-4">
             <x-input-label for="edit_technology_id" :value="__('all_robots_messages.technology')" required="true" />
-            <select id="edit_technology_id" name="technology_id" class="block mt-1 w-full">
+            <select id="edit_technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                 @foreach($technologies as $technology)
                 <option value="{{ $technology->id }}">{{ $technology->name }}</option>
                 @endforeach
@@ -93,13 +93,13 @@
         <!-- Interesting Facts -->
         <div class="mt-4">
             <x-input-label for="edit_interesting_facts" :value="__('all_robots_messages.interesting_facts')" />
-            <textarea id="edit_interesting_facts" name="interesting_facts" rows="4" class="block mt-1 w-full"></textarea>
+            <textarea id="edit_interesting_facts" name="interesting_facts" rows="4" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"></textarea>
         </div>
 
         <!-- Description -->
         <div class="mt-4">
             <x-input-label for="edit_description" :value="__('all_robots_messages.description')" />
-            <textarea id="edit_description" name="description" rows="4" class="block mt-1 w-full"></textarea>
+            <textarea id="edit_description" name="description" rows="4" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"></textarea>
         </div>
 
         <!-- Modal Actions -->
