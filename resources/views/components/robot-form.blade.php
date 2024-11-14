@@ -49,7 +49,7 @@
                         <x-input-label for="memory_size" :value="__('my_robots_messages.memory_size')" />
                         <x-text-input id="memory_size" name="memory_size" type="text" class="mt-1 block w-full"
                             :value="old('memory_size', $robot->memory_size ?? '')"
-                            autocomplete="given-memory_size" />
+                            autocomplete="given-memory_size" :placeholder="__('my_robots_messages.placeholder_memory_size')" />
                         <x-input-error class="mt-2" :messages="$errors->get('memory_size')" />
                     </div>
 
@@ -57,7 +57,7 @@
                         <x-input-label for="frequency" :value="__('my_robots_messages.frequency')" required="true" />
                         <x-text-input id="frequency" name="frequency" type="text" class="mt-1 block w-full"
                             :value="old('frequency', $robot->frequency ?? '')" required
-                            autocomplete="given-frequency" />
+                            autocomplete="given-frequency" :placeholder="__('my_robots_messages.placeholder_frequency')" />
                         <x-input-error class="mt-2" :messages="$errors->get('frequency')" />
                     </div>
                 </div>
