@@ -14,16 +14,18 @@
             <x-text-input id="edit_robot_name" class="block mt-1 w-full" type="text" name="robot_name" required />
         </div>
 
-        <!-- First Name -->
-        <div class="mt-4">
-            <x-input-label for="edit_author_first_name" :value="__('all_robots_messages.author_first_name')" required="true" />
-            <x-text-input id="edit_author_first_name" class="block mt-1 w-full" type="text" name="author_first_name" required />
-        </div>
+        <div class="flex gap-4 w-full">
+            <!-- First Name -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_author_first_name" :value="__('all_robots_messages.author_first_name')" required="true" />
+                <x-text-input id="edit_author_first_name" class="block mt-1 w-full" type="text" name="author_first_name" required />
+            </div>
 
-        <!-- Last Name -->
-        <div class="mt-4">
-            <x-input-label for="edit_author_last_name" :value="__('all_robots_messages.author_last_name')" required="true" />
-            <x-text-input id="edit_author_last_name" class="block mt-1 w-full" type="text" name="author_last_name" required />
+            <!-- Last Name -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_author_last_name" :value="__('all_robots_messages.author_last_name')" required="true" />
+                <x-text-input id="edit_author_last_name" class="block mt-1 w-full" type="text" name="author_last_name" required />
+            </div>
         </div>
 
         <!-- Coauthors -->
@@ -32,22 +34,24 @@
             <x-text-input id="edit_coauthors" class="block mt-1 w-full" type="text" name="coauthors" />
         </div>
 
-        <!-- Processor -->
-        <div class="mt-4">
-            <x-input-label for="edit_processor" :value="__('all_robots_messages.processor')" required="true" />
-            <x-text-input id="edit_processor" class="block mt-1 w-full" type="text" name="processor" required />
-        </div>
+        <div class="flex gap-4 w-full">
+            <!-- Processor -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_processor" :value="__('all_robots_messages.processor')" required="true" />
+                <x-text-input id="edit_processor" class="block mt-1 w-full" type="text" name="processor" required />
+            </div>
 
-        <!-- Memory Size -->
-        <div class="mt-4">
-            <x-input-label for="edit_memory_size" :value="__('all_robots_messages.memory_size')" />
-            <x-text-input id="edit_memory_size" class="block mt-1 w-full" type="text" name="memory_size" />
-        </div>
+            <!-- Memory Size -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_memory_size" :value="__('all_robots_messages.memory_size')" />
+                <x-text-input id="edit_memory_size" class="block mt-1 w-full" type="text" name="memory_size" />
+            </div>
 
-        <!-- Frequency -->
-        <div class="mt-4">
-            <x-input-label for="edit_frequency" :value="__('all_robots_messages.frequency')" required="true" />
-            <x-text-input id="edit_frequency" class="block mt-1 w-full" type="text" name="frequency" required />
+            <!-- Frequency -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_frequency" :value="__('all_robots_messages.frequency')" required="true" />
+                <x-text-input id="edit_frequency" class="block mt-1 w-full" type="text" name="frequency" required />
+            </div>
         </div>
 
         <!-- Sensors -->
@@ -56,32 +60,36 @@
             <x-text-input id="edit_sensors" class="block mt-1 w-full" type="text" name="sensors" />
         </div>
 
-        <!-- Drive -->
-        <div class="mt-4">
-            <x-input-label for="edit_drive" :value="__('all_robots_messages.drive')" />
-            <x-text-input id="edit_drive" class="block mt-1 w-full" type="text" name="drive" />
+        <div class="flex gap-4 w-full">
+            <!-- Drive -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_drive" :value="__('all_robots_messages.drive')" />
+                <x-text-input id="edit_drive" class="block mt-1 w-full" type="text" name="drive" />
+            </div>
+
+            <!-- Power Supply -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_power_supply" :value="__('all_robots_messages.power_supply')" />
+                <x-text-input id="edit_power_supply" class="block mt-1 w-full" type="text" name="power_supply" />
+            </div>
         </div>
 
-        <!-- Power Supply -->
-        <div class="mt-4">
-            <x-input-label for="edit_power_supply" :value="__('all_robots_messages.power_supply')" />
-            <x-text-input id="edit_power_supply" class="block mt-1 w-full" type="text" name="power_supply" />
-        </div>
+        <div class="flex gap-4 w-full">
+            <!-- Programming Language -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_programming_language" :value="__('all_robots_messages.programming_language')" required="true" />
+                <x-text-input id="edit_programming_language" class="block mt-1 w-full" type="text" name="programming_language" required />
+            </div>
 
-        <!-- Programming Language -->
-        <div class="mt-4">
-            <x-input-label for="edit_programming_language" :value="__('all_robots_messages.programming_language')" required="true" />
-            <x-text-input id="edit_programming_language" class="block mt-1 w-full" type="text" name="programming_language" required />
-        </div>
-
-        <!-- Technology -->
-        <div class="mt-4">
-            <x-input-label for="edit_technology_id" :value="__('all_robots_messages.technology')" required="true" />
-            <select id="edit_technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                @foreach($technologies as $technology)
-                <option value="{{ $technology->id }}">{{ $technology->name }}</option>
-                @endforeach
-            </select>
+            <!-- Technology -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_technology_id" :value="__('all_robots_messages.technology')" required="true" />
+                <select id="edit_technology_id" name="technology_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                    @foreach($technologies as $technology)
+                    <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <!-- Website -->
