@@ -8,16 +8,18 @@
         <!-- Hidden User ID -->
         <input type="hidden" id="edit_user_id">
 
-        <!-- First Name -->
-        <div class="mt-4">
-            <x-input-label for="edit_first_name" :value="__('all_users_messages.first_name')" required="true" />
-            <x-text-input id="edit_first_name" class="block mt-1 w-full" type="text" name="first_name" required />
-        </div>
+        <div class="flex gap-4 w-full">
+            <!-- First Name -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_first_name" :value="__('all_users_messages.first_name')" required="true" />
+                <x-text-input id="edit_first_name" class="block mt-1 w-full" type="text" name="first_name" required />
+            </div>
 
-        <!-- Last Name -->
-        <div class="mt-4">
-            <x-input-label for="edit_last_name" :value="__('all_users_messages.last_name')" required="true" />
-            <x-text-input id="edit_last_name" class="block mt-1 w-full" type="text" name="last_name" required />
+            <!-- Last Name -->
+            <div class="mt-4 flex-1 w-full">
+                <x-input-label for="edit_last_name" :value="__('all_users_messages.last_name')" required="true" />
+                <x-text-input id="edit_last_name" class="block mt-1 w-full" type="text" name="last_name" required />
+            </div>
         </div>
 
         <!-- Email -->
