@@ -23,7 +23,17 @@
                 <a href="#rules"><li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Pravidla</li></a>
                 <li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Roboty</li>
                 <li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Archiv</li>
-                <li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Login</li>                
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}"><li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Dashboard</li></a>
+                    @else
+                        <a href="{{ route('login') }}"><li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Log in</li></a>
+                        
+                        @if (Route::has('register'))                    
+                            <a href="{{ route('register') }}"><li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Register</li></a>
+                        @endif
+                    @endauth
+                @endif         
                 <a href="https://www.facebook.com/RobotikaSK"><li class="py-6 px-4 text-center hover:bg-gray-700 rounded flex justify-center items-center"><img src="{{ asset('img/icon/fb.png') }}" width="30px"></li></a>
                 <a href="https://www.youtube.com/channel/UCZTEibKdgnHuZd-jmlg_IsQ"><li class="py-6 px-4 text-center hover:bg-gray-700 rounded flex justify-center items-center"><img src="{{ asset('img/icon/yt.png') }}" width="30px"></li></a>                
                 <a href="#top"><li class="text-center hover:bg-gray-700 rounded flex justify-center items-center"><img src="{{ asset('img/icon/scroll.png') }}" width="50px"></li></a>
