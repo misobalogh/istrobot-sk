@@ -10,16 +10,32 @@
         <div class="py-2 flex flex-row items-center sm:px-6 lg:px-8 px-10 gap-4 font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700">
             <div class="flex-1 text-lg flex items-center">
                 {{ __('all_robots_messages.robot_name') }}
-                <button id="sort-robot-name" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
-                    <span id="robot-arrow-up" class="hidden">▲</span>
-                    <span id="robot-arrow-down">▼</span>
+                <!-- Sort Button for Robot Name -->
+                <button id="sort-robot-name" class="ml-4">
+                    @if($sort === 'name')
+                        @if($direction === 'asc')
+                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
+                        @else
+                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                        @endif
+                    @else
+                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    @endif
                 </button>
             </div>
             <div class="flex-1 text-lg flex items-center">
                 {{ __('all_robots_messages.author_name') }}
-                <button id="sort-author-name" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
-                    <span id="author-arrow-up" class="hidden">▲</span>
-                    <span id="author-arrow-down">▼</span>
+                <!-- Sort Button for Author Name -->
+                <button id="sort-author-name" class="ml-4">
+                    @if($sort === 'author_first_name')
+                        @if($direction === 'asc')
+                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
+                        @else
+                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                        @endif
+                    @else
+                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    @endif
                 </button>
             </div>
             <div class="flex-1 text-right text-lg">
@@ -39,6 +55,26 @@
 </x-app-layout>
 
 <script>
+    document.getElementById('sort-robot-name').addEventListener('click', function() {
+        const currentSort = '{{ $sort }}';
+        const currentDirection = '{{ $direction }}';
+        let newDirection = 'asc';
+        if (currentSort === 'name' && currentDirection === 'asc') {
+            newDirection = 'desc';
+        }
+        window.location.href = `{{ route('all-robots.list') }}?sort=name&direction=${newDirection}`;
+    });
+
+    document.getElementById('sort-author-name').addEventListener('click', function() {
+        const currentSort = '{{ $sort }}';
+        const currentDirection = '{{ $direction }}';
+        let newDirection = 'asc';
+        if ((currentSort === 'author_first_name' || currentSort === 'author_last_name') && currentDirection === 'asc') {
+            newDirection = 'desc';
+        }
+        window.location.href = `{{ route('all-robots.list') }}?sort=author_first_name&direction=${newDirection}`;
+    });
+
     // Toggle arrow direction for Robot Name
     document.getElementById('sort-robot-name').addEventListener('click', function() {
         const robotArrowUp = document.getElementById('robot-arrow-up');

@@ -9,15 +9,34 @@
         <!-- Header Row -->
         <div class="py-2 flex flex-row items-center sm:px-6 lg:px-8 px-10 gap-4 font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700">
             <div class="flex-1 text-lg flex items-center">
-            {{ __('all_users_messages.user_name') }}
+                {{ __('all_users_messages.user_name') }}
                 <!-- Sort Button for User Name -->
-                <button id="sort-button" class="ml-2 text-gray-500 dark:text-gray-300 focus:outline-none">
-                    <span id="arrow-up" class="hidden">▲</span>
-                    <span id="arrow-down">▼</span>
+                <button id="sort-user-name" class="ml-4">
+                    @if($sort === 'last_name')
+                        @if($direction === 'asc')
+                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
+                        @else
+                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                        @endif
+                    @else
+                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    @endif
                 </button>
             </div>
             <div class="flex-1 text-lg">
                 {{ __('all_users_messages.email') }}
+                <!-- Sort Button for Email -->
+                <button id="sort-email" class="ml-4">
+                    @if($sort === 'email')
+                        @if($direction === 'asc')
+                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
+                        @else
+                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                        @endif
+                    @else
+                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    @endif
+                </button>
             </div>
             <div class="flex-1 text-lg">
                 {{ __('all_users_messages.password') }}
@@ -39,18 +58,24 @@
 </x-app-layout>
 
 <script>
-    document.getElementById('sort-button').addEventListener('click', function() {
-        const arrowUp = document.getElementById('arrow-up');
-        const arrowDown = document.getElementById('arrow-down');
-
-        // Toggle arrow visibility
-        if (arrowUp.classList.contains('hidden')) {
-            arrowUp.classList.remove('hidden');
-            arrowDown.classList.add('hidden');
-        } else {
-            arrowUp.classList.add('hidden');
-            arrowDown.classList.remove('hidden');
+    document.getElementById('sort-user-name').addEventListener('click', function() {
+        const currentSort = '{{ $sort }}';
+        const currentDirection = '{{ $direction }}';
+        let newDirection = 'asc';
+        if (currentSort === 'last_name' && currentDirection === 'asc') {
+            newDirection = 'desc';
         }
+        window.location.href = `{{ route('all-users.list') }}?sort=last_name&direction=${newDirection}`;
+    });
+
+    document.getElementById('sort-email').addEventListener('click', function() {
+        const currentSort = '{{ $sort }}';
+        const currentDirection = '{{ $direction }}';
+        let newDirection = 'asc';
+        if (currentSort === 'email' && currentDirection === 'asc') {
+            newDirection = 'desc';
+        }
+        window.location.href = `{{ route('all-users.list') }}?sort=email&direction=${newDirection}`;
     });
 
     function handleSaveChanges(userId) {

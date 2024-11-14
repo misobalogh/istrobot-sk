@@ -9,15 +9,18 @@ use App\Models\Robot;
 class AllRobotsController extends Controller
 {
     //
-    public function list()
+    public function list(Request $request)
     {
+        $sort = $request->input('sort', 'name'); // Sort by name by default
+        $direction = $request->input('direction', 'asc');
 
-        $robots = Robot::all();
+        $robots = Robot::orderBy($sort, $direction)->get();
 
         return view("all-robots.list", [
             "robots" => $robots,
             "technologies" => Technology::all(),
-            
+            "sort" => $sort,
+            "direction" => $direction
         ]);
     }
 
@@ -35,8 +38,8 @@ class AllRobotsController extends Controller
             'coauthors' => 'nullable|string|max:255',
             'processor' => 'nullable|string|max:255',
             'memory_size' => 'nullable|string|max:255',
-            'frequency' => 'nullable|string|max:255', // corrected from 'frequnecy'
-            'sensors' => 'nullable|string|max:255',   // corrected from 'snesors'
+            'frequency' => 'nullable|string|max:255',
+            'sensors' => 'nullable|string|max:255',
             'drive' => 'nullable|string|max:255',
             'power_supply' => 'nullable|string|max:255',
             'programming_language' => 'nullable|string|max:255',

@@ -11,14 +11,19 @@ use Illuminate\Validation\Rules\Password;
 class AllUsersController extends Controller
 {
     //
-    public function list()
+    public function list(Request $request)
     {
         $countries = Country::all();
-        $users = User::all();
+        $sort = $request->input('sort', 'last_name');
+        $direction = $request->input('direction', 'asc');
+        
+        $users = User::orderBy($sort, $direction)->get();
 
         return view("all-users.list", [
             "users" => $users,
-            "countries" => $countries
+            "countries" => $countries,
+            "sort" => $sort,
+            "direction" => $direction
         ]);
     }
 
