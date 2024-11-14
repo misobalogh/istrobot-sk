@@ -44,13 +44,13 @@
             <!-- Memory Size -->
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_memory_size" :value="__('all_robots_messages.memory_size')" />
-                <x-text-input id="edit_memory_size" class="block mt-1 w-full" type="text" name="memory_size" />
+                <x-text-input id="edit_memory_size" class="block mt-1 w-full" type="text" name="memory_size" :placeholder="__('all_robots_messages.placeholder_memory_size')" />
             </div>
 
             <!-- Frequency -->
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_frequency" :value="__('all_robots_messages.frequency')" required="true" />
-                <x-text-input id="edit_frequency" class="block mt-1 w-full" type="text" name="frequency" required />
+                <x-text-input id="edit_frequency" class="block mt-1 w-full" type="text" name="frequency" :placeholder="__('all_robots_messages.placeholder_frequency')" required/>
             </div>
         </div>
 
