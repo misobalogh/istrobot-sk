@@ -9,18 +9,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RobotController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +19,7 @@ use App\Models\Category;
 */
 
 Route::get('/', function () {
-    $setYear = Setting::where('key', 'competition_year')->first()->value;
+    $setYear = session('contest_year', Setting::where('key', 'competition_year')->first()->value);
     return redirect()->route('contest.show', ['year' => $setYear]);
 });
 
@@ -39,7 +27,13 @@ Route::get('/', function () {
 | 
 | Main page with information about the contest
 */
-Route::get('/contest/{year}', [ContestController::class, 'show'])->name('contest.show');
+Route::get('/contest/{year}', [ContestController::class, 'show'])
+    ->where('year', '\d+')
+    ->name('contest.show');
+
+Route::get('/contest/{year}/registered-robots', [ContestController::class, 'showRegisteredRobots'])
+    ->where('year', '\d+')
+    ->name('registered-robots');
 
 /*
 |--------------------------------------------------------------------------

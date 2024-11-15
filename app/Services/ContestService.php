@@ -35,9 +35,13 @@ class ContestService
                 if ($categoryId && $participation->category_id !== $categoryId) {
                     continue;
                 }
-                $result[] = [
-                    'category_name' => $participation->category->name_SK,
-                    'robots' => [$participation->robot->toArray()],
+                $categoryName = $participation->category->name_SK;
+                if (!isset($result[$categoryName])) {
+                    $result[$categoryName] = [];
+                }
+                $result[$categoryName][] = [
+                    'name' => $participation->robot->name,
+                    'author' => $participation->robot->user->first_name . ' ' . $participation->robot->user->last_name
                 ];
             }
         }

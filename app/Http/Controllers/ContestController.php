@@ -7,6 +7,7 @@ use App\Models\Participation;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Competition;
+use Illuminate\Support\Facades\Log;
 
 class ContestController extends Controller
 {
@@ -19,12 +20,21 @@ class ContestController extends Controller
 
     public function show(int $year)
     {
-        $registeredRobots = $this->contestService->registeredRobotsByYear($year);
+        session(['contest_year' => $year]);
         $categories = $this->contestService->categoriesByYear($year);
         return view("contest", [
             "year" => $year,
             "categories" => $categories,
-            "registered_robots" => $registeredRobots,
+        ]);
+    }
+
+    public function showRegisteredRobots(int $year)
+    {
+        $registeredRobots = $this->contestService->registeredRobotsByYear($year);
+
+        return view('contest.registered_robots', [
+            'year' => $year,
+            'registered_robots' => $registeredRobots,
         ]);
     }
 }

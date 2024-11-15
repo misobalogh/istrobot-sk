@@ -1,29 +1,32 @@
-<section>
-    <div class="container text-gray-900 dark:text-white">
-        @forelse ($registered_robots as $category)
-        <h2 class="font-semibold mt-4">{{ $category['category_name'] }}</h2>
-        @if(empty($category['robots']))
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">No participations found for this category.</p>
-        @else
-        <table class="w-full mt-2 border-collapse border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="border border-gray-300 px-4 py-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Robot Name</th>
-                    <th class="border border-gray-300 px-4 py-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Robot Owner</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($category['robots'] as $registered_robot)
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{ $registered_robot['name'] }}</td>
-                    <td class="border border-gray-300 px-4 py-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{ $registered_robot['author_first_name']." ". $registered_robot['author_last_name'] }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        @endif
-        @empty
-        <p>No categories found for this year.</p>
-        @endforelse
-    </div>
-</section>
+<x-guest-layout>
+    <section>
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+            <div class="container text-gray-900 dark:text-white">
+                <h1>Registered Robots - {{ $year }}</h1>
+                @forelse ($registered_robots as $category => $robots)
+                <h2 class="font-semibold mt-4">{{ $category }}</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white dark:bg-gray-800 rounded shadow">
+                        <thead>
+                            <tr class="border-b dark:border-gray-700">
+                                <th class="px-4 py-2 text-left">Robot Name</th>
+                                <th class="px-4 py-2 text-left">Author</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($robots as $robot)
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="px-4 py-2">{{ $robot['name'] }}</td>
+                                <td class="px-4 py-2">{{ $robot['author'] }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                @empty
+                <p>No categories found for this year.</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+</x-guest-layout>

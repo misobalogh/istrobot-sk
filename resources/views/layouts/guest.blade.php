@@ -20,15 +20,18 @@
     <div class="w-[200px] bg-gray-800 text-white p-4 min-h-screen flex flex-col justify-center items-center" style="position: fixed; width: 10%;">
         <!-- Navbar content goes here -->
         <ul>
-            <a href="/#news">
+            @php
+                $currentYear = session('contest_year', App\Models\Setting::where('key', 'competition_year')->first()->value);
+            @endphp
+            <a href="{{ route('contest.show', ['year' => $currentYear]) }}/#news">
                 <li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Novinky</li>
             </a>
 
-            <a href="/#rules">
+            <a href="{{ route('contest.show', ['year' => $currentYear]) }}/#rules">
                 <li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Pravidla</li>
             </a>
 
-            <a href="registered-robots">
+            <a href="{{ route('registered-robots', ['year' => $currentYear]) }}">
                 <li class="py-6 px-4 text-center hover:bg-gray-700 rounded">Roboty</li>
             </a>
 
