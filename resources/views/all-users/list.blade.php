@@ -53,7 +53,7 @@
     </div>
 
     @include('all-users.partials.edit-user-modal')
-    <x-bladewind::notification />
+    <!-- <x-bladewind::notification /> -->
 
 </x-app-layout>
 

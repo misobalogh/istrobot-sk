@@ -13,13 +13,13 @@
                 <!-- Sort Button for Robot Name -->
                 <button id="sort-robot-name" class="ml-4">
                     @if($sort === 'name')
-                        @if($direction === 'asc')
-                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
-                        @else
-                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
-                        @endif
+                    @if($direction === 'asc')
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
                     @else
-                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                    @endif
+                    @else
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
                     @endif
                 </button>
             </div>
@@ -28,13 +28,13 @@
                 <!-- Sort Button for Author Name -->
                 <button id="sort-author-name" class="ml-4">
                     @if($sort === 'author_first_name')
-                        @if($direction === 'asc')
-                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
-                        @else
-                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
-                        @endif
+                    @if($direction === 'asc')
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
                     @else
-                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                    @endif
+                    @else
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
                     @endif
                 </button>
             </div>
@@ -50,7 +50,7 @@
     </div>
 
     @include('all-robots.partials.edit-robot-modal', ['robot' => $robot, 'technologies' => $technologies])
-    <x-bladewind::notification />
+    <!-- <x-bladewind::notification /> -->
 
 </x-app-layout>
 
@@ -127,7 +127,7 @@
                 document.getElementById('edit_interesting_facts').value = data.interesting_facts;
                 document.getElementById('edit_description').value = data.description;
 
-                    window.dispatchEvent(new CustomEvent('open-modal', {
+                window.dispatchEvent(new CustomEvent('open-modal', {
                     detail: 'edit-robot-modal'
                 }));
             })
