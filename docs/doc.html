@@ -12,31 +12,27 @@
 </head>
 <body>
 
-<!-- Zkontrolujte pros�m nastaven� k�dov�n� v hlavi�ce dokumentu 
-     podle pou�it�ho editoru -->
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
 
-<h1>Istrobot (vlastní zadání)</h1> <!-- Nahradte n�zvem sv�ho zad�n� -->
+<h1>Istrobot (vlastní zadání)</h1> <!-- Nahradte názvem svého zadání -->
 
 <dl>
 	<dt>Autoři</dt>
-	<dd>Michal Balogh <!-- Nahra�te skute�n�m jm�nem a e-mailem autora a popisem �innosti -->
+	<dd>Michal Balogh <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
 	    <a href="mailto:xbalog06@stud.fit.vutbr.cz">xbalog06@stud.fit.vutbr.cz</a> -
-		Analýza a návrh informačního systému
-		backend - routing a kontrolery
+		Analýza a návrh informačního systému, backend - routing a kontrolery
 	</dd>
-	<dd>Tomáš Barták <!-- Nahra�te skute�n�m jm�nem a e-mailem autora a popisem �innosti -->
+	<dd>Tomáš Barták <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
 	    <a href="mailto:xbarta51@stud.fit.vutbr.cz">xbarta51@stud.fit.vutbr.cz</a> - 
-		Návrh webového uživatelského rozhraní aplikace
-		Vytváření pohledů a formulářů
-		Lokalizace
+		Návrh webového uživatelského rozhraní aplikace, vytváření pohledů a formulářů, lokalizace
 	</dd>
-  <dd>Matěj Bedřich <!-- Nahra�te skute�n�m jm�nem a e-mailem autora a popisem �innosti -->
+  <dd>Matěj Bedřich <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
 	    <a href="mailto:xbedri04@stud.fit.vutbr.cz">xbedri04@stud.fit.vutbr.cz</a> - 
 		popis činnosti v týmu
 	</dd>
 	<dt>URL aplikace</dt>
-	<dd><a href="http://www.istrobot.sk/">http://www.istrobot.sk/</a></dd>
-	<dd><a href="https://robotika.sk/contest/2024/">https://robotika.sk/contest/2024/</a></dd>
+	<dd><a href="https://istrobot.up.railway.app/contest/2024">https://istrobot.up.railway.app/contest/2024</a></dd>
 </dl>
 
 <h2>Uživatelé systému pro testování</h2>
@@ -59,19 +55,74 @@
 
 <h3>Databáze</h3>
 
-<p><img src="./imgs/db_schema.png" alt="Schéma relační databáze" width="auto" height="400" style="padding: 10px;"></p>
+<p><img src="./imgs/db_schema.png" alt="Schéma relační databáze" width="auto" height="800" style="padding: 10px;"></p>
 
 <h2>Instalace</h2>
 
-Stručně popište: 
+<h3>Postup instalace na server</h3>
+<p>Pro instalaci aplikace na server je nutné držet se  následujících kroků:</p>
+<ol>
+    <li>Nainstalovat PHP a všechna potřebná rozšíření:
+        <pre><code>sudo apt install php php-cli php-mbstring php-xml php-curl php-zip php-mysql php-bcmath php-json</code></pre>
+        Následně ověřit, zda instalace proběhla v pořádku:
+        <pre><code>php -v</code></pre>
+    </li>
+    <li>Nainstalovat Composer:
+        <pre><code>curl -sS https://getcomposer.org/installer | php</code></pre>
+        Přesunout Composer do globální cesty:
+        <pre><code>sudo mv composer.phar /usr/local/bin/composer</code></pre>
+        Následně opět ověřit, zda instalace byla úspěšná:
+        <pre><code>composer -v</code></pre>
+    </li>
+    <li>Nainstalovat MariaDB:
+        <pre><code>sudo apt install mariadb-server</code></pre>
+        Volitelně je také možnost povolit spuštění MariaDB při startu systému:
+        <pre><code>sudo systemctl enable mariadb</code></pre>
+        Následně ověřit úspěšnou isntalaci MariaDB:
+        <pre><code>sudo mysql -u root</code></pre>
+        Změnit heslo uživatele root:
+        <pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY '';</code></pre>
+        <pre><code>FLUSH PRIVILEGES;</code></pre>
+        Ukončit MariaDB:
+        <pre><code>EXIT;</code></pre>
+    </li>
+    <li>Správně nakonfigurovat Laravel:
+        <ul>
+            <li>Přemístit se do adresáře projektu a změnit název databáze v souboru <code>.env</code>:
+                <pre><code>DB_DATABASE=istrobot</code></pre>
+            </li>
+            <li>Nainstalovat všechny závislosti:
+                <pre><code>composer install</code></pre>
+                <pre><code>npm install</code></pre>
+                <pre><code>npm run build</code></pre>
+            </li>
+            <li>Vytvořit databázi:
+                <pre><code>CREATE DATABASE istrobot;</code></pre>
+                <pre><code>EXIT;</code></pre>
+            </li>
+            <li>Provést migrace a seedování databáze:
+                <pre><code>php artisan migrate</code></pre>
+                <pre><code>php artisan db:seed</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li>Spustit aplikaci:
+        <pre><code>php artisan serve</code></pre>
+    </li>
+    <li>Pro čerstvou databázi:
+        <pre><code>php artisan migrate:fresh</code></pre>
+        <pre><code>php artisan db:seed</code></pre>
+    </li>
+</ol>
+
+<h3>Softwarové požadavky</h3>
 <ul>
-<li>postup instalace na server,</li>
-<li>softwarové požadavky (verze PHP apod.),</li>
-<li>jak rozbalit, konfigurovat, inicializovat databázi, ...</li>
+    <li>Composer verze 2.8.1</li>
+    <li>PHP verze 8.1.2-1ubuntu2.19</li>
+    <li>Laravel Framework 10.48.22</li>
 </ul>
 
-<h2>Známé problémy</h2>
-<p>Zde popište, které body zadání nejsou implementovány a z jakého důvodu. Např. &bdquo;Z časových důvodů nebyla implementována správa uživatelů.&rdquo; Pomůžete tím zrychlit hodnocení, když neimplementované funkce nebudeme muset dlouze hledat.</p>
-
+<h3>Jak rozbalit, konfigurovat, inicializovat databázi</h3>
+<p>Viz výše uvedené kroky pro konfiguraci Laravelu a inicializaci databáze.</p>
 </body>
 </html>
