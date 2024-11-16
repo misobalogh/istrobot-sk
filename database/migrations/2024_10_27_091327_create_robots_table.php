@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->string('author_last_name');
             $table->string('coauthors', 255)->nullable();
             $table->string('processor', 50);
-            $table->integer('memory_size')->nullable();
-            $table->integer('frequency');
+            $table->string('memory_size')->nullable();
+            $table->string('frequency');
             $table->string('sensors', 255)->nullable();
             $table->string('drive', 255)->nullable();
             $table->string('power_supply', 255)->nullable();

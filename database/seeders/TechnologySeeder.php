@@ -8,6 +8,7 @@ use App\Models\Technology;
 class TechnologySeeder extends Seeder
 {
     private const TECHNOLOGIES = [
+        'Other',
         'Lego',
         'Arduino',
         'Raspberry Pi',
