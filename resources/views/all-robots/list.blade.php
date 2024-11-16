@@ -50,7 +50,6 @@
     </div>
 
     @include('all-robots.partials.edit-robot-modal', ['robot' => $robot, 'technologies' => $technologies])
-    <!-- <x-bladewind::notification /> -->
 
 </x-app-layout>
 
