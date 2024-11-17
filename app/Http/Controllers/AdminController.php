@@ -19,23 +19,20 @@ class AdminController extends Controller
     public function generateStartingList(Request $request, $year)
     {
         $categoryId = $request->input('category');
-
         $contestService = new ContestService();
-
         $registeredRobots = $contestService->registeredRobotsByYear($year, $categoryId);
+
         $startingList = [];
         $startingNumber = 1;
 
-        foreach ($registeredRobots as $category) {
-            $robots = $category['robots'];
-
+        foreach ($registeredRobots as $categoryName => $robots) {
             shuffle($robots);
 
-            foreach ($robots as $index => $robot) {
+            foreach ($robots as $robot) {
                 $startingList[] = [
                     'robot_name' => $robot['name'],
-                    'robot_owner' => $robot['author_first_name'] . ' ' . $robot['author_last_name'],
-                    'category_name' => $category['category_name'],
+                    'robot_owner' => $robot['author'],
+                    'category_name' => $categoryName,
                     'starting_number' => $startingNumber++,
                 ];
             }

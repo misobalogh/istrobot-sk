@@ -45,6 +45,11 @@ class AllUsersController extends Controller
             'school' => 'nullable|string|max:255',
         ]);
 
+        // Remove password from validated data if its null
+        if (is_null($validatedData['password'])) {
+            unset($validatedData['password']);
+        }
+
         $user->fill($validatedData);
         $user->save();
 

@@ -40,6 +40,7 @@ class ContestService
                     $result[$categoryName] = [];
                 }
                 $result[$categoryName][] = [
+                    'id' => $participation->robot->id,
                     'name' => $participation->robot->name,
                     'author' => $participation->robot->user->first_name . ' ' . $participation->robot->user->last_name
                 ];

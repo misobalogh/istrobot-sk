@@ -81,7 +81,7 @@
         const email = document.getElementById(`email_${userId}`).value;
         let password = document.getElementById(`password_${userId}`).value;
         if (password === '****') {
-            password = '';
+            password = null;
         }
 
         fetch(`/all-users/update/${userId}`, {

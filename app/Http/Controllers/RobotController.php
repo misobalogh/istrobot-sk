@@ -53,7 +53,9 @@ class RobotController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Delete the robot account.
+     * 
+     * TODO: This method is not finished - customer did not decided yet how should it work.
      */
     public function destroy(Request $request , $id): RedirectResponse
     {
