@@ -42,7 +42,8 @@ class ContestService
                 $result[$categoryName][] = [
                     'id' => $participation->robot->id,
                     'name' => $participation->robot->name,
-                    'author' => $participation->robot->user->first_name . ' ' . $participation->robot->user->last_name
+                    'author' => $participation->robot->user->first_name . ' ' . $participation->robot->user->last_name,
+                    'user_id' => $participation->robot->user_id,
                 ];
             }
         }

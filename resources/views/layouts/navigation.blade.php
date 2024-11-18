@@ -28,6 +28,9 @@
                     <x-nav-link :href="route('all-robots.list')" :active="request()->routeIs('all-robots.list')">
                         {{ __('navigation_messages.all_robots') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.statistics')" :active="request()->routeIs('admin.statistics')">
+                        {{ __('navigation_messages.statistics') }}
+                    </x-nav-link>
                     @endif
                 </div>
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 flex items-center gap-4">

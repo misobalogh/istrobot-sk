@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RobotController;
+use App\Http\Controllers\StatisticsController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
@@ -95,6 +96,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/all-robots/{robot}/edit', [AllRobotsController::class, 'edit'])->name('all-robots.edit');
     Route::post('/all-robots/update/{robot}', [AllRobotsController::class, 'update'])->name('all-robots.update');
     Route::delete('/all-robots/delete/{robot}', [AllRobotsController::class, 'destroy'])->name('all-robots.destroy');
+
+    Route::get('/admin/statistics', [StatisticsController::class, 'index'])->name('admin.statistics');
 });
 
 /*
