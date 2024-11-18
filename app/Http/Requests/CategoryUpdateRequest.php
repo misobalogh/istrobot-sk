@@ -9,8 +9,8 @@ class CategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_EN' => 'required|string|max:255',
-            'name_SK' => 'required|string|max:255',
+            'name_EN' => 'required|string|max:30',
+            'name_SK' => 'required|string|max:30',
             'type_of_evaluation' => 'required|in:score,time',
         ];
     }

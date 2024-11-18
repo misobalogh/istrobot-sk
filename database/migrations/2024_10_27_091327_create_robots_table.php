@@ -12,14 +12,14 @@ return new class extends Migration {
     {
         Schema::create('robots', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('author_first_name');
-            $table->string('author_last_name');
+            $table->string('name', 255);
+            $table->string('author_first_name', 255);
+            $table->string('author_last_name', 255);
             $table->string('coauthors', 255)->nullable();
-            $table->string('processor', 50);
+            $table->string('processor', 255);
             $table->string('memory_size')->nullable();
-            $table->string('frequency');
-            $table->string('sensors', 255)->nullable();
+            $table->string('frequency', 255);
+            $table->string('sensors', 255)->nullabfixle();
             $table->string('drive', 255)->nullable();
             $table->string('power_supply', 255)->nullable();
             $table->string('programming_language', 30);

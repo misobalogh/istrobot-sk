@@ -13,11 +13,10 @@ class CompetitionSeeder extends Seeder
      */
 
     private const YEARS = [
-        '2020',
-        '2021',
         '2022',
         '2023',
         '2024',
+        '2025',
     ];
 
     public function run(int $adminID)

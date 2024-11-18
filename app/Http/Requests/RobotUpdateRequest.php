@@ -19,7 +19,7 @@ class RobotUpdateRequest extends FormRequest
             'sensors' => ['nullable', 'string', 'max:255'],
             'drive' => ['nullable', 'string', 'max:255'],
             'power_supply' => ['nullable', 'string', 'max:255'],
-            'programming_language' => ['required', 'string', 'max:255'],
+            'programming_language' => ['required', 'string', 'max:30'],
             'interesting_facts' => ['nullable', 'string', 'max:255'],
             'website' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:255'],

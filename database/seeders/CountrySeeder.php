@@ -8,6 +8,7 @@ use App\Models\Country;
 class CountrySeeder extends Seeder
 {
     private const COUNTRIES = [
+        ['country_code' => '--', 'name_SK' => 'Zahraničie', 'name_EN' => 'Abroad'],
         ['country_code' => 'SK', 'name_SK' => 'Slovensko', 'name_EN' => 'Slovakia'],
         ['country_code' => 'CZ', 'name_SK' => 'Česko', 'name_EN' => 'Czechia'],
         ['country_code' => 'HU', 'name_SK' => 'Maďarsko', 'name_EN' => 'Hungary'],
