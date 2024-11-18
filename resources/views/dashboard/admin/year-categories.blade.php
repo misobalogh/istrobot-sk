@@ -5,18 +5,19 @@
     <div>
         <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
         <div class="flex flex-row">
-        <x-text-input 
-            id="categories-year" 
-            name="year" 
-            type="number" 
-            class="mt-1 block w-half" 
-            value="{{ old('year', $setYear) }}" 
-            required
-            min="2000" 
-            max="2100" 
-            oninput="validateYear(this)"
-        />
-        <x-input-error id="year-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
+            <x-text-input 
+                id="categories-year" 
+                name="year" 
+                type="number" 
+                class="mt-1 block w-half" 
+                value="{{ old('year', $setYear) }}" 
+                required
+                min="2000" 
+                max="2100" 
+                oninput="validateYear(this)"
+            />
+            <x-input-error id="year-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
+        </div>
     </div>
     <div class="flex gap-4 mt-1">
         <!-- Category Checkboxes -->

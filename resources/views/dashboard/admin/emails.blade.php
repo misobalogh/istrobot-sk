@@ -6,9 +6,11 @@
             <!-- Input for year -->
             <div>
                 <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
-                <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}"
-                    min="2000" max="2100" />
-                <x-input-error class="mt-2" :messages="$errors->get('year')" />
+                <div class="flex flex-row">
+                    <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}"
+                        min="2000" max="2100" oninput="validateYear(this)" />
+                    <x-input-error id="year-mail-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
+                </div>
             </div>
             <!-- Button for fetching emails -->
             <x-secondary-button id="fetch-emails" class="mt-6">
@@ -32,6 +34,24 @@
 </section>
 
 <script>
+    function validateYear(input) {
+        const errorElement = document.getElementById('year-mail-error');
+        const setButton = document.getElementById('fetch-emails');
+        const year = parseInt(input.value);
+        
+        if (year < 2000 || year > 2100 || isNaN(year)) {
+            errorElement.style.display = 'block';
+            setButton.disabled = true;
+            setButton.classList.add('opacity-50', 'cursor-not-allowed');
+            return false;
+        } else {
+            errorElement.style.display = 'none';
+            setButton.disabled = false;
+            setButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            return true;
+        }
+    }
+    
     document.getElementById('fetch-emails').addEventListener('click', function () {
 
         const yearInput = document.getElementById('year-emails');
@@ -67,8 +87,6 @@
     // Copy to clipboard functionality
     document.getElementById('copy-to-clipboard-email-list').addEventListener('click', function () {
         const textEmailArea = document.getElementById('email-list-textarea');
-        // textEmailArea.select();
-        // document.execCommand('copy');
         navigator.clipboard.writeText(textEmailArea.value)
             .then(() => {
             // Change button to show checkmark
