@@ -1,15 +1,24 @@
 <section>
     <h3 class="font-semibold">{{ __('dashboard_messages.set_category_title') }}:</h3>
 
-    <div class="flex gap-4">
-        <!-- Input for year -->
-        <div>
-            <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
-            <x-text-input id="categories-year" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}" required
-                min="2000" max="2100" />
-            <x-input-error class="mt-2" :messages="$errors->get('year')" />
-        </div>
-
+    <!-- Input for year -->
+    <div>
+        <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
+        <div class="flex flex-row">
+        <x-text-input 
+            id="categories-year" 
+            name="year" 
+            type="number" 
+            class="mt-1 block w-half" 
+            value="{{ old('year', $setYear) }}" 
+            required
+            min="2000" 
+            max="2100" 
+            oninput="validateYear(this)"
+        />
+        <x-input-error id="year-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
+    </div>
+    <div class="flex gap-4 mt-1">
         <!-- Category Checkboxes -->
         <div>
             <x-input-label for="category" :value="__('dashboard_messages.add_category_title')" required="true" />
@@ -37,6 +46,24 @@
 </section>
 
 <script>
+    function validateYear(input) {
+        const errorElement = document.getElementById('year-error');
+        const setButton = document.getElementById('set-categories');
+        const year = parseInt(input.value);
+        
+        if (year < 2000 || year > 2100 || isNaN(year)) {
+            errorElement.style.display = 'block';
+            setButton.disabled = true;
+            setButton.classList.add('opacity-50', 'cursor-not-allowed');
+            return false;
+        } else {
+            errorElement.style.display = 'none';
+            setButton.disabled = false;
+            setButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            return true;
+        }
+    }
+
     function fetchAndSetCategories(year) {
         fetch(`/admin/get-categories/${year}`, {
             headers: {
@@ -120,6 +147,7 @@
     });
 
     document.getElementById('categories-year').addEventListener('change', function() {
+        if (!validateYear(this)) return;
         const year = this.value;
         fetchAndSetCategories(year);
     });
