@@ -5,9 +5,11 @@
         <!-- Input for year -->
         <div>
             <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
-            <x-text-input id="year-starting-list" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}" required
-                min="2000" max="2100" />
-            <x-input-error class="mt-2" :messages="$errors->get('year')" />
+            <div class="flex flex-row">
+                <x-text-input id="year-starting-list" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}" required
+                    min="2000" max="2100" oninput="validateYear(this)" />
+                <x-input-error id="year-starting-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
+            </div>
         </div>
 
         <!-- Category Select -->
@@ -43,6 +45,24 @@
 </section>
 
 <script>
+    function validateYear(input) {
+        const errorElement = document.getElementById('year-starting-error');
+        const setButton = document.getElementById('generate-starting-list');
+        const year = parseInt(input.value);
+        
+        if (year < 2000 || year > 2100 || isNaN(year)) {
+            errorElement.style.display = 'block';
+            setButton.disabled = true;
+            setButton.classList.add('opacity-50', 'cursor-not-allowed');
+            return false;
+        } else {
+            errorElement.style.display = 'none';
+            setButton.disabled = false;
+            setButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            return true;
+        }
+    }
+
     document.getElementById('generate-starting-list').addEventListener('click', function () {
 
         const yearInput = document.getElementById('year-starting-list');
