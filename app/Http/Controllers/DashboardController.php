@@ -7,7 +7,6 @@ use App\Models\Participation;
 use App\Services\DashboardService;
 use Illuminate\Http\Request;
 use App\Models\Setting;
-use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {

@@ -8,7 +8,6 @@
                 <thead>
                     <tr>
                         <th class="px-4 py-2 border border-gray-200">{{ __('dashboard_messages.name') }}</th>
-                        <!-- To generate a header of categories from database -->
                         @foreach ($categoriesForSetYear as $category)
                         <th class="px-4 py-2 border border-gray-200">{{ $category->name_EN }}</th>
                         @endforeach
