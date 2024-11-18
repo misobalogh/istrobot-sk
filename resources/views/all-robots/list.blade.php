@@ -106,11 +106,14 @@
 
 
     function openEditRobotModal(robotId) {
+        // Clear previous error messages
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
         fetch(`/all-robots/${robotId}/edit`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById('edit_robot_id').value = data.id;
-                document.getElementById('edit_robot_name').value = data.name;
+                document.getElementById('edit_name').value = data.name;
                 document.getElementById('edit_author_first_name').value = data.author_first_name;
                 document.getElementById('edit_author_last_name').value = data.author_last_name;
                 document.getElementById('edit_coauthors').value = data.coauthors;
@@ -158,7 +161,7 @@
 
     function handleEditRobotSave() {
         const robotId = document.getElementById('edit_robot_id').value;
-        const name = document.getElementById('edit_robot_name').value;
+        const name = document.getElementById('edit_name').value;
         const authorFirstName = document.getElementById('edit_author_first_name').value;
         const authorLastName = document.getElementById('edit_author_last_name').value;
         const coauthors = document.getElementById('edit_coauthors').value;
@@ -174,6 +177,9 @@
         const interestingFacts = document.getElementById('edit_interesting_facts').value;
         const description = document.getElementById('edit_description').value;
 
+        // Clear previous error messages
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
         fetch(`/all-robots/update/${robotId}`, {
                 method: 'POST',
                 headers: {
@@ -182,24 +188,33 @@
                     'Accept': 'application/json',
                 },
                 body: JSON.stringify({
-                    name,
+                    name: name,
                     author_first_name: authorFirstName,
                     author_last_name: authorLastName,
-                    coauthors,
-                    processor,
+                    coauthors: coauthors,
+                    processor: processor,
                     memory_size: memorySize,
-                    frequency,
-                    sensors,
-                    drive,
+                    frequency: frequency,
+                    sensors: sensors,
+                    drive: drive,
                     power_supply: powerSupply,
                     programming_language: programmingLanguage,
                     technology_id: technologyId,
-                    website,
+                    website: website,
                     interesting_facts: interestingFacts,
-                    description,
+                    description: description,
                 }),
             })
-            .then(response => response.json())
+            .then(async response => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status === 422) {
+                    const errors = await response.json();
+                    displayValidationErrors(errors.errors);
+                } else {
+                    throw new Error('An unexpected error occurred');
+                }
+            })
             .then(data => {
                 if (data.success) {
                     window.dispatchEvent(new CustomEvent('close-modal', {
@@ -209,5 +224,14 @@
                 }
             })
             .catch(error => console.error('Error:', error));
+    }
+
+    function displayValidationErrors(errors) {
+        for (const [field, messages] of Object.entries(errors)) {
+            const errorElement = document.getElementById(`error_${field}`);
+            if (errorElement) {
+                errorElement.textContent = messages.join(', ');
+            }
+        }
     }
 </script>

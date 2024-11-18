@@ -10,8 +10,9 @@
 
         <!-- Name -->
         <div class="mt-4">
-            <x-input-label for="edit_robot_name" :value="__('all_robots_messages.robot_name')" required="true" />
-            <x-text-input id="edit_robot_name" class="block mt-1 w-full" type="text" name="robot_name" required />
+            <x-input-label for="edit_name" :value="__('all_robots_messages.name')" required="true" />
+            <x-text-input id="edit_name" class="block mt-1 w-full" type="text" name="name" required />
+            <div id="error_name" class="text-red-500 text-sm error-message"></div>
         </div>
 
         <div class="flex gap-4 w-full">
@@ -19,12 +20,14 @@
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_author_first_name" :value="__('all_robots_messages.author_first_name')" required="true" />
                 <x-text-input id="edit_author_first_name" class="block mt-1 w-full" type="text" name="author_first_name" required />
+                <div id="error_author_first_name" class="text-red-500 text-sm error-message"></div>
             </div>
 
             <!-- Last Name -->
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_author_last_name" :value="__('all_robots_messages.author_last_name')" required="true" />
                 <x-text-input id="edit_author_last_name" class="block mt-1 w-full" type="text" name="author_last_name" required />
+                <div id="error_author_last_name" class="text-red-500 text-sm error-message"></div>
             </div>
         </div>
 
@@ -32,6 +35,7 @@
         <div class="mt-4">
             <x-input-label for="edit_coauthors" :value="__('all_robots_messages.coauthors')" />
             <x-text-input id="edit_coauthors" class="block mt-1 w-full" type="text" name="coauthors" />
+            <div id="error_coauthors" class="text-red-500 text-sm error-message"></div>
         </div>
 
         <div class="flex gap-4 w-full">
@@ -39,18 +43,21 @@
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_processor" :value="__('all_robots_messages.processor')" required="true" />
                 <x-text-input id="edit_processor" class="block mt-1 w-full" type="text" name="processor" required />
+                <div id="error_processor" class="text-red-500 text-sm error-message"></div>
             </div>
 
             <!-- Memory Size -->
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_memory_size" :value="__('all_robots_messages.memory_size')" />
                 <x-text-input id="edit_memory_size" class="block mt-1 w-full" type="text" name="memory_size" :placeholder="__('all_robots_messages.placeholder_memory_size')" />
+                <div id="error_memory_size" class="text-red-500 text-sm error-message"></div>
             </div>
 
             <!-- Frequency -->
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_frequency" :value="__('all_robots_messages.frequency')" required="true" />
                 <x-text-input id="edit_frequency" class="block mt-1 w-full" type="text" name="frequency" :placeholder="__('all_robots_messages.placeholder_frequency')" required/>
+                <div id="error_frequency" class="text-red-500 text-sm error-message"></div>
             </div>
         </div>
 
@@ -58,6 +65,7 @@
         <div class="mt-4">
             <x-input-label for="edit_sensors" :value="__('all_robots_messages.sensors')" />
             <x-text-input id="edit_sensors" class="block mt-1 w-full" type="text" name="sensors" />
+            <div id="error_sensors" class="text-red-500 text-sm error-message"></div>
         </div>
 
         <div class="flex gap-4 w-full">
@@ -65,12 +73,14 @@
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_drive" :value="__('all_robots_messages.drive')" />
                 <x-text-input id="edit_drive" class="block mt-1 w-full" type="text" name="drive" />
+                <div id="error_drive" class="text-red-500 text-sm error-message"></div>
             </div>
 
             <!-- Power Supply -->
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_power_supply" :value="__('all_robots_messages.power_supply')" />
                 <x-text-input id="edit_power_supply" class="block mt-1 w-full" type="text" name="power_supply" />
+                <div id="error_power_supply" class="text-red-500 text-sm error-message"></div>
             </div>
         </div>
 
@@ -79,6 +89,7 @@
             <div class="mt-4 flex-1 w-full">
                 <x-input-label for="edit_programming_language" :value="__('all_robots_messages.programming_language')" required="true" />
                 <x-text-input id="edit_programming_language" class="block mt-1 w-full" type="text" name="programming_language" required />
+                <div id="error_programming_language" class="text-red-500 text-sm error-message"></div>
             </div>
 
             <!-- Technology -->
@@ -89,6 +100,7 @@
                     <option value="{{ $technology->id }}">{{ $technology->name }}</option>
                     @endforeach
                 </select>
+                <div id="error_technology_id" class="text-red-500 text-sm error-message"></div>
             </div>
         </div>
 
@@ -96,18 +108,21 @@
         <div class="mt-4">
             <x-input-label for="edit_website" :value="__('all_robots_messages.website')" />
             <x-text-input id="edit_website" class="block mt-1 w-full" type="url" name="website" />
+            <div id="error_website" class="text-red-500 text-sm error-message"></div>
         </div>
 
         <!-- Interesting Facts -->
         <div class="mt-4">
             <x-input-label for="edit_interesting_facts" :value="__('all_robots_messages.interesting_facts')" />
             <textarea id="edit_interesting_facts" name="interesting_facts" rows="4" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"></textarea>
+            <div id="error_interesting_facts" class="text-red-500 text-sm error-message"></div>
         </div>
 
         <!-- Description -->
         <div class="mt-4">
             <x-input-label for="edit_description" :value="__('all_robots_messages.description')" />
             <textarea id="edit_description" name="description" rows="4" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"></textarea>
+            <div id="error_description" class="text-red-500 text-sm error-message"></div>
         </div>
 
         <!-- Modal Actions -->
