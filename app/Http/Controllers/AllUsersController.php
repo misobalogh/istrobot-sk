@@ -46,7 +46,7 @@ class AllUsersController extends Controller
         ]);
 
         // Remove password from validated data if its null
-        if (is_null($validatedData['password'])) {
+        if (array_key_exists('password', $validatedData) && is_null($validatedData['password'])) {
             unset($validatedData['password']);
         }
 
