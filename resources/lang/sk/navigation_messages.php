@@ -6,5 +6,6 @@ return [
     "all_users" => "Všetci používatelia",
     "all_robots" => "Všetci roboti",
     "home" => "Domov",
-    "logout" => "Odhlásiť sa",    
+    "logout" => "Odhlásiť sa",
+    "statistics" => "Štatistiky",
 ];

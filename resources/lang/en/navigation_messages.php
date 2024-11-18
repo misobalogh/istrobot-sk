@@ -7,4 +7,5 @@ return [
     "all_robots" => "All Robots",
     "home" => "Home",
     "logout" => "Logout",
+    "statistics"=> "Statistics",
 ];
