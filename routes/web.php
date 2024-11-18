@@ -34,6 +34,9 @@ Route::get('/contest/{year}/registered-robots', [ContestController::class, 'show
     ->where('year', '\d+') // Only digits are allowed
     ->name('registered-robots');
 
+// Archive page with list of years
+Route::get('/archive', [ContestController::class, 'archive'])->name('archive');
+
 /*
 |--------------------------------------------------------------------------
 | AUTH Routes

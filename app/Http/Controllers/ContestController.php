@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\ContestService;
-use App\Models\Participation;
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Competition;
-use Illuminate\Support\Facades\Log;
 
 class ContestController extends Controller
 {
@@ -36,5 +31,11 @@ class ContestController extends Controller
             'year' => $year,
             'registered_robots' => $registeredRobots,
         ]);
+    }
+
+    public function archive()
+    {
+        $thisYear = now()->year;
+        return view('contest.archive', compact('thisYear'));
     }
 }
