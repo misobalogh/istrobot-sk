@@ -41,17 +41,27 @@ class DashboardController extends Controller
     public function updateRegistration(Request $request)
     {
         $selectedCategories = json_decode($request->input('selectedCategories'), true) ?? [];
+        $unselectedCategories = json_decode($request->input('unselectedCategories'), true) ?? [];
         $setYear = Setting::where('key', 'competition_year')->first()->value;
+        $competitionId = Competition::where('year', $setYear)->first()->id;
 
         foreach ($selectedCategories as $item) {
             Participation::updateOrCreate(
                 [
                     'robot_id' => $item['robot'],
                     'category_id' => $item['category'],
-                    'competition_id' => Competition::where('year', $setYear)->first()->id,
+                    'competition_id' => $competitionId,
                 ],
             );
-       }
+        }
+
+        foreach ($unselectedCategories as $item) {
+            Participation::where([
+                'robot_id' => $item['robot'],
+                'category_id' => $item['category'],
+                'competition_id' => $competitionId,
+            ])->delete();
+        }
 
         return redirect()->route('dashboard')->with('success','Registration updated successfully');
     }

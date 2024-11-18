@@ -47,20 +47,30 @@
 
         <!-- Hidden input to store selected categories -->
         <input type="hidden" id="selectedCategories" name="selectedCategories" />
+        <input type="hidden" id="unselectedCategories" name="unselectedCategories" />
 
         <script>
             document.getElementById('register-robots').addEventListener('click', function(event) {
                 event.preventDefault();
                 const selectedCategories = [];
+                const unselectedCategories = [];
 
-                document.querySelectorAll('.category-checkbox:checked').forEach(function(checkbox) {
-                    selectedCategories.push({
-                        robot: checkbox.dataset.robot,
-                        category: checkbox.dataset.category
-                    });
+                document.querySelectorAll('.category-checkbox').forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        selectedCategories.push({
+                            robot: checkbox.dataset.robot,
+                            category: checkbox.dataset.category
+                        });
+                    } else {
+                        unselectedCategories.push({
+                            robot: checkbox.dataset.robot,
+                            category: checkbox.dataset.category
+                        });
+                    }
                 });
 
                 document.getElementById('selectedCategories').value = JSON.stringify(selectedCategories);
+                document.getElementById('unselectedCategories').value = JSON.stringify(unselectedCategories);
                 this.closest('form').submit();
             });
         </script>
