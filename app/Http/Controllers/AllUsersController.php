@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class AllUsersController extends Controller
@@ -16,7 +16,7 @@ class AllUsersController extends Controller
         $countries = Country::all();
         $sort = $request->input('sort', 'last_name');
         $direction = $request->input('direction', 'asc');
-        
+
         $users = User::orderBy($sort, $direction)->get();
 
         return view("all-users.list", [
@@ -35,13 +35,13 @@ class AllUsersController extends Controller
     public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
-            'email' => 'nullable|email|unique:users,email,' . $user->id,
-            'first_name' => 'nullable|string|max:255',
-            'last_name' => 'nullable|string|max:255',
-            'password' => ['nullable', Password::defaults()],
-            'birth_date' => 'nullable|date',
-            'city' => 'nullable|string|max:255',
-            'country_code' => 'nullable|exists:countries,country_code',
+            'email' => ['string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'first_name' => 'string|max:50',
+            'last_name' => 'string|max:50',
+            'password' => [Password::defaults()],
+            'birth_date' => 'date|before:today|after:1900-01-01|date_format:Y-m-d',
+            'city' => 'string|max:255',
+            'country_code' => 'exists:countries,country_code',
             'school' => 'nullable|string|max:255',
         ]);
 

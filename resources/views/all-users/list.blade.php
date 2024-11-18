@@ -13,13 +13,13 @@
                 <!-- Sort Button for User Name -->
                 <button id="sort-user-name" class="ml-4">
                     @if($sort === 'last_name')
-                        @if($direction === 'asc')
-                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
-                        @else
-                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
-                        @endif
+                    @if($direction === 'asc')
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
                     @else
-                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                    @endif
+                    @else
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
                     @endif
                 </button>
             </div>
@@ -28,13 +28,13 @@
                 <!-- Sort Button for Email -->
                 <button id="sort-email" class="ml-4">
                     @if($sort === 'email')
-                        @if($direction === 'asc')
-                            <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
-                        @else
-                            <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
-                        @endif
+                    @if($direction === 'asc')
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
                     @else
-                        <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                    @endif
+                    @else
+                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
                     @endif
                 </button>
             </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="sm:px-6 lg:px-8 px-10">
             @foreach($users as $user)
-                @include('all-users.partials.user-row', ['user' => $user])
+            @include('all-users.partials.user-row', ['user' => $user])
             @endforeach
         </div>
     </div>
@@ -132,6 +132,10 @@
     }
 
     function openEditUserModal(userId) {
+
+        // Clear previous error messages
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
         // Fetch user data and populate the modal form
         fetch(`/all-users/${userId}/edit`)
             .then(response => response.json())
@@ -168,6 +172,9 @@
         const countryCode = document.getElementById('edit_country_code').value;
         const school = document.getElementById('edit_school').value;
 
+        // Clear previous error messages
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
         fetch(`/all-users/update/${userId}`, {
                 method: 'POST',
                 headers: {
@@ -185,7 +192,16 @@
                     school: school
                 }),
             })
-            .then(response => response.json())
+            .then(async response => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status === 422) {
+                    const errors = await response.json();
+                    displayValidationErrors(errors.errors);
+                } else {
+                    throw new Error('An unexpected error occurred');
+                }
+            })
             .then(data => {
                 if (data.success) {
                     window.dispatchEvent(new CustomEvent('close-modal', {
@@ -195,5 +211,14 @@
                 }
             })
             .catch(error => console.error('Error:', error));
+    }
+
+    function displayValidationErrors(errors) {
+        for (const [field, messages] of Object.entries(errors)) {
+            const errorElement = document.getElementById(`error_${field}`);
+            if (errorElement) {
+                errorElement.textContent = messages.join(', ');
+            }
+        }
     }
 </script>
