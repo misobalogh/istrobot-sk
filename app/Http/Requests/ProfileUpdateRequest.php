@@ -19,7 +19,7 @@ class ProfileUpdateRequest extends FormRequest
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'birth_date' => 'required|date',
+            'birth_date' => 'required|before:today',
             'school' => 'nullable|string|max:255',
             'city' => 'required|string|max:255',
             'country_code' => ['required', 'string', 'exists:countries,country_code'],
