@@ -7,13 +7,13 @@
             <!-- Category Name (EN) -->
             <div>
                 <x-input-label for="name_EN" :value="__('dashboard_messages.category_name_en')" required="true" />
-                <x-text-input id="name_EN" name="name_EN" type="text" class="mt-1 block flex-1" required />
+                <x-text-input id="name_EN" name="name_EN" type="text" class="mt-1 block flex-1" required :maxLength="30" :showCounter="true" />
                 <x-input-error class="mt-2" :messages="$errors->get('name_EN')" />
             </div>
             <!-- Category Name (SK) -->
             <div>
-                <x-input-label for="name_SK" :value="__('dashboard_messages.category_name_sk')" required="true" />
-                <x-text-input id="name_SK" name="name_SK" type="text" class="mt-1 block flex-1" required />
+                <x-input-label for="name_SK" :value="__('dashboard_messages.category_name_sk')" required="true"/>
+                <x-text-input id="name_SK" name="name_SK" type="text" class="mt-1 block flex-1" required :maxLength="30" :showCounter="true" />
                 <x-input-error class="mt-2" :messages="$errors->get('name_SK')" />
             </div>
             <!-- Type of Evaluation -->
