@@ -14,12 +14,12 @@
                 <button id="sort-robot-name" class="ml-4">
                     @if($sort === 'name')
                     @if($direction === 'asc')
-                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
+                    <x-sort-alphabetical-ascending class="fill-current" />
                     @else
-                    <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                    <x-sort-alphabetical-descending class="fill-current" />
                     @endif
                     @else
-                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    <x-sort-alphabetical-ascending class="fill-current" />
                     @endif
                 </button>
             </div>
@@ -29,12 +29,12 @@
                 <button id="sort-author-name" class="ml-4">
                     @if($sort === 'author_first_name')
                     @if($direction === 'asc')
-                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Ascending" class="w-4 h-4">
+                    <x-sort-alphabetical-ascending class="fill-current" />
                     @else
-                    <img src="/img/icon/sort-alphabetical-descending.svg" alt="Descending" class="w-4 h-4">
+                    <x-sort-alphabetical-descending class="fill-current" />
                     @endif
                     @else
-                    <img src="/img/icon/sort-alphabetical-ascending.svg" alt="Sort" class="w-4 h-4">
+                    <x-sort-alphabetical-ascending class="fill-current" />
                     @endif
                 </button>
             </div>
