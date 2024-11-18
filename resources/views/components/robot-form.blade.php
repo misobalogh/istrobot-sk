@@ -110,7 +110,7 @@
                 <div>
                     <x-input-label for="website" :value="__('my_robots_messages.website')" />
                     <x-text-input id="website" name="website" type="url" class="mt-1 block w-full"
-                        :value="old('website', $robot->website ?? '')" autocomplete="given-website" />
+                        :value="old('website', $robot->website ?? '')" autocomplete="given-website" :placeholder="__('http://website.com/')" />
                     <x-input-error class="mt-2" :messages="$errors->get('website')" />
                 </div>
 
