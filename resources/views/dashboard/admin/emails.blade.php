@@ -8,7 +8,7 @@
                 <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
                 <div class="flex flex-row">
                     <x-text-input id="year-emails" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}"
-                        min="2000" max="2100" oninput="validateYear(this)" />
+                        min="2000" max="2100" oninput="validateEmailsYear(this)" />
                     <x-input-error id="year-mail-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
                 </div>
             </div>
@@ -34,7 +34,7 @@
 </section>
 
 <script>
-    function validateYear(input) {
+    function validateEmailsYear(input) {
         const errorElement = document.getElementById('year-mail-error');
         const setButton = document.getElementById('fetch-emails');
         const year = parseInt(input.value);

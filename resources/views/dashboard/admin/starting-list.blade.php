@@ -7,7 +7,7 @@
             <x-input-label for="year" :value="__('dashboard_messages.year')" required="true" />
             <div class="flex flex-row">
                 <x-text-input id="year-starting-list" name="year" type="number" class="mt-1 block w-half" value="{{ old('year', $setYear) }}" required
-                    min="2000" max="2100" oninput="validateYear(this)" />
+                    min="2000" max="2100" oninput="validateStartingListYear(this)" />
                 <x-input-error id="year-starting-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
             </div>
         </div>
@@ -45,7 +45,7 @@
 </section>
 
 <script>
-    function validateYear(input) {
+    function validateStartingListYear(input) {
         const errorElement = document.getElementById('year-starting-error');
         const setButton = document.getElementById('generate-starting-list');
         const year = parseInt(input.value);

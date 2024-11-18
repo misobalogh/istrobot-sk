@@ -14,7 +14,7 @@
                 required
                 min="2000" 
                 max="2100" 
-                oninput="validateYear(this)"
+                oninput="validateCategoriesYear(this)"
             />
             <x-input-error id="year-error" class="ml-4 mt-3" style="display: none" :messages="['Year must be between 2000 and 2100']" />
         </div>
@@ -47,7 +47,7 @@
 </section>
 
 <script>
-    function validateYear(input) {
+    function validateCategoriesYear(input) {
         const errorElement = document.getElementById('year-error');
         const setButton = document.getElementById('set-categories');
         const year = parseInt(input.value);
@@ -148,7 +148,7 @@
     });
 
     document.getElementById('categories-year').addEventListener('change', function() {
-        if (!validateYear(this)) return;
+        if (!validateCategoriesYear(this)) return;
         const year = this.value;
         fetchAndSetCategories(year);
     });
