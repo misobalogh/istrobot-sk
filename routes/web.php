@@ -10,6 +10,10 @@ use App\Http\Controllers\RobotController;
 use App\Http\Controllers\StatisticsController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+
+// Force HTTPS scheme
+URL::forceScheme('https');
 
 /*
 |--------------------------------------------------------------------------
