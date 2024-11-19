@@ -29,7 +29,7 @@
 	</dd>
   <dd>Matěj Bedřich <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
 	    <a href="mailto:xbedri04@stud.fit.vutbr.cz">xbedri04@stud.fit.vutbr.cz</a> - 
-		popis činnosti v týmu
+		Úvodní stránka
 	</dd>
 	<dt>URL aplikace</dt>
 	<dd><a href="https://istrobot.up.railway.app/contest/2024">https://istrobot.up.railway.app/contest/2024</a></dd>
@@ -46,11 +46,84 @@
 <p><img src="./imgs/use_case.png" alt="Diagram případu užití" width="auto" height="800" style="padding: 10px;"></p>
 
 <h3>Video</h3>
-
-<p>Přiložte odkaz na komentované video demonstrující použití informačního systému. Zaměřte se na případy užití definované zadáním (např. registrace uživatele, správa uživatelů a činnosti jednotlivých rolí). Video nahrajte například na VUT Google Drive, kde ho bude možné přímo spustit z odkazu.</p> 
+<p><a href="https://youtu.be/xq9fvH-Odik">https://youtu.be/xq9fvH-Odik</a></p>
 
 <h2>Implementace</h2>
-<p>Stručná dokumentace k implementaci, která popisuje, které části projektu (např. PHP skripty) implementují jednotlivé případy použití.</p>
+<p>Stručná dokumentace implementace jednotlivých případů použití v systému:</p>
+
+<h3>Nepřihlášený uživatel</h3>
+<ul>
+    <li><strong>Seznam přihlášených robotů</strong> - implementováno v ContestController, obsahuje metody pro úvodní stránku s informacemi o soutěži</li>
+    <li><strong>Přepnutí jazyka</strong> - implementováno pomocí route v web.php a middleware SetLocale. Lokalizované řetězce jsou v resources/lang</li>
+    <li><strong>Přihlášení</strong> - AuthenticatedSessionController obsahuje:
+        <ul>
+            <li>create() - zobrazení přihlašovacího formuláře</li>
+            <li>store() - zpracování přihlášení</li>
+            <li>destroy() - odhlášení uživatele</li>
+        </ul>
+    </li>
+    <li><strong>Registrace</strong> - RegisteredUserController obsahuje:
+        <ul>
+            <li>create() - zobrazení registračního formuláře</li>
+            <li>store() - zpracování registrace nového uživatele</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Přihlášený uživatel</h3>
+<ul>
+    <li><strong>Správa profilu</strong> - ProfileController obsahuje:
+        <ul>
+            <li>edit() - formulář pro úpravu profilu</li>
+            <li>update() - aktualizace profilu</li>
+            <li>destroy() - smazání profilu</li>
+        </ul>
+    </li>
+    <li><strong>Správa robotů</strong> - RobotController obsahuje:
+        <ul>
+            <li>store() - uložení nového robota</li>
+            <li>edit() - formulář pro úpravu robota</li>
+            <li>update() - aktualizace robota</li>
+            <li>destroy() - smazání robota</li>
+        </ul>
+    </li>
+    <li><strong>Registrace robota na soutěž</strong> - DashboardController, metoda updateRegistration()</li>
+</ul>
+
+<h3>Administrátor</h3>
+<p>Implementováno v routes pod middleware auth a isAdmin.</p>
+<ul>
+    <li><strong>Nastavení roku</strong> - AdminController, metoda setYear()</li>
+    <li><strong>Správa kategorií</strong> - AdminController obsahuje:
+        <ul>
+            <li>createCategory() - vytvoření kategorie</li>
+            <li>deleteCategory() - smazání kategorie</li>
+            <li>setCategory() - přiřazení kategorie k soutěži</li>
+        </ul>
+    </li>
+    <li><strong>Startovací listina</strong> - AdminController, metoda generateStartList() pro generování náhodného pořadí</li>
+    <li><strong>Správa emailů</strong> - AdminController obsahuje:
+        <ul>
+            <li>allEmails() - seznam všech emailů</li>
+            <li>emailsByYear() - emaily účastníků daného roku</li>
+        </ul>
+    </li>
+    <li><strong>Správa uživatelů</strong> - AllUsersController obsahuje:
+        <ul>
+            <li>list() - seznam všech uživatelů</li>
+            <li>edit() - úprava profilu</li>
+            <li>update() - aktualizace informací</li>
+            <li>destroy() - smazání uživatele</li>
+        </ul>
+    </li>
+    <li><strong>Správa robotů</strong> - AllRobotsController obsahuje:
+        <ul>
+            <li>list() - seznam všech robotů</li>
+            <li>edit() - úprava detailů</li>
+            <li>update() - aktualizace informací</li>
+        </ul>
+    </li>
+</ul>
 
 
 <h3>Databáze</h3>

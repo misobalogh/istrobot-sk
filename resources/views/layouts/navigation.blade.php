@@ -139,7 +139,7 @@
 
     function applyThemeOnLoad() {
         const savedTheme = localStorage.getItem('theme');
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches; // user/system preference
         
         if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) { // if the user has set a dark theme or the system prefers dark mode
             document.documentElement.classList.add('dark'); // add the class to the HTML element (dark mode on)
