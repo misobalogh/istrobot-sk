@@ -84,7 +84,7 @@
             password = null;
         }
 
-        fetch(`/all-users/update/${userId}`, {
+        fetch(`/all-users/quick-update/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

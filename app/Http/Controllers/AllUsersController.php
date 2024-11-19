@@ -32,23 +32,35 @@ class AllUsersController extends Controller
         return response()->json($user);
     }
 
-    public function update(Request $request, User $user)
+    public function updatePasswordOrEmail(User $user, Request $request)
     {
         $validatedData = $request->validate([
             'email' => ['string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-            'first_name' => 'string|max:50',
-            'last_name' => 'string|max:50',
-            'password' => [Password::defaults()],
-            'birth_date' => 'date|before:today|after:1900-01-01|date_format:Y-m-d',
-            'city' => 'string|max:255',
-            'country_code' => 'exists:countries,country_code',
-            'school' => 'nullable|string|max:255',
+            'password' => ['nullable', Password::defaults()],
         ]);
 
         // Remove password from validated data if its null
         if (array_key_exists('password', $validatedData) && is_null($validatedData['password'])) {
             unset($validatedData['password']);
         }
+
+        $user->fill($validatedData);
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'email' => ['string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'first_name' => 'string|max:50',
+            'last_name' => 'string|max:50',
+            'birth_date' => 'date|before:today|after:1900-01-01|date_format:Y-m-d',
+            'city' => 'string|max:255',
+            'country_code' => 'exists:countries,country_code',
+            'school' => 'nullable|string|max:255',
+        ]);
 
         $user->fill($validatedData);
         $user->save();

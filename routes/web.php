@@ -96,6 +96,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/all-users', [AllUsersController::class, 'list'])->name('all-users.list');
     Route::delete('/all-users/delete/{user}', [AllUsersController::class, 'destroy'])->name('all-users.destroy');
     Route::post('/all-users/update/{user}', [AllUsersController::class, 'update'])->name('all-users.update');
+    Route::post('/all-users/quick-update/{user}', [AllUsersController::class, 'updatePasswordOrEmail'])->name('all-users.quick-update');
     Route::get('/all-users/{user}/edit', [AllUsersController::class, 'edit']);
     
     // Manage all robots
