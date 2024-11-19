@@ -49,7 +49,11 @@
                     <option value="" disabled selected>{{ __('register_messages.select_your_country') }}</option>
                     @foreach($countries as $country)
                     <option value="{{ $country->country_code }}" {{ old('country_code') == $country->country_code ? 'selected' : '' }}>
-                        {{ $country->name_EN }}
+                        @if(App::getLocale() == 'en')
+                            {{ $country->name_EN }}
+                        @else
+                            {{ $country->name_SK }}
+                        @endif
                     </option>
                     @endforeach
                 </select>

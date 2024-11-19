@@ -28,7 +28,12 @@
                 <div class="flex items-center">
                     <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-checkbox h-5 w-5 rounded text-indigo-600" id="{{ $category->id }}">
                     <label for="{{ $category->id }}" class="ms-2">
-                        {{ $category->name_EN }} ({{ $categories_count->find($category->id)->participations_count }})
+                        @if(App::getLocale() == 'en')
+                            {{ $category->name_EN }}
+                        @else
+                            {{ $category->name_SK }}
+                        @endif    
+                        ({{ $categories_count->find($category->id)->participations_count }})
                         @if($categories_count->find($category->id)->participations_count == 0)
                             <span class="text-red-500 ml-2 cursor-pointer" data-category-id="{{ $category->id }}">❌</span>
                         @endif

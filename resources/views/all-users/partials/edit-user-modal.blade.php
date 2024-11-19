@@ -56,7 +56,11 @@
             <select id="edit_country_code" name="edit_country_code" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                 @foreach($countries as $country)
                 <option value="{{ $country->country_code }}" {{ auth()->user()->country_code == $country->country_code ? 'selected' : '' }}>
-                    {{ $country->name_EN }}
+                    @if(App::getLocale() == 'en')
+                        {{ $country->name_EN }}
+                    @else
+                        {{ $country->name_SK }}
+                    @endif
                 </option>
                 @endforeach
             </select>

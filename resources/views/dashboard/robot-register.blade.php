@@ -9,7 +9,13 @@
                     <tr>
                         <th class="px-4 py-2 border border-gray-200">{{ __('dashboard_messages.name') }}</th>
                         @foreach ($categoriesForSetYear as $category)
-                        <th class="px-4 py-2 border border-gray-200">{{ $category->name_EN }}</th>
+                        <th class="px-4 py-2 border border-gray-200">
+                            @if(App::getLocale() == 'en')
+                                {{ $category->name_EN }}
+                            @else
+                                {{ $category->name_SK }}
+                            @endif
+                        </th>
                         @endforeach
                     </tr>
                 </thead>
