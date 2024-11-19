@@ -1,7 +1,7 @@
 <div class="flex">
     <!-- Sidebar -->
-    <aside class="w-1/4 min-h-screen bg-gray-100 dark:bg-gray-800 p-4">
-        <h2 class="text-lg font-semibold mb-4 text-white">{{ __('my_robots_messages.robots') }}:</h2>
+    <aside class="min-h-screen bg-gray-100 dark:bg-gray-800 p-4" style="width: 25vw; max-width: 27rem;">
+        <h2 class="text-lg font-semibold mb-4 dark:text-white">{{ __('my_robots_messages.robots') }}:</h2>
         <ul>
             @foreach ($robots as $index => $robot)
             <li class="mb-2">
