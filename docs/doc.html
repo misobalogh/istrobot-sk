@@ -1,201 +1,263 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
+
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Projekt IIS</title>
     <style type="text/css">
-    	table { border-collapse: collapse; }
-    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
-    	dt { font-weight: bold; margin-top: 0.5em; }
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 0.3em 0.5em;
+            text-align: left;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 0.5em;
+        }
     </style>
 </head>
+
 <body>
 
-<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+    <!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
      podle použitého editoru -->
 
-<h1>Istrobot (vlastní zadání)</h1> <!-- Nahradte názvem svého zadání -->
+    <h1>Istrobot (vlastní zadání)</h1> <!-- Nahradte názvem svého zadání -->
 
-<dl>
-	<dt>Autoři</dt>
-	<dd>Michal Balogh <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
-	    <a href="mailto:xbalog06@stud.fit.vutbr.cz">xbalog06@stud.fit.vutbr.cz</a> -
-		Analýza a návrh informačního systému, backend - routing a kontrolery
-	</dd>
-	<dd>Tomáš Barták <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
-	    <a href="mailto:xbarta51@stud.fit.vutbr.cz">xbarta51@stud.fit.vutbr.cz</a> - 
-		Návrh webového uživatelského rozhraní aplikace, vytváření pohledů a formulářů, lokalizace
-	</dd>
-  <dd>Matěj Bedřich <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
-	    <a href="mailto:xbedri04@stud.fit.vutbr.cz">xbedri04@stud.fit.vutbr.cz</a> - 
-		Úvodní stránka
-	</dd>
-	<dt>URL aplikace</dt>
-	<dd><a href="https://istrobot.up.railway.app/contest/2024">https://istrobot.up.railway.app/contest/2024</a></dd>
-</dl>
+    <dl>
+        <dt>Autoři</dt>
+        <dd>Michal Balogh <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+            <a href="mailto:xbalog06@stud.fit.vutbr.cz">xbalog06@stud.fit.vutbr.cz</a> -
+            Analýza a návrh informačního systému, backend - routing a kontrolery
+        </dd>
+        <dd>Tomáš Barták <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+            <a href="mailto:xbarta51@stud.fit.vutbr.cz">xbarta51@stud.fit.vutbr.cz</a> -
+            Návrh webového uživatelského rozhraní aplikace, vytváření pohledů a formulářů, lokalizace
+        </dd>
+        <dd>Matěj Bedřich <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+            <a href="mailto:xbedri04@stud.fit.vutbr.cz">xbedri04@stud.fit.vutbr.cz</a> -
+            Úvodní stránka
+        </dd>
+        <dt>URL aplikace</dt>
+        <dd><a href="https://istrobot.up.railway.app/">https://istrobot.up.railway.app/</a></dd>
+    </dl>
 
-<h2>Uživatelé systému pro testování</h2>
-<table>
-<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
-<tr><td>admin@gmail.com</td><td>admin123</td><td>Administrátor</td></tr>
-<tr><td>johndoe@example.com</td><td>password</td><td>Účastník</td></tr>
-<tr><td>-</td><td>-</td><td>Host</td></tr>
-</table>
+    <h2>Uživatelé systému pro testování</h2>
+    <table>
+        <tr>
+            <th>Login</th>
+            <th>Heslo</th>
+            <th>Role</th>
+        </tr>
+        <tr>
+            <td>admin@gmail.com</td>
+            <td>admin123</td>
+            <td>Administrátor</td>
+        </tr>
+        <tr>
+            <td>johndoe@example.com</td>
+            <td>password</td>
+            <td>Účastník</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>Host</td>
+        </tr>
+    </table>
 
-<p><img src="./imgs/use_case.png" alt="Diagram případu užití" width="auto" height="800" style="padding: 10px;"></p>
+    <p><img src="./imgs/use_case.png" alt="Diagram případu užití" width="auto" height="800" style="padding: 10px;"></p>
 
-<h3>Video</h3>
-<p><a href="https://youtu.be/xq9fvH-Odik">https://youtu.be/xq9fvH-Odik</a></p>
+    <h3>Video</h3>
+    <p><a href="https://youtu.be/xq9fvH-Odik">https://youtu.be/xq9fvH-Odik</a></p>
 
-<h2>Implementace</h2>
-<p>Stručná dokumentace implementace jednotlivých případů použití v systému:</p>
+    <h2>Implementace</h2>
+    <p>Stručná dokumentace implementace jednotlivých případů použití v systému:</p>
 
-<h3>Nepřihlášený uživatel</h3>
-<ul>
-    <li><strong>Seznam přihlášených robotů</strong> - implementováno v ContestController, obsahuje metody pro úvodní stránku s informacemi o soutěži</li>
-    <li><strong>Přepnutí jazyka</strong> - implementováno pomocí route v web.php a middleware SetLocale. Lokalizované řetězce jsou v resources/lang</li>
-    <li><strong>Přihlášení</strong> - AuthenticatedSessionController obsahuje:
-        <ul>
-            <li>create() - zobrazení přihlašovacího formuláře</li>
-            <li>store() - zpracování přihlášení</li>
-            <li>destroy() - odhlášení uživatele</li>
-        </ul>
-    </li>
-    <li><strong>Registrace</strong> - RegisteredUserController obsahuje:
-        <ul>
-            <li>create() - zobrazení registračního formuláře</li>
-            <li>store() - zpracování registrace nového uživatele</li>
-        </ul>
-    </li>
-</ul>
+    <h3>Nepřihlášený uživatel</h3>
+    <ul>
+        <li><strong>Seznam přihlášených robotů</strong> - implementováno v ContestController, obsahuje metody pro úvodní
+            stránku s informacemi o soutěži</li>
+        <li><strong>Přepnutí jazyka</strong> - implementováno pomocí route v web.php a middleware SetLocale.
+            Lokalizované řetězce jsou v resources/lang</li>
+        <li><strong>Přihlášení</strong> - AuthenticatedSessionController obsahuje:
+            <ul>
+                <li>create() - zobrazení přihlašovacího formuláře</li>
+                <li>store() - zpracování přihlášení</li>
+                <li>destroy() - odhlášení uživatele</li>
+            </ul>
+        </li>
+        <li><strong>Registrace</strong> - RegisteredUserController obsahuje:
+            <ul>
+                <li>create() - zobrazení registračního formuláře</li>
+                <li>store() - zpracování registrace nového uživatele</li>
+            </ul>
+        </li>
+    </ul>
 
-<h3>Přihlášený uživatel</h3>
-<ul>
-    <li><strong>Správa profilu</strong> - ProfileController obsahuje:
-        <ul>
-            <li>edit() - formulář pro úpravu profilu</li>
-            <li>update() - aktualizace profilu</li>
-            <li>destroy() - smazání profilu</li>
-        </ul>
-    </li>
-    <li><strong>Správa robotů</strong> - RobotController obsahuje:
-        <ul>
-            <li>store() - uložení nového robota</li>
-            <li>edit() - formulář pro úpravu robota</li>
-            <li>update() - aktualizace robota</li>
-            <li>destroy() - smazání robota</li>
-        </ul>
-    </li>
-    <li><strong>Registrace robota na soutěž</strong> - DashboardController, metoda updateRegistration()</li>
-</ul>
+    <h3>Přihlášený uživatel</h3>
+    <ul>
+        <li><strong>Správa profilu</strong> - ProfileController obsahuje:
+            <ul>
+                <li>edit() - formulář pro úpravu profilu</li>
+                <li>update() - aktualizace profilu</li>
+                <li>destroy() - smazání profilu</li>
+            </ul>
+        </li>
+        <li><strong>Správa robotů</strong> - RobotController obsahuje:
+            <ul>
+                <li>store() - uložení nového robota</li>
+                <li>edit() - formulář pro úpravu robota</li>
+                <li>update() - aktualizace robota</li>
+                <li>destroy() - smazání robota</li>
+            </ul>
+        </li>
+        <li><strong>Registrace robota na soutěž</strong> - DashboardController, metoda updateRegistration()</li>
+    </ul>
 
-<h3>Administrátor</h3>
-<p>Implementováno v routes pod middleware auth a isAdmin.</p>
-<ul>
-    <li><strong>Nastavení roku</strong> - AdminController, metoda setYear()</li>
-    <li><strong>Správa kategorií</strong> - AdminController obsahuje:
-        <ul>
-            <li>createCategory() - vytvoření kategorie</li>
-            <li>deleteCategory() - smazání kategorie</li>
-            <li>setCategory() - přiřazení kategorie k soutěži</li>
-        </ul>
-    </li>
-    <li><strong>Startovací listina</strong> - AdminController, metoda generateStartList() pro generování náhodného pořadí</li>
-    <li><strong>Správa emailů</strong> - AdminController obsahuje:
-        <ul>
-            <li>allEmails() - seznam všech emailů</li>
-            <li>emailsByYear() - emaily účastníků daného roku</li>
-        </ul>
-    </li>
-    <li><strong>Správa uživatelů</strong> - AllUsersController obsahuje:
-        <ul>
-            <li>list() - seznam všech uživatelů</li>
-            <li>edit() - úprava profilu</li>
-            <li>update() - aktualizace informací</li>
-            <li>destroy() - smazání uživatele</li>
-        </ul>
-    </li>
-    <li><strong>Správa robotů</strong> - AllRobotsController obsahuje:
-        <ul>
-            <li>list() - seznam všech robotů</li>
-            <li>edit() - úprava detailů</li>
-            <li>update() - aktualizace informací</li>
-        </ul>
-    </li>
-</ul>
+    <h3>Administrátor</h3>
+    <p>Implementováno v routes pod middleware auth a isAdmin.</p>
+    <ul>
+        <li><strong>Nastavení roku</strong> - AdminController, metoda setYear()</li>
+        <li><strong>Správa kategorií</strong> - AdminController obsahuje:
+            <ul>
+                <li>createCategory() - vytvoření kategorie</li>
+                <li>deleteCategory() - smazání kategorie</li>
+                <li>setCategory() - přiřazení kategorie k soutěži</li>
+            </ul>
+        </li>
+        <li><strong>Startovací listina</strong> - AdminController, metoda generateStartList() pro generování náhodného
+            pořadí</li>
+        <li><strong>Správa emailů</strong> - AdminController obsahuje:
+            <ul>
+                <li>allEmails() - seznam všech emailů</li>
+                <li>emailsByYear() - emaily účastníků daného roku</li>
+            </ul>
+        </li>
+        <li><strong>Statistiky</strong> - StatisticsController, metoda index() pro zobrazení statistik</li>
+        <li><strong>Správa uživatelů</strong> - AllUsersController obsahuje:
+            <ul>
+                <li>list() - seznam všech uživatelů</li>
+                <li>edit() - úprava profilu</li>
+                <li>update() - aktualizace informací</li>
+                <li>destroy() - smazání uživatele</li>
+            </ul>
+        </li>
+        <li><strong>Správa robotů</strong> - AllRobotsController obsahuje:
+            <ul>
+                <li>list() - seznam všech robotů</li>
+                <li>edit() - úprava detailů</li>
+                <li>update() - aktualizace informací</li>
+            </ul>
+        </li>
+    </ul>
 
 
-<h3>Databáze</h3>
+    <h3>Databáze</h3>
 
-<p><img src="./imgs/db_schema.png" alt="Schéma relační databáze" width="auto" height="800" style="padding: 10px;"></p>
+    <p><img src="./imgs/db_schema.png" alt="Schéma relační databáze" width="auto" height="800" style="padding: 10px;">
+    </p>
 
-<h2>Instalace</h2>
+    <h2>Instalace</h2>
 
-<h3>Postup instalace na server</h3>
-<p>Pro instalaci aplikace na server je nutné držet se  následujících kroků:</p>
-<ol>
-    <li>Nainstalovat PHP a všechna potřebná rozšíření:
-        <pre><code>sudo apt install php php-cli php-mbstring php-xml php-curl php-zip php-mysql php-bcmath php-json</code></pre>
-        Následně ověřit, zda instalace proběhla v pořádku:
-        <pre><code>php -v</code></pre>
-    </li>
-    <li>Nainstalovat Composer:
-        <pre><code>curl -sS https://getcomposer.org/installer | php</code></pre>
-        Přesunout Composer do globální cesty:
-        <pre><code>sudo mv composer.phar /usr/local/bin/composer</code></pre>
-        Následně opět ověřit, zda instalace byla úspěšná:
-        <pre><code>composer -v</code></pre>
-    </li>
-    <li>Nainstalovat MariaDB:
-        <pre><code>sudo apt install mariadb-server</code></pre>
-        Volitelně je také možnost povolit spuštění MariaDB při startu systému:
-        <pre><code>sudo systemctl enable mariadb</code></pre>
-        Následně ověřit úspěšnou isntalaci MariaDB:
-        <pre><code>sudo mysql -u root</code></pre>
-        Změnit heslo uživatele root:
-        <pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY '';</code></pre>
-        <pre><code>FLUSH PRIVILEGES;</code></pre>
-        Ukončit MariaDB:
-        <pre><code>EXIT;</code></pre>
-    </li>
-    <li>Správně nakonfigurovat Laravel:
-        <ul>
-            <li>Přemístit se do adresáře projektu a změnit název databáze v souboru <code>.env</code>:
-                <pre><code>DB_DATABASE=istrobot</code></pre>
-            </li>
-            <li>Nainstalovat všechny závislosti:
-                <pre><code>composer install</code></pre>
-                <pre><code>npm install</code></pre>
-                <pre><code>npm run build</code></pre>
-            </li>
-            <li>Vytvořit databázi:
-                <pre><code>CREATE DATABASE istrobot;</code></pre>
-                <pre><code>EXIT;</code></pre>
-            </li>
-            <li>Provést migrace a seedování databáze:
-                <pre><code>php artisan migrate</code></pre>
-                <pre><code>php artisan db:seed</code></pre>
-            </li>
-        </ul>
-    </li>
-    <li>Spustit aplikaci:
-        <pre><code>php artisan serve</code></pre>
-    </li>
-    <li>Pro čerstvou databázi:
-        <pre><code>php artisan migrate:fresh</code></pre>
-        <pre><code>php artisan db:seed</code></pre>
-    </li>
-</ol>
+    <h3>Postup instalace na server robotika.sk</h3>
+    <p>Pro instalaci aplikace na cílový server je nutné držet se následujících kroků:</p>
+    <ol>
+        <li>Nainstalovat PHP a všechna potřebná rozšíření:
+            <pre><code>sudo apt install php php-cli php-mbstring php-xml php-curl php-zip php-mysql php-bcmath php-json</code></pre>
+            Následně ověřit, zda instalace proběhla v pořádku:
+            <pre><code>php -v</code></pre>
+        </li>
+        <li>Nainstalovat Composer:
+            <pre><code>curl -sS https://getcomposer.org/installer | php</code></pre>
+            Přesunout Composer do globální cesty:
+            <pre><code>sudo mv composer.phar /usr/local/bin/composer</code></pre>
+            Následně opět ověřit, zda instalace byla úspěšná:
+            <pre><code>composer -v</code></pre>
+        </li>
+        <li>Nainstalovat MariaDB:
+            <pre><code>sudo apt install mariadb-server</code></pre>
+            Volitelně je také možnost povolit spuštění MariaDB při startu systému:
+            <pre><code>sudo systemctl enable mariadb</code></pre>
+            Následně ověřit úspěšnou isntalaci MariaDB:
+            <pre><code>sudo mysql -u root</code></pre>
+            Změnit heslo uživatele root:
+            <pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY '';</code></pre>
+            <pre><code>FLUSH PRIVILEGES;</code></pre>
+            Ukončit MariaDB:
+            <pre><code>EXIT;</code></pre>
+        </li>
+        <li>Správně nakonfigurovat Laravel:
+            <ul>
+                <li>Přemístit se do adresáře projektu a změnit název databáze v souboru <code>.env</code>:
+                    <pre><code>DB_DATABASE=istrobot</code></pre>
+                </li>
+                <li>Nainstalovat všechny závislosti:
+                    <pre><code>composer install</code></pre>
+                    <pre><code>npm install</code></pre>
+                    <pre><code>npm run build</code></pre>
+                </li>
+                <li>Vytvořit databázi:
+                    <pre><code>CREATE DATABASE istrobot;</code></pre>
+                    <pre><code>EXIT;</code></pre>
+                </li>
+                <li>Provést migrace a seedování databáze:
+                    <pre><code>php artisan migrate</code></pre>
+                    <pre><code>php artisan db:seed</code></pre>
+                </li>
+            </ul>
+        </li>
+        <li>Spustit aplikaci:
+            <pre><code>php artisan serve</code></pre>
+        </li>
+        <li>Inicializace databáze s testovacími daty:
+            <pre><code>php artisan migrate:fresh</code></pre>
+            <pre><code>php artisan db:seed</code></pre>
+        </li>
+    </ol>
 
-<h3>Softwarové požadavky</h3>
-<ul>
-    <li>Composer verze 2.8.1</li>
-    <li>PHP verze 8.1.2-1ubuntu2.19</li>
-    <li>Laravel Framework 10.48.22</li>
-</ul>
+    <h3>Deploy aplikace na Railway</h3>
 
-<h3>Jak rozbalit, konfigurovat, inicializovat databázi</h3>
-<p>Viz výše uvedené kroky pro konfiguraci Laravelu a inicializaci databáze.</p>
+    <p>Zatím sme nedostali plný přístup k serveru robotika.sk, proto jsme se rozhodli nasadit aplikaci na Railway:</p>
+
+    <ol>
+        <li>Vytvořit novou aplikaci v Railway a připojit ji k našemu <a
+                href="https://github.com/misobalogh/istrobot-sk">GitHub repozitáři</a>.</li>
+        <li>Vytvořit databázi.</li>
+        <li>Nastavit proměnné prostředí pre Railway app (příklad je v .env.example).</li>
+        <li>Propojit databázi s aplikací pomoci odkazování proměnných prostředí.</li>
+        <li>Stáhnout a nainstalovat Railway CLI:
+            <pre><code>curl -s -L https://get.railway.app | sh</code></pre>
+        </li>
+        <li>Přihlásit se do Railway:
+            <pre><code>railway login</code></pre>
+        </li>
+        <li>Linkovat aplikaci:
+            <pre><code>railway link</code></pre>
+        </li>
+        <li>Inicializace databáze:
+            <pre><code>railway run php artisan migrate</code></pre>
+            <pre><code>railway run php artisan db:seed</code></pre>
+        </li>
+    </ol>
+
+
+    <h3>Softwarové požadavky</h3>
+    <ul>
+        <li>Composer verze 2.8.1</li>
+        <li>PHP verze 8.1.2-1ubuntu2.19</li>
+        <li>Laravel Framework 10.48.22</li>
+    </ul>
+
+    <h3>Jak rozbalit, konfigurovat, inicializovat databázi</h3>
+    <p>Viz výše uvedené kroky pro konfiguraci Laravelu a inicializaci databáze.</p>
+    <p>Meno nebo heslo k databázi se dá změnit pomocou proměnných prostředí (v souboru .env).</p>
 </body>
+
 </html>
