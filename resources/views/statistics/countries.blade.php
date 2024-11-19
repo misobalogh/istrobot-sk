@@ -10,7 +10,13 @@
         <tbody>
             @foreach($countries as $country)
                 <tr class="bg-gray-100 dark:bg-gray-700">
-                    <td class="border px-4 py-2">{{ $country['name_SK'] }}</td>
+                    <td class="border px-4 py-2">
+                        @if(App::getLocale() == 'en')
+                            {{ $country['name_EN'] }}
+                        @else
+                            {{ $country['name_SK'] }}
+                        @endif
+                    </td>
                     <td class="border px-4 py-2 text-center">{{ $country['count'] }}</td>
                 </tr>
             @endforeach
