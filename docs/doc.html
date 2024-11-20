@@ -38,7 +38,7 @@
         </dd>
         <dd>Tomáš Barták <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
             <a href="mailto:xbarta51@stud.fit.vutbr.cz">xbarta51@stud.fit.vutbr.cz</a> -
-            Návrh webového uživatelského rozhraní aplikace, vytváření pohledů a formulářů, lokalizace
+            Návrh webového uživatelského rozhraní aplikace, vytváření pohledů a formulářů, lokalizace, světlá/tmavá téma
         </dd>
         <dd>Matěj Bedřich <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
             <a href="mailto:xbedri04@stud.fit.vutbr.cz">xbedri04@stud.fit.vutbr.cz</a> -
@@ -46,6 +46,8 @@
         </dd>
         <dt>URL aplikace</dt>
         <dd><a href="https://istrobot.up.railway.app/">https://istrobot.up.railway.app/</a></dd>
+        <dd>(stránku bude možná potřeba refreshnout - může být v režimu spánku aby se šetřili kredity dostupné ve free
+            verzi)</dd>
     </dl>
 
     <h2>Uživatelé systému pro testování</h2>
@@ -195,8 +197,11 @@
         </li>
         <li>Správně nakonfigurovat Laravel:
             <ul>
-                <li>Přemístit se do adresáře projektu a změnit název databáze v souboru <code>.env</code>:
+                <li>Přemístit se do adresáře projektu a změnit název databáze v souboru <code>.env</code> (příklad .env je v souboru .env.example):
                     <pre><code>DB_DATABASE=istrobot</code></pre>
+                </li>
+                <li>APP_KEY (.env) se dá vygenerovat pomocí:
+                    <pre><code>php artisan key:generate</code></pre>
                 </li>
                 <li>Nainstalovat všechny závislosti:
                     <pre><code>composer install</code></pre>
@@ -231,6 +236,9 @@
                 href="https://github.com/misobalogh/istrobot-sk">GitHub repozitáři</a>.</li>
         <li>Vytvořit databázi.</li>
         <li>Nastavit proměnné prostředí pre Railway app (příklad je v .env.example).</li>
+        <li>APP_KEY se dá vygenerovat pomocí:
+            <pre><code>php artisan key:generate</code></pre>
+        </li>
         <li>Propojit databázi s aplikací pomoci odkazování proměnných prostředí.</li>
         <li>Stáhnout a nainstalovat Railway CLI:
             <pre><code>curl -s -L https://get.railway.app | sh</code></pre>
