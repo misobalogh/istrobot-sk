@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Right Child div that takes up the remaining space -->
-                <div class=" p-6" style="float:right;background-color: rgb(75,75,75); width:75%; padding-left 20px; color: lightgrey">
+                <div class=" p-6" style="float:right;background-color: rgb(75,75,75); width:75%; color: lightgrey">
                     <p class="text-lg" style="font-size: 30px; margin-top: 30px; margin-left: 20px;"><b>{{ __('contest_messages.istrobot') }} 2025</b></p>
                     <p class="text-lg" style="margin-top: 20px; margin-left: 20px;">{{ __('contest_messages.main_announcement') }}</p>
                     <h2 style="font-size: 30px; margin-top: 25px; margin-left: 20px;"><b>{{ __('contest_messages.important_dates') }}</b></h2>
@@ -43,7 +43,7 @@
                 <p>{{ __('contest_messages.categories_intro') }}:</p>
 
                 <!-- radek tabulky -->
-                <div class="flex w-full space-x-4" style="background-color: rgb(77, 108, 118); border-radius: 10px 10px 10px 10px;">
+                <div class="flex w-full space-x-4" style="background-color: rgb(77, 108, 118); border-radius: 10px 10px 0px 0px;">
                     <!-- sloupec v radku -->
                     <div style="padding: 30px; width: 50%; float: left; border-style: solid; border-width: 1px; border-color: lightgrey; border-radius: 10px 0px 0px 0px;">
                         <div style="float: left; width: 20%; height: 200px">
@@ -52,7 +52,7 @@
                         <div style="float: right; width: 80%;">
                             <h1 style="font-size: 25px;"><b>{{ __('contest_messages.follower') }}</b></h1>
                             <p>{{ __('contest_messages.follower_description') }}</p>
-                            <button class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
+                            <button onclick="openModal('follower-modal')" class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
                         </div>
                     </div>
                     <!-- sloupec v radku -->
@@ -63,7 +63,7 @@
                         <div style="float: right; width: 80%;">
                             <h1 style="font-size: 25px;"><b>{{ __('contest_messages.ketchup_storage') }}</b></h1>
                             <p>{{ __('contest_messages.ketchup_description') }}</p>
-                            <button class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
+                            <button onclick="openModal('ketchup-modal')" class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                         <div style="float: right; width: 80%;">
                             <h1 style="font-size: 25px;"><b>{{ __('contest_messages.lego_sumo') }}</b></h1>
                             <p>{{ __('contest_messages.lego_sumo_description') }}</p>
-                            <button class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
+                            <button onclick="openModal('legosumo-modal')" class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
                         </div>
                     </div>
                     <!-- sloupec v radku -->
@@ -89,7 +89,7 @@
                         <div style="float: right; width: 80%;">
                             <h1 style="font-size: 25px;"><b>{{ __('contest_messages.mouse_in_labyrinth') }}</b></h1>
                             <p>{{ __('contest_messages.mouse_description') }}</p>
-                            <button class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
+                            <button onclick="openModal('mousemaze-modal')" class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div style="float: right; width: 90%;">
                         <h1 style="font-size: 25px;"><b>{{ __('contest_messages.free_ride') }}</b></h1>
                         <p>{{ __('contest_messages.free_ride_description') }}</p>
-                        <button class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
+                        <button onclick="openModal('freeride-modal')" class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@
                     <div style="float: right; width: 90%;">
                         <h1 style="font-size: 25px;"><b>{{ __('contest_messages.common_rules') }}</b></h1>
                         <p>{{ __('contest_messages.rules_description') }}</p>
-                        <button class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
+                        <button onclick="openModal('commonrules-modal')" class="px-4 mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">{{ __('contest_messages.details_button') }}</button>
                     </div>
                 </div>
 
@@ -128,4 +128,71 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal windows -->
+    <div id="follower-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
+            <h2 class="text-2xl font-bold mb-4">Follower robot</h2>
+            <p>Mobile robots have the capability to move around in their environment and are not fixed to one physical location. Mobile robots can be "autonomous" (AMR - autonomous mobile robot) which means they are capable of navigating an uncontrolled environment without the need for physical or electro-mechanical guidance devices. Alternatively, mobile robots can rely on guidance devices that allow them to travel a pre-defined navigation route in relatively controlled space. By contrast, industrial robots are usually more-or-less stationary, consisting of a jointed arm (multi-linked manipulator) and gripper assembly (or end effector), attached to a fixed surface.</p>
+            <button onclick="closeModal('follower-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                Close
+            </button>
+        </div>
+    </div>
+    <div id="ketchup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
+            <h2 class="text-2xl font-bold mb-4">Ketchup warehouse</h2>
+            <p>In this exciting competition, the task is to design and build a robot capable of efficiently and accurately arranging cans of tomato puree within a large warehouse setting. The objective is to showcase the robot's precision and speed in managing inventory and organizing the cans in designated storage areas. The challenge features two robots competing head-to-head, each aiming to collect as many cans as possible within the allocated time. The robots must navigate through aisles, avoid obstacles, and follow a specific set of rules to arrange the cans in a manner that ensures easy access and optimal space utilization.</p>
+            <button onclick="closeModal('ketchup-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                Close
+            </button>
+        </div>
+    </div>
+    <div id="legosumo-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
+            <h2 class="text-2xl font-bold mb-4">Legosumo</h2>
+            <p>In the LegoSumo challenge, two robots are pitted against each other in a test of strength, strategy, and agility. The goal is simple: push your opponent out of a circular arena. The robot that successfully forces the other out of the ring is declared the winner. However, the task is not just about brute force – it's also about designing a robot that can maneuver efficiently, withstand impacts, and outsmart its opponent with clever tactics.</p>
+            <button onclick="closeModal('legosumo-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                Close
+            </button>
+        </div>
+    </div>
+    <div id="mousemaze-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
+            <h2 class="text-2xl font-bold mb-4">Mouse in the maze</h2>
+            <p>In the "Mouse in the Maze" challenge, teams must design and build an autonomous robot, referred to as the "mouse," that can navigate through a maze as quickly as possible. The robot must explore and identify the correct path to the exit, all while operating independently without human intervention. The maze presents a variety of twists and turns, and the robot's ability to adapt and make decisions in real-time is key to success.</p>
+            <button onclick="closeModal('mousemaze-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                Close
+            </button>
+        </div>
+    </div>
+    <div id="freeride-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
+            <h2 class="text-2xl font-bold mb-4">Freeride</h2>
+            <p>The "Free Ride" category is an opportunity for competitors to showcase the full capabilities of their robots. In this open-ended challenge, participants have the freedom to demonstrate any function, feature, or unique ability their robot possesses, from advanced mobility and precision tasks to creative problem-solving solutions. The goal is to impress the jury with the robot’s versatility, design, and performance. ather than focusing on a specific task, the winner will be selected based on the overall presentation of the robot and an in-depth interview with the creator.</p>
+            <button onclick="closeModal('freeride-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                Close
+            </button>
+        </div>
+    </div>
+    <div id="commonrules-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
+            <h2 class="text-2xl font-bold mb-4">Common rules</h2>
+            <p>All participants in the competition are required to adhere to a set of common rules, which apply across all categories. These rules are primarily focused on ensuring the safety of both competitors and spectators, as well as maintaining fair and consistent conditions throughout the event. Safety measures include the proper handling of robots, the use of non-harmful materials, and the implementation of fail-safes to prevent accidents during demonstrations. Additionally, there are specific guidelines regarding the materials that can be used in the construction of robots.</p>
+            <button onclick="closeModal('commonrules-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                Close
+            </button>
+        </div>
+    </div>
+
+</div>
 </x-guest-layout>
+<script>
+    function openModal(id) {
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
+</script>
