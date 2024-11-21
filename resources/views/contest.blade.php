@@ -132,55 +132,55 @@
     <!-- Modal windows -->
     <div id="follower-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
-            <h2 class="text-2xl font-bold mb-4">Follower robot</h2>
-            <p>Mobile robots have the capability to move around in their environment and are not fixed to one physical location. Mobile robots can be "autonomous" (AMR - autonomous mobile robot) which means they are capable of navigating an uncontrolled environment without the need for physical or electro-mechanical guidance devices. Alternatively, mobile robots can rely on guidance devices that allow them to travel a pre-defined navigation route in relatively controlled space. By contrast, industrial robots are usually more-or-less stationary, consisting of a jointed arm (multi-linked manipulator) and gripper assembly (or end effector), attached to a fixed surface.</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('contest_messages.modal_follower_title') }}</h2>
+            <p>{{ __('contest_messages.modal_follower_body') }}</p>
             <button onclick="closeModal('follower-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                Close
+                {{ __('contest_messages.close_button') }}
             </button>
         </div>
     </div>
     <div id="ketchup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
-            <h2 class="text-2xl font-bold mb-4">Ketchup warehouse</h2>
-            <p>In this exciting competition, the task is to design and build a robot capable of efficiently and accurately arranging cans of tomato puree within a large warehouse setting. The objective is to showcase the robot's precision and speed in managing inventory and organizing the cans in designated storage areas. The challenge features two robots competing head-to-head, each aiming to collect as many cans as possible within the allocated time. The robots must navigate through aisles, avoid obstacles, and follow a specific set of rules to arrange the cans in a manner that ensures easy access and optimal space utilization.</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('contest_messages.modal_ketchup_title') }}</h2>
+            <p>{{ __('contest_messages.modal_ketchup_body') }}</p>
             <button onclick="closeModal('ketchup-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                Close
+                {{ __('contest_messages.close_button') }}
             </button>
         </div>
     </div>
     <div id="legosumo-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
-            <h2 class="text-2xl font-bold mb-4">Legosumo</h2>
-            <p>In the LegoSumo challenge, two robots are pitted against each other in a test of strength, strategy, and agility. The goal is simple: push your opponent out of a circular arena. The robot that successfully forces the other out of the ring is declared the winner. However, the task is not just about brute force – it's also about designing a robot that can maneuver efficiently, withstand impacts, and outsmart its opponent with clever tactics.</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('contest_messages.modal_legosumo_title') }}</h2>
+            <p>{{ __('contest_messages.modal_legosumo_body') }}</p>
             <button onclick="closeModal('legosumo-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                Close
+                {{ __('contest_messages.close_button') }}
             </button>
         </div>
     </div>
     <div id="mousemaze-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
-            <h2 class="text-2xl font-bold mb-4">Mouse in the maze</h2>
-            <p>In the "Mouse in the Maze" challenge, teams must design and build an autonomous robot, referred to as the "mouse," that can navigate through a maze as quickly as possible. The robot must explore and identify the correct path to the exit, all while operating independently without human intervention. The maze presents a variety of twists and turns, and the robot's ability to adapt and make decisions in real-time is key to success.</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('contest_messages.modal_mouse_title') }}</h2>
+            <p>{{ __('contest_messages.modal_mouse_body') }}</p>
             <button onclick="closeModal('mousemaze-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                Close
+                {{ __('contest_messages.close_button') }}
             </button>
         </div>
     </div>
     <div id="freeride-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
-            <h2 class="text-2xl font-bold mb-4">Freeride</h2>
-            <p>The "Free Ride" category is an opportunity for competitors to showcase the full capabilities of their robots. In this open-ended challenge, participants have the freedom to demonstrate any function, feature, or unique ability their robot possesses, from advanced mobility and precision tasks to creative problem-solving solutions. The goal is to impress the jury with the robot’s versatility, design, and performance. ather than focusing on a specific task, the winner will be selected based on the overall presentation of the robot and an in-depth interview with the creator.</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('contest_messages.modal_freeride_title') }}</h2>
+            <p>{{ __('contest_messages.modal_freeride_body') }}</p>
             <button onclick="closeModal('freeride-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                Close
+                {{ __('contest_messages.close_button') }}
             </button>
         </div>
     </div>
     <div id="commonrules-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-80 max-w-sm" style="color: lightgrey; width: 40%">
-            <h2 class="text-2xl font-bold mb-4">Common rules</h2>
-            <p>All participants in the competition are required to adhere to a set of common rules, which apply across all categories. These rules are primarily focused on ensuring the safety of both competitors and spectators, as well as maintaining fair and consistent conditions throughout the event. Safety measures include the proper handling of robots, the use of non-harmful materials, and the implementation of fail-safes to prevent accidents during demonstrations. Additionally, there are specific guidelines regarding the materials that can be used in the construction of robots.</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('contest_messages.modal_common_rules_title') }}</h2>
+            <p>{{ __('contest_messages.modal_common_rules_body') }}</p>
             <button onclick="closeModal('commonrules-modal')" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                Close
+                {{ __('contest_messages.close_button') }}
             </button>
         </div>
     </div>
